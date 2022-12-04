@@ -68,21 +68,36 @@ function loadStreetCorner() {
     text1.innerText = "You are standing on a street corner. \n You've just moved to the city, and you're not quite sure where to go from here. "
     image1.src = "images/backgrounds/streetCorner.jpg";
     link1.innerText = "Go up the street";
-    link1.setAttribute("onclick", "loadResidentialStreet()");
+    link1.setAttribute("onclick", "loadDowntownStreet()");
+    link2.innerText = "Go down the street";
+    link2.setAttribute("onclick", "loadResidentialStreet()");
 
-    container.append(title1, text1, image1, link1);
+    container.append(title1, text1, image1, link1, link2);
    
 };
 
 
 function loadResidentialStreet() {
     clear(container);
-    
-
     title1.innerText = "Residential Street";
     text1.innerText = "You've come to a quiet street, lined with houses. \nYou wonder what life is like for all the people here.";
     image1.src = "images/backgrounds/residentialStreet.png";
-    container.append(title1, text1, image1);
-}
+    link2.innerText = "Go back towards town.";
+    link2.setAttribute("onclick", "loadStreetCorner()");
+    container.append(title1, text1, image1, link2);
+};
 
 
+function loadDowntownStreet() {
+    clear(container);
+    title1.innerText = "Downtown Street";
+    text1.innerText = "You arrive at the downtown area. \nThe streets are lined by large office buildings and shops.";
+    text2.innerText = "You see the entrance for a nightclub.";
+    image1.src = "images/backgrounds/downtownStreet.jpg";
+    link1.innerText = "Enter the nightclub.";
+    link1.setAttribute("onclick", "loadNightClubEntrance()");
+    link2.innerText = "Go back towards the residential area.";
+    link2.setAttribute("onclick", "loadStreetCorner()");
+    container.append(title1, text1, text2, image1, link1, link2);
+
+};
