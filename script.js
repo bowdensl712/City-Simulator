@@ -119,9 +119,18 @@ function loadDowntownStreet() {
 };
 
 function loadNightClubEntrance() {
+    clear(container);
     bgm.src = "/audio/music/nightclub" + randomInclusive(1, 7) + ".mp3";
-    container.append(bgm);
+    title1.innerText = "Nightclub";
+    text1.innerText = "You enter the nightclub. \nThere's not too many people right now, but the music is playing.\nYou feel like you've heard this song before.";
+    image1.src = "images/backgrounds/nightclubEntrance.jpg";
+    link2.innerText = "Go outside.";
+    link2.setAttribute("onclick", "loadDowntownStreet()");
+    
+
+    container.append(title1, text1, image1, link2, bgm);
     bgm.play();
+    
 }
 
 console.log("nightclub" + randomInclusive(1, 7) + ".mp3");
