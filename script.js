@@ -27,10 +27,11 @@ const image4 = document.createElement("img");
 image4.setAttribute("class", "image");
 
 //Special Variables
-const bgm = document.createElement("embed");
-bgm.setAttribute("loop", "true");
-bgm.setAttribute("hidden", "true");
-bgm.setAttribute("type", "video/quicktime");
+const bgm = new Audio();
+bgm.type = "audio/mpeg";
+bgm.autoplay = "true";
+bgm.volume = ".3"
+
 
 
 
@@ -40,6 +41,12 @@ function clear(parent) {
     while (parent.firstChild) { parent.removeChild(parent.firstChild) };
 };
 
+function randomInclusive(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1) + min);
+};
+  
 
 
 //Main Page
@@ -112,6 +119,9 @@ function loadDowntownStreet() {
 };
 
 function loadNightClubEntrance() {
-    bgm.src = ""
+    bgm.src = "/audio/music/nightclub" + randomInclusive(1, 7) + ".mp3";
     container.append(bgm);
+    bgm.play();
 }
+
+console.log("nightclub" + randomInclusive(1, 7) + ".mp3");
