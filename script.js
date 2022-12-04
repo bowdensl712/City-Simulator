@@ -1,3 +1,4 @@
+//General Variables
 const container = document.getElementById("container");
 const title1 = document.createElement("h1");
 const text1 = document.createElement("p");
@@ -24,6 +25,14 @@ const image3 = document.createElement("img");
 image3.setAttribute("class", "image");
 const image4 = document.createElement("img");
 image4.setAttribute("class", "image");
+
+//Special Variables
+const bgm = document.createElement("embed");
+bgm.setAttribute("loop", "true");
+bgm.setAttribute("hidden", "true");
+bgm.setAttribute("type", "video/quicktime");
+
+
 
 
 //Functions
@@ -101,3 +110,8 @@ function loadDowntownStreet() {
     container.append(title1, text1, text2, image1, link1, link2);
 
 };
+
+function loadNightClubEntrance() {
+    bgm.src = ""
+    container.append(bgm);
+}
