@@ -29,8 +29,14 @@ p {
 .image {
     margin-top: 20px;
     margin-left: 20px;
-    width: 40%;
+    width: 50%;
     height: auto;
+}
+
+
+.link:hover {
+    cursor: pointer;
+    color: burlywood;
 }
 
 
@@ -42,6 +48,5 @@ p {
 
 .startButton:hover {
     cursor: pointer;
+    color: burlywood;
 }
-
-
