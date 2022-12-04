@@ -1,8 +1,16 @@
 const container = document.getElementById("container");
+const title1 = document.createElement("h1");
 const text1 = document.createElement("p");
 const text2 = document.createElement("p");
 const text3 = document.createElement("p");
 const text4 = document.createElement("p");
+
+
+//Functions
+function clear(parent) {
+    while (parent.firstChild) { parent.removeChild(parent.firstChild) };
+};
+
 
 
 //Main Page
@@ -26,8 +34,21 @@ mainPage.append(mainTitle, startButton);
 
 function startGame() {
 //TODO: add function
+clear(container);
+loadStreetCorner();
 };
 
+
+
+
+
+function loadStreetCorner() {
+    clear(container);
+    title1.innerText = "Street Corner";
+    container.append(title1);
+
+
+};
 
 
 
