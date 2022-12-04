@@ -10,6 +10,39 @@ html, body, #container {
     background-repeat: no-repeat;
 }
 
+.sidebar {
+    height: 100%;
+    width: 0;
+    background-color: #232323;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+}
+
+.sidebarButton {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 50%;
+    width: 10px;
+    height: 60px; 
+    background-color: #232323;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    transition: 0.5s;
+    margin-top: 0; 
+    margin-bottom:0;
+
+}
+
+.sidebarButton:hover {
+    width: 20px;
+}
+
+
+
+
 h1 {
     margin: 0; 
     text-align: center; 
@@ -38,6 +71,10 @@ p {
     cursor: pointer;
     color: burlywood;
 }
+
+
+
+
 
 
 /* Start Page */

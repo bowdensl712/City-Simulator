@@ -31,6 +31,8 @@ const bgm = new Audio();
 bgm.type = "audio/mpeg";
 bgm.autoplay = "true";
 bgm.volume = ".3"
+const sidebar = document.getElementsByClassName("sidebar");
+const sidebarButton = document.getElementsByClassName("sidebarButton");
 
 
 
@@ -47,6 +49,18 @@ function randomInclusive(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 };
   
+function toggleSidebar() {
+    if (sidebarToggle = false) {
+        sidebar.style.width = "300px";
+        sidebarButton.style.left = "300px";
+        sidebarToggle = true;
+    } else {
+        sidebar.style.width = "0";
+        sidebarButton.style.left = "0";
+        sidebarToggle = false;
+    }
+}
+let sidebarToggle = false;
 
 
 //Main Page
@@ -129,8 +143,6 @@ function loadNightClubEntrance() {
     
 
     container.append(title1, text1, image1, link2, bgm);
-    bgm.play();
+    bgm.play()
     
 }
-
-console.log("nightclub" + randomInclusive(1, 7) + ".mp3");
