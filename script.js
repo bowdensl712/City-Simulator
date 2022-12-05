@@ -28,7 +28,7 @@ image4.setAttribute("class", "image");
 
 //Special Variables
 const bgm = new Audio();
-bgm.type = "audio/mpeg";
+bgm.type = "audio/ogg";
 bgm.autoplay = "true";
 bgm.volume = ".3"
 const sidebar = document.getElementsByClassName("sidebar");
@@ -134,7 +134,7 @@ function loadDowntownStreet() {
 
 function loadNightClubEntrance() {
     clear(container);
-    bgm.src = "/audio/music/nightclub" + randomInclusive(1, 7) + ".mp3";
+    bgm.src = "/audio/music/nightclub" + randomInclusive(1, 7) + ".ogg";
     title1.innerText = "Nightclub";
     text1.innerText = "You enter the nightclub. \nThere's not too many people right now, but the music is playing.\nYou feel like you've heard this song before.";
     image1.src = "images/backgrounds/nightclubEntrance.jpg";
