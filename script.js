@@ -28,13 +28,16 @@ image4.setAttribute("class", "image");
 
 //Special Variables
 const bgm = new Audio();
-bgm.type = "audio/ogg";
+bgm.type = "audio/mpeg";
 bgm.autoplay = "true";
 bgm.volume = ".3"
 const sidebar = document.getElementsByClassName("sidebar");
 const sidebarButton = document.getElementsByClassName("sidebarButton");
 
 
+
+//In-Game Variables
+let radioState = false;
 
 
 
@@ -97,10 +100,34 @@ function loadApartment() {
     title1.innerText = "Your Apartment";
     text1.innerText = "Your new apartment. It still doesn't quite feel like home.";
     image1.src = "images/backgrounds/apartment.jpg";
+    link2.setAttribute("onclick", "toggleRadio()");
+    if (radioState === true) {
+        bgm.src = "/audio/music/radio/radio" + randomInclusive(1, 5) + ".mp3";
+        container.append(bgm);
+        link2.innerText = "Turn off the radio";
+    } else {
+        link2.innerText = "Turn on the radio";
+    }
     link3.innerText = "Go outside.";
     link3.setAttribute("onclick", "loadStreetCorner()");
-    container.append(title1, text1, image1, link3);
+    container.append(title1, text1, image1, link2, link3);
 
+}
+
+function toggleRadio() {
+    if (radioState === false) {
+        link2.innerText = "Turn off the radio";
+        bgm.src = "/audio/music/radio/radio" + randomInclusive(1, 5) + ".mp3";
+        container.append(bgm);
+
+        radioState = true;
+    } else {
+        link2.innerText = "Turn on the radio";
+        bgm.remove();
+        radioState = false;
+
+    }
+    
 }
 
 function loadStreetCorner() {
@@ -146,7 +173,7 @@ function loadDowntownStreet() {
 
 function loadNightClubEntrance() {
     clear(container);
-    bgm.src = "/audio/music/nightclub" + randomInclusive(1, 7) + ".ogg";
+    bgm.src = "/audio/music/nightclub/nightclub" + randomInclusive(1, 7) + ".mp3";
     title1.innerText = "Nightclub";
     text1.innerText = "You enter the nightclub. \nThere's not too many people right now, but the music is playing.\nYou feel like you've heard this song before.";
     image1.src = "images/backgrounds/nightclubEntrance.jpg";
