@@ -90,7 +90,18 @@ loadStreetCorner();
 
 
 
+//Apartment
 
+function loadApartment() {
+    clear(container);
+    title1.innerText = "Your Apartment";
+    text1.innerText = "Your new apartment. It still doesn't quite feel like home.";
+    image1.src = "images/backgrounds/apartment.jpg";
+    link3.innerText = "Go outside.";
+    link3.setAttribute("onclick", "loadStreetCorner()");
+    container.append(title1, text1, image1, link3);
+
+}
 
 function loadStreetCorner() {
     clear(container);
@@ -101,11 +112,12 @@ function loadStreetCorner() {
     link1.setAttribute("onclick", "loadDowntownStreet()");
     link2.innerText = "Go down the street";
     link2.setAttribute("onclick", "loadResidentialStreet()");
+    link3.innerText = "Enter your apartment.";
+    link3.setAttribute("onclick", "loadApartment()");
 
-    container.append(title1, text1, image1, link1, link2);
+    container.append(title1, text1, image1, link1, link2, link3);
    
 };
-
 
 function loadResidentialStreet() {
     clear(container);
