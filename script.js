@@ -34,6 +34,10 @@ bgm.volume = ".3"
 const sidebar = document.getElementsByClassName("sidebar");
 const sidebarButton = document.getElementsByClassName("sidebarButton");
 
+//Event Variables
+let homelessGiveToken = 0;
+let homelessIgnoreToken = 0;
+
 
 
 //In-Game Variables
@@ -64,6 +68,14 @@ function toggleSidebar() {
     }
 }
 let sidebarToggle = false;
+
+function executeEvent(event, chance) {
+    //TODO: Take event functions as arguments
+    //TODO: Take the event chance as an argument
+    //TODO: Roll the dice, and if it succeeds, execute the event.
+};
+
+
 
 
 //Main Page
@@ -185,7 +197,7 @@ function loadNightClubEntrance() {
     
 
     container.append(title1, text1, image1, link2, bgm);
-    bgm.play()
+    bgm.play();
     
 };
 
@@ -198,7 +210,7 @@ function loadAlleyway() {
     link1.setAttribute("onclick", "loadUndergroundShop()");
     link2.innerText = "Return to the street.";
     link2.setAttribute("onclick", "loadDowntownStreet()");
-
+    //TODO: Connect the homeless event via the executeEvent() function.
 
     container.append(title1, text1, image1, link1, link2);
 };
@@ -226,4 +238,45 @@ function loadPark () {
     link2.setAttribute("onclick", "loadResidentialStreet()");
     
     container.append(title1, text1, image1, link2);
+};
+
+
+
+
+
+
+
+//Event functions
+function homelessEvent() {
+    text2.innerText = "You see a homeless man sitting in the alleyway, resting with his back to the wall.\nThe years have clearly been rough on him. You wonder what to do.";
+    image2.src = "images/events/homelessMan.jpg";
+    link3.innerText = "Give the poor old man some change.";
+    link3.setAttribute("onclick", "homelessGive()");
+    link4.innerText = "Ignore him and keep walking.";
+    link4.setAttribute("onclick", "homelessIgnore()");
+    image1.after(text2, image2, link3, link4);
+
+
+};
+
+function homelessGive() {
+    if (homelessIgnoreToken > 0) {
+        homelessIgnoreToken --;
+    } else {
+        homelessGiveToken ++;
+    };
+    text2.innerText = "You give the man a small amount of money. \n He thanks you briefly, before zoning out again.";
+    link3.remove();
+    link4.remove();
+    //TODO: Subtract a small amount of money from wallet.
+};
+
+function homelessIgnore() {
+    homelessIgnoreToken ++;
+    if (homelessGiveToken < 0) {homelessGiveToken --};
+    text2.innerText = "You ignore the dirty old man and continue walking.";
+    image2.remove();
+    link3.remove();
+    link4.remove();
+
 };
