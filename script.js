@@ -151,9 +151,11 @@ function loadResidentialStreet() {
     title1.innerText = "Residential Street";
     text1.innerText = "You've come to a quiet street, lined with houses. \nYou wonder what life is like for all the people here.";
     image1.src = "images/backgrounds/residentialStreet.png";
+    link1.innerText = "Visit the nearby park.";
+    link1.setAttribute("onclick", "loadPark()");
     link2.innerText = "Go back towards town.";
     link2.setAttribute("onclick", "loadStreetCorner()");
-    container.append(title1, text1, image1, link2);
+    container.append(title1, text1, image1, link1, link2);
 };
 
 
@@ -200,3 +202,13 @@ function loadAlleyway() {
     container.append(title1, text1, image1, link2);
 };
 
+function loadPark () {
+    clear(container);
+    title1.innerText = "Public Park";
+    text1.innerText = "You come to the neighborhood park. \nThere are kids playing, and families relaxing together.";
+    image1.src = "images/backgrounds/park.jpg";
+    link2.innerText = "Go to the street.";
+    link2.setAttribute("onclick", "loadResidentialStreet()");
+    
+    container.append(title1, text1, image1, link2);
+}
