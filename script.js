@@ -255,8 +255,6 @@ function homelessEvent() {
     link4.innerText = "Ignore him and keep walking.";
     link4.setAttribute("onclick", "homelessIgnore()");
     image1.after(text2, image2, link3, link4);
-
-
 };
 
 function homelessGive() {
