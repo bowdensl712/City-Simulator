@@ -161,13 +161,15 @@ function loadDowntownStreet() {
     clear(container);
     title1.innerText = "Downtown Street";
     text1.innerText = "You arrive at the downtown area. \nThe streets are lined by large office buildings and shops.";
-    text2.innerText = "You see the entrance for a nightclub.";
+    text2.innerText = "You see the entrance for a nightclub, and an alleyway.";
     image1.src = "images/backgrounds/downtownStreet.jpg";
     link1.innerText = "Enter the nightclub.";
     link1.setAttribute("onclick", "loadNightClubEntrance()");
     link2.innerText = "Go back towards the residential area.";
     link2.setAttribute("onclick", "loadStreetCorner()");
-    container.append(title1, text1, text2, image1, link1, link2);
+    link3.innerText = "Enter the alleyway.";
+    link3.setAttribute("onclick", "loadAlleyway()");
+    container.append(title1, text1, text2, image1, link1, link3, link2);
 
 };
 
@@ -184,4 +186,17 @@ function loadNightClubEntrance() {
     container.append(title1, text1, image1, link2, bgm);
     bgm.play()
     
-}
+};
+
+function loadAlleyway() {
+    clear(container);
+    title1.innerText = "Alleyway";
+    text1.innerText = "It's a dirty alleyway.";
+    image1.src = "images/backgrounds/alleyway.jpg";
+    link2.innerText = "Return to the street.";
+    link2.setAttribute("onclick", "loadDowntownStreet()");
+
+
+    container.append(title1, text1, image1, link2);
+};
+
