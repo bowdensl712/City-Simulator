@@ -86,7 +86,6 @@ startButton.setAttribute("onclick", "startGame()");
 mainPage.append(mainTitle, startButton);
 
 function startGame() {
-//TODO: add function
 clear(container);
 loadStreetCorner();
 };
@@ -107,7 +106,7 @@ function loadApartment() {
         link2.innerText = "Turn off the radio";
     } else {
         link2.innerText = "Turn on the radio";
-    }
+    };
     link3.innerText = "Go outside.";
     link3.setAttribute("onclick", "loadStreetCorner()");
     container.append(title1, text1, image1, link2, link3);
@@ -133,7 +132,7 @@ function toggleRadio() {
 function loadStreetCorner() {
     clear(container);
     title1.innerText = "Street Corner";
-    text1.innerText = "You are standing on a street corner. \n You've just moved to the city, and you're not quite sure where to go from here. "
+    text1.innerText = "You are standing on a street corner. \n You've just moved to the city, and you're not quite sure where to go from here. ";
     image1.src = "images/backgrounds/streetCorner.jpg";
     link1.innerText = "Go up the street";
     link1.setAttribute("onclick", "loadDowntownStreet()");
@@ -193,14 +192,30 @@ function loadNightClubEntrance() {
 function loadAlleyway() {
     clear(container);
     title1.innerText = "Alleyway";
-    text1.innerText = "It's a dirty alleyway.";
+    text1.innerText = "It's a dirty alleyway. \nYou see a stairwell, leading down into the basement of one of the buildings. \nIt looks very sketchy.";
     image1.src = "images/backgrounds/alleyway.jpg";
+    link1.innerText = "Go down the stairwell."
+    link1.setAttribute("onclick", "loadUndergroundShop()");
     link2.innerText = "Return to the street.";
     link2.setAttribute("onclick", "loadDowntownStreet()");
 
 
+    container.append(title1, text1, image1, link1, link2);
+};
+
+function loadUndergroundShop() {
+    clear(container);
+    title1.innerText = "Streetwear Shop";
+    text1.innerText = "You stand in a small shop, run out of an apartment block's basement.\nClothes racks are tightly packed with fashionable clothes, many of them used.";
+    image1.src = "images/backgrounds/undergroundShop.jpg";
+    link2.innerText = "Return to the alleyway.";
+    link2.setAttribute("onclick", "loadAlleyway()");
+    
+
     container.append(title1, text1, image1, link2);
 };
+
+
 
 function loadPark () {
     clear(container);
@@ -211,4 +226,4 @@ function loadPark () {
     link2.setAttribute("onclick", "loadResidentialStreet()");
     
     container.append(title1, text1, image1, link2);
-}
+};
