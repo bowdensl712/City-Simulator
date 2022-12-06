@@ -37,11 +37,11 @@ const sidebarButton = document.getElementsByClassName("sidebarButton");
 //Event Variables
 let homelessGiveToken = 0;
 let homelessIgnoreToken = 0;
-
+let radioState = false;
 
 
 //In-Game Variables
-let radioState = false;
+let money = 1000;
 
 
 
@@ -69,10 +69,12 @@ function toggleSidebar() {
 }
 let sidebarToggle = false;
 
-function executeEvent(event, chance) {
-    //TODO: Take event functions as arguments
-    //TODO: Take the event chance as an argument
-    //TODO: Roll the dice, and if it succeeds, execute the event.
+function executeEvent(functionName, chance) {
+    const rolledDice = randomInclusive(1, 100);
+    if (chance >= rolledDice) {
+        functionName();
+    };
+//Note: Place this function AFTER the container.append() function!
 };
 
 
@@ -210,9 +212,10 @@ function loadAlleyway() {
     link1.setAttribute("onclick", "loadUndergroundShop()");
     link2.innerText = "Return to the street.";
     link2.setAttribute("onclick", "loadDowntownStreet()");
-    //TODO: Connect the homeless event via the executeEvent() function.
+    
 
     container.append(title1, text1, image1, link1, link2);
+    executeEvent(homelessEvent, 15);
 };
 
 function loadUndergroundShop() {
@@ -255,6 +258,7 @@ function homelessEvent() {
     link4.innerText = "Ignore him and keep walking.";
     link4.setAttribute("onclick", "homelessIgnore()");
     image1.after(text2, image2, link3, link4);
+    
 };
 
 function homelessGive() {
@@ -263,10 +267,12 @@ function homelessGive() {
     } else {
         homelessGiveToken ++;
     };
-    text2.innerText = "You give the man a small amount of money. \n He thanks you briefly, before zoning out again.";
+    const moneyGiven = randomInclusive(1, 10);
+    money -= moneyGiven;
+    text2.innerText = "You give the man " + moneyGiven + "dollars. \n He thanks you briefly, before zoning out again.";
     link3.remove();
     link4.remove();
-    //TODO: Subtract a small amount of money from wallet.
+    console.log(money); //TODO: Remove after testing
 };
 
 function homelessIgnore() {
