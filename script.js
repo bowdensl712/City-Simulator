@@ -176,7 +176,7 @@ function loadDowntownStreet() {
     clear(container);
     title1.innerText = "Downtown Street";
     text1.innerText = "You arrive at the downtown area. \nThe streets are lined by large office buildings and shops.";
-    text2.innerText = "You see the entrance for a nightclub, and an alleyway.";
+    text2.innerText = "You see the entrance for a nightclub, and an alleyway.\nFurther down the street, you see the city library.";
     image1.src = "images/backgrounds/downtownStreet.jpg";
     link1.innerText = "Enter the nightclub.";
     link1.setAttribute("onclick", "loadNightClubEntrance()");
@@ -184,7 +184,9 @@ function loadDowntownStreet() {
     link2.setAttribute("onclick", "loadStreetCorner()");
     link3.innerText = "Enter the alleyway.";
     link3.setAttribute("onclick", "loadAlleyway()");
-    container.append(title1, text1, text2, image1, link1, link3, link2);
+    link4.innerText = "Go towards the library"
+    link4.setAttribute("onclick", "loadLibraryOutside()");
+    container.append(title1, text1, text2, image1, link1, link3, link4, link2);
 
 };
 
@@ -243,7 +245,28 @@ function loadPark () {
     container.append(title1, text1, image1, link2);
 };
 
-
+function loadLibraryOutside() {
+    clear(container);
+    title1.innerText = "Public Library";
+    text1.innerText = "You come to the public library.\nYou watch as people pass by along the street.";
+    image1.src = "images/background/libraryEntrance.jpg";
+    link1.innerText = "Enter the library.";
+    link1.setAttribute("onclick", "loadLibraryEntrance()");
+    link2.innerText = "Leave the library";
+    link2.setAttribute("onclick", "loadDowntownStreet()");
+    container.append(title1, text1, image1, link1, link2);
+  };
+  
+  function loadLibraryEntrace() {
+    clear(container);
+    title1.innerText = "Library Entrance";
+    text1.innerText = "You stand in the lobby of the large library.\nYou see many long aisles of bookshelves.";
+    link1.innerText = "Roam the bookshelves.";
+    link2.setAttribute("onclick", "exploreLibrary()");
+    link2.innerText = "Go outside.";
+    link2.setAttribute("onclick", "loadLibraryOutside()");
+    container.append(title1, text1, image1, link1, link2);
+  };
 
 
 
@@ -284,3 +307,8 @@ function homelessIgnore() {
     link4.remove();
 
 };
+
+
+function exploreLibrary() {
+    //TODO: Create book searching event.
+}
