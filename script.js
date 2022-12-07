@@ -245,11 +245,14 @@ function loadPark () {
     container.append(title1, text1, image1, link2);
 };
 
+
+//Library
+
 function loadLibraryOutside() {
     clear(container);
     title1.innerText = "Public Library";
     text1.innerText = "You come to the public library.\nYou watch as people pass by along the street.";
-    image1.src = "images/background/libraryEntrance.jpg";
+    image1.src = "images/backgrounds/libraryOutside.jpg";
     link1.innerText = "Enter the library.";
     link1.setAttribute("onclick", "loadLibraryEntrance()");
     link2.innerText = "Leave the library";
@@ -257,16 +260,32 @@ function loadLibraryOutside() {
     container.append(title1, text1, image1, link1, link2);
   };
   
-  function loadLibraryEntrace() {
+  function loadLibraryEntrance() {
     clear(container);
     title1.innerText = "Library Entrance";
     text1.innerText = "You stand in the lobby of the large library.\nYou see many long aisles of bookshelves.";
+    image1.src = "images/backgrounds/libraryEntrance.jpg";
     link1.innerText = "Roam the bookshelves.";
-    link2.setAttribute("onclick", "exploreLibrary()");
+    link1.setAttribute("onclick", "exploreLibrary()");
+    link3.innerText = "Go deeper into the library";
+    link3.setAttribute("onclick", "loadLibraryDepths()");
     link2.innerText = "Go outside.";
     link2.setAttribute("onclick", "loadLibraryOutside()");
-    container.append(title1, text1, image1, link1, link2);
+    container.append(title1, text1, image1, link1, link3, link2);
   };
+
+  function loadLibraryDepths() {
+    clear(container);
+    title1.innerText = "Library Depths";
+    text1.innerText = "After wandering the maze of bookshelves, you find yourself in a back corner of the library.\nThere's nobody else here, and it seems like there hasn't been in a while.";
+    image1.src = "images/backgrounds/libraryDepths.jpg";
+    link1.innerText = "Explore the depths of the library.";
+    link1.setAttribute("onclick", "exploreLibraryDepths()");
+    link2.innerText = "Return to the library entrance.";
+    link2.setAttribute("onclick", "loadLibraryEntrance()");
+    container.append(title1, text1, image1, link1, link2);
+    
+  }
 
 
 
@@ -311,4 +330,9 @@ function homelessIgnore() {
 
 function exploreLibrary() {
     //TODO: Create book searching event.
+    //TODO: Add a result that "unlocks" the library depths, instead of being available by default.
+};
+
+function exploreLibraryDepths() {
+    //TODO: Create rare book searching event.
 }
