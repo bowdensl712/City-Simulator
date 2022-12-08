@@ -31,8 +31,8 @@ const bgm = new Audio();
 bgm.type = "audio/mpeg";
 bgm.autoplay = "true";
 bgm.volume = ".3"
-const sidebar = document.getElementsByClassName("sidebar");
-const sidebarButton = document.getElementsByClassName("sidebarButton");
+const sidebar = document.getElementById("sidebar");
+const sidebarButton = document.getElementById("sidebarButton");
 
 //Event Variables
 let homelessGiveToken = 0;
@@ -55,19 +55,21 @@ function randomInclusive(min, max) {
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1) + min);
 };
-  
+
+let sidebarToggle = false;
 function toggleSidebar() {
-    if (sidebarToggle = false) {
+    console.log("toggling sidebar");
+    if (sidebarToggle === false) {
         sidebar.style.width = "300px";
         sidebarButton.style.left = "300px";
         sidebarToggle = true;
-    } else {
+    } else  if (sidebarToggle === true) {
         sidebar.style.width = "0";
         sidebarButton.style.left = "0";
         sidebarToggle = false;
     }
 }
-let sidebarToggle = false;
+
 
 function executeEvent(functionName, chance) {
     const rolledDice = randomInclusive(1, 100);

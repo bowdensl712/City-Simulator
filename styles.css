@@ -10,7 +10,7 @@ html, body, #container {
     background-repeat: no-repeat;
 }
 
-.sidebar {
+#sidebar {
     height: 100%;
     width: 0;
     background-color: #232323;
@@ -20,7 +20,7 @@ html, body, #container {
     left: 0;
 }
 
-.sidebarButton {
+#sidebarButton {
     position: fixed;
     z-index: 1;
     left: 0;
@@ -36,7 +36,7 @@ html, body, #container {
 
 }
 
-.sidebarButton:hover {
+#sidebarButton:hover {
     width: 20px;
 }
 
