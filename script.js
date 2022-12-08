@@ -60,13 +60,14 @@ let sidebarToggle = false;
 function toggleSidebar() {
     console.log("toggling sidebar");
     if (sidebarToggle === false) {
-        sidebar.style.width = "300px";
-        sidebarButton.style.left = "300px";
+        sidebar.style.width = "250px";
+        sidebarButton.style.left = "250px";
         sidebarToggle = true;
     } else  if (sidebarToggle === true) {
         sidebar.style.width = "0";
         sidebarButton.style.left = "0";
         sidebarToggle = false;
+
     }
 }
 
