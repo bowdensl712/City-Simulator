@@ -58,7 +58,6 @@ function randomInclusive(min, max) {
 
 let sidebarToggle = false;
 function toggleSidebar() {
-    console.log("toggling sidebar");
     if (sidebarToggle === false) {
         sidebar.style.width = "250px";
         sidebarButton.style.left = "250px";
