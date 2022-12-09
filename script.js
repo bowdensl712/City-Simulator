@@ -107,6 +107,9 @@ function toggleInventory() {
         populateInventory();
         inventoryState = true;
     } else if (inventoryState === true) {
+        while (inventoryGrid.firstChild) {
+            inventoryGrid.firstChild.remove();
+        }
         inventoryPage.parentNode.insertBefore(container, inventoryPage);
         inventoryPage.remove();
         inventoryState = false;
@@ -118,12 +121,14 @@ function toggleInventory() {
 function populateInventory() {
     for (let i = 0; i < 64; i++) {
         if (inventoryContents[i] != undefined) {
-            let inventoryItem = document.createElement("p");
+            let inventoryItem = document.createElement("div");
+            inventoryItem.setAttribute("class", "inventoryItem");
             inventoryItem.innerText = inventoryContents[i];
             inventoryGrid.append(inventoryItem);
         } else {
-            let inventoryItem = document.createElement("p");
+            let inventoryItem = document.createElement("div");
             inventoryItem.innerText = "Empty inventory slot";
+            inventoryItem.setAttribute("class", "emptyInventoryItem");
             inventoryGrid.append(inventoryItem);
         }
 
