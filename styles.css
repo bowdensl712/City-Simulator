@@ -15,15 +15,23 @@ html, body, #container {
     width: 0;
     background-color: #232323;
     position: fixed;
-    z-index: 1;
+    z-index: 2;
     top: 0;
     left: 0;
     transition: 0.5s;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+    row-gap: 6px;
+    overflow: hidden;
+
+
 }
 
 #sidebarButton {
     position: fixed;
-    z-index: 1;
+    z-index: 2;
     left: 0;
     top: 50%;
     width: 10px;
@@ -39,9 +47,21 @@ html, body, #container {
 
 #sidebarButton:hover {
     width: 20px;
+    cursor: pointer;
 }
 
+/* Inventory Button */
+#inventoryButton {
+    width: 50%;
+    height: 20px;
+    background-color: white;
+    z-index: 1;
+    margin: 0, auto, 0, auto;
+}
 
+#moneyDisplay {
+    white-space: nowrap;
+}
 
 
 h1 {

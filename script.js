@@ -47,7 +47,7 @@ let money = 1000;
 
 //Functions
 function clear(parent) {
-    while (parent.firstChild) { parent.removeChild(parent.firstChild) };
+    while (parent.firstChild) { parent.removeChild(parent.firstChild) }; 
 };
 
 function randomInclusive(min, max) {
@@ -79,6 +79,13 @@ function executeEvent(functionName, chance) {
     };
 //Note: Place this function AFTER the container.append() function!
 };
+
+
+//Inventory
+let inventoryButton = document.getElementById("inventoryButton");
+let moneyDisplay = document.getElementById("moneyDisplay");
+moneyDisplay.innerText = money + " dollars";
+
 
 
 
