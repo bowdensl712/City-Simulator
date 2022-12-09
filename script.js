@@ -92,6 +92,10 @@ inventoryPage.setAttribute("id", "inventoryPage");
 const inventoryTitle = document.createElement("h1");
 inventoryTitle.innerText = "Inventory";
 inventoryTitle.setAttribute("id", "inventoryTitle");
+const inventoryGrid = document.createElement("div");
+inventoryGrid.setAttribute("id", "inventoryGrid");
+
+let inventoryContents = [["Test"], ["Can you see this?"]];
 
 
 
@@ -99,7 +103,8 @@ function toggleInventory() {
     if (inventoryState === false) {
         container.parentNode.insertBefore(inventoryPage, container);
         container.remove();
-        inventoryPage.append(inventoryTitle);
+        inventoryPage.append(inventoryTitle, inventoryGrid);
+        populateInventory();
         inventoryState = true;
     } else if (inventoryState === true) {
         inventoryPage.parentNode.insertBefore(container, inventoryPage);
@@ -108,7 +113,23 @@ function toggleInventory() {
     } else {
         console.error("Your inventory state isn't boolean!")
     }
+}
 
+function populateInventory() {
+    for (let i = 0; i < 64; i++) {
+        if (inventoryContents[i] != undefined) {
+            let inventoryItem = document.createElement("p");
+            inventoryItem.innerText = inventoryContents[i];
+            inventoryGrid.append(inventoryItem);
+        } else {
+            let inventoryItem = document.createElement("p");
+            inventoryItem.innerText = "Empty inventory slot";
+            inventoryGrid.append(inventoryItem);
+        }
+
+
+
+    }
 }
 
 
