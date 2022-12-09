@@ -76,17 +76,40 @@ function executeEvent(functionName, chance) {
     if (chance >= rolledDice) {
         functionName();
     };
-//Note: Place this function AFTER the container.append() function!
+//Note: Place this function AFTER the container.append() function when executing!
 };
 
 
-//Inventory
+//Sidebar
 let inventoryButton = document.getElementById("inventoryButton");
 let moneyDisplay = document.getElementById("moneyDisplay");
 moneyDisplay.innerText = money + " dollars";
 
+//Inventory
+let inventoryState = false;
+const inventoryPage = document.createElement("div");
+inventoryPage.setAttribute("id", "inventoryPage");
+const inventoryTitle = document.createElement("h1");
+inventoryTitle.innerText = "Inventory";
+inventoryTitle.setAttribute("id", "inventoryTitle");
 
 
+
+function toggleInventory() {
+    if (inventoryState === false) {
+        container.parentNode.insertBefore(inventoryPage, container);
+        container.remove();
+        inventoryPage.append(inventoryTitle);
+        inventoryState = true;
+    } else if (inventoryState === true) {
+        inventoryPage.parentNode.insertBefore(container, inventoryPage);
+        inventoryPage.remove();
+        inventoryState = false;
+    } else {
+        console.error("Your inventory state isn't boolean!")
+    }
+
+}
 
 
 //Main Page

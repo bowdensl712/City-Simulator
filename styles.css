@@ -33,9 +33,9 @@ html, body, #container {
     position: fixed;
     z-index: 2;
     left: 0;
-    top: 50%;
-    width: 10px;
-    height: 60px; 
+    top: 45%;
+    width: 15px;
+    height: 80px; 
     background-color: #232323;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
@@ -46,22 +46,45 @@ html, body, #container {
 }
 
 #sidebarButton:hover {
-    width: 20px;
+    width: 24px;
     cursor: pointer;
 }
 
-/* Inventory Button */
+/* Sidebar Contents */
 #inventoryButton {
     width: 50%;
     height: 20px;
     background-color: white;
     z-index: 1;
-    margin: 0, auto, 0, auto;
+    text-align: center;
+    background-color: gray;
+    font-family: sans-serif;
+    border-radius: 4px;
+
+}
+
+#inventoryButton:hover {
+    cursor: pointer;
 }
 
 #moneyDisplay {
     white-space: nowrap;
 }
+
+
+/* Inventory Contents */
+#inventoryPage {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+}
+
+#inventoryTitle {
+    text-align: center;
+    color: black;
+}
+
+
 
 
 h1 {
