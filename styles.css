@@ -84,8 +84,9 @@ html, body, #container {
 }
 
 #inventoryGrid {
+    margin: auto;
     padding: 10px;
-    width: 100%;
+    width: 90%;
     overflow: auto;
     background-color: rgba(225,225,225,50%);
     display: grid;

@@ -104,6 +104,7 @@ function toggleInventory() {
         container.parentNode.insertBefore(inventoryPage, container);
         container.remove();
         inventoryPage.append(inventoryTitle, inventoryGrid);
+        toggleSidebar();
         populateInventory();
         inventoryState = true;
     } else if (inventoryState === true) {
