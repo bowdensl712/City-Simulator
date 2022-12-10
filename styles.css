@@ -107,6 +107,28 @@ html, body, #container {
 
 
 
+/* Photo Album */
+#photoAlbum {
+    width: 90%;
+    overflow: auto;
+    background-color: darkgray;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+.photoAlbumEntry {
+    width: 300px;
+    overflow: auto;
+}
+
+.photoAlbumPicture {
+aspect-ratio: auto;
+width: 300px;
+}
+
+.photoAlbumText {
+
+}
 
 /* Basic Style */
 

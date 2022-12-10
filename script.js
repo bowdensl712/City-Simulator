@@ -315,9 +315,42 @@ function leaveBookshelf() {
 
 }
 
+//Photo Album
+let photoAlbum = document.createElement("div");
+photoAlbum.setAttribute("id", "photoAlbum");
+//Album Contents [[0-Name, 1-Description, 2-File]]
+let photoAlbumContents = [
+    ["Test name", "Test Description", "images/backgrounds/apartment.jpg"],
+    ["Test name 2", "Test Description 2", "images/backgrounds/streetCorner.jpg"],
+    ["Test name 3", "Test Description 3", "images/backgrounds/streetCorner.jpg"],
+];
+
 function loadPhotoAlbum() {
-    //TODO: Make photo album
-}
+    image1.remove();
+    text1.remove();
+    link1.remove();
+    link2.remove();
+    title1.innerText = "Photo album";
+    container.append(title1, photoAlbum);
+    photoAlbumContents.forEach((element) => {
+        let photoAlbumEntry = document.createElement("div");
+        photoAlbumEntry.setAttribute("class", "photoAlbumEntry");
+        photoAlbum.append(photoAlbumEntry);
+        let photoAlbumName = document.createElement("p");
+        photoAlbumName.setAttribute("class", "photoAlbumText");
+        photoAlbumName.innerText = element[0];
+        let photoAlbumDesc = document.createElement("p");
+        photoAlbumDesc.setAttribute("class", "photoAlbumText");
+        photoAlbumDesc.innerText = element[1];
+        let photoAlbumPicture = document.createElement("img");
+        photoAlbumPicture.setAttribute("class", "photoAlbumPicture");
+        photoAlbumPicture.src = element[2];
+        photoAlbumEntry.append(photoAlbumName, photoAlbumDesc, photoAlbumPicture);
+    });
+
+
+
+};
 
 
 
