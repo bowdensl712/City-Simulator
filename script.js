@@ -1,5 +1,3 @@
-const { forEachMatchingSheetRuleOfElement } = require("jsdom/lib/jsdom/living/helpers/style-rules");
-
 //General Elements
 const container = document.getElementById("container");
 const title1 = document.createElement("h1");
@@ -289,7 +287,7 @@ function loadStreetCorner() {
     link3.setAttribute("onclick", "loadApartment()");
 
     container.append(title1, text1, image1, link1, link2, link3);
-   
+    strangersFramework();
 };
 
 function loadResidentialStreet() {
@@ -302,6 +300,7 @@ function loadResidentialStreet() {
     link2.innerText = "Go back towards town.";
     link2.setAttribute("onclick", "loadStreetCorner()");
     container.append(title1, text1, image1, link1, link2);
+    strangersFramework();
 };
 
 
@@ -320,6 +319,7 @@ function loadDowntownStreet() {
     link4.innerText = "Go towards the library"
     link4.setAttribute("onclick", "loadLibraryOutside()");
     container.append(title1, text1, text2, image1, link1, link3, link4, link2);
+    strangersFramework();
 
 };
 
@@ -473,14 +473,14 @@ function exploreLibraryDepths() {
 
 //Strangers framework
 function strangersFramework(locationType) {
-    let rolledDice = randomInclusive(50, 80); //TODO: Reset to 1-100 after testing
+    let rolledDice = randomInclusive(51, 80); //TODO: Reset to 1-100 after testing
     if (rolledDice > 50 && rolledDice <= 80) {
         //TODO: Spawn one person
         let stranger1 = spawnStranger(locationType);
         strangerLink1.innerText = "You see " + stranger1[0] +". They're " + stranger1[1] +".";
         strangerImage1.src = stranger1[2];
-        strangerLink1.setAttribute("onclick", "container.insertBefore(strangerLink1.nextSibling)");
-        document.insertBefore(strangerLink1, link1);
+        strangerLink1.setAttribute("onclick", "container.insertBefore(strangerImage1, strangerLink1.nextSibling)");
+        container.insertBefore(strangerLink1, link1);
     } else if (rolledDice > 80 && rolledDice <= 95) {
         //TODO: Spawn two people
     } else if (rolledDice > 95) {
@@ -496,14 +496,17 @@ function strangersFramework(locationType) {
 
 function spawnStranger(locationType) {
     let coinflip = randomInclusive(1,2);
+    let strangerName;
+    let strangerGender;
+    let strangerPicture;
     if (coinflip === 1) {
-        let strangerGender = "Female";
-        let strangerName = whiteGirlNames[Math.floor(Math.random()*whiteGirlNames.length)];
-        let strangerPicture = "images/strangers/whiteGirls/whiteGirl" + randomInclusive(1, 1) + ".jpg";
+        strangerGender = "Female";
+        strangerName = whiteGirlNames[Math.floor(Math.random()*whiteGirlNames.length)];
+        strangerPicture = "images/strangers/whiteGirls/whiteGirl" + randomInclusive(1, 1) + ".jpg";
     } else if (coinflip === 2) {
-        let strangerGender = "Male";
-        let strangerName = whiteGuyNames[Math.floor(Math.random()*whiteGuyNames.length)];
-        let strangerPicture = "images/strangers/whiteGuys/whiteGuy" + randomInclusive(1, 1) + ".jpg";
+        strangerGender = "Male";
+        strangerName = whiteGuyNames[Math.floor(Math.random()*whiteGuyNames.length)];
+        strangerPicture = "images/strangers/whiteGuys/whiteGuy" + randomInclusive(1, 1) + ".jpg";
     };
     
     
