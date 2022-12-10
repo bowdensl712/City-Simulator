@@ -97,7 +97,64 @@ inventoryGrid.setAttribute("id", "inventoryGrid");
 
 let inventoryContents = [["Test"], ["Can you see this?"]];
 
-
+//Item List [0-Code, 1-Name, 2-Description, 3-Type, 4-Value, 5-Trait, 6-Image]
+const itemList = [
+    //Foods
+    [0, "Apple", "A delicious-looking red apple", "food", 1, 5],
+    [1, "Banana", "A nice, ripe banana, free of any bruises", "food", 1, 5],
+    [2, "Orange", "A fresh orange", "food", 1, 5],
+    [3, "Lemon", "A bright yellow lemon", "food", 1, 5],
+    [4, "Green apple", "A bit more sour than its red cousin", "food", 1, 5],
+    [5, "Grapefruit", "Quite sour, but very refreshing", "food", 1, 5],
+    [6, "Avocado", "If only I had some toast...", "food", 1, 5],
+    [7, "Tomato", "A ripe and tasty looking tomato. Not much fun to eat as-is, though.", "food", 1, 5],
+    [8, ],
+    [9, ],
+    [10, ],
+    [11, ],
+    [12, ],
+    [13, ],
+    [14, ],
+    [15, ],
+    [16, ],
+    [17, ],
+    [18, ],
+    [19, ],
+    [20, ],
+    [21, ],
+    [22, ],
+    [23, ],
+    [24, ],
+    [25, ],
+    [26, ],
+    [27, ],
+    [28, ],
+    [29, ],
+    [30, ],
+    [31, ],
+    [32, ],
+    [33, ],
+    [34, ],
+    [35, ],
+    [36, ],
+    [37, ],
+    [38, ],
+    [39, ],
+    [40, ],
+    [41, ],
+    [42, ],
+    [43, ],
+    [44, ],
+    [45, ],
+    [46, ],
+    [47, ],
+    [48, ],
+    [49, ],
+    [50, ],
+    
+    //Clothes
+    
+];
 
 function toggleInventory() {
     if (inventoryState === false) {
