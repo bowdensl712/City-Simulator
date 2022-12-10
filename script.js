@@ -298,7 +298,21 @@ function loadBookshelf() {
 }
 
 function leaveBookshelf() {
-    //TODO: Leave bookshelf without disturbing music
+    image1.remove();
+    text1.remove();
+    link1.remove();
+    link2.remove();
+    title1.innerText = "Your Apartment";
+    text1.innerText = "Your new apartment. It still doesn't quite feel like home.";
+    image1.src = "images/backgrounds/apartment.jpg";
+    link2.setAttribute("onclick", "toggleRadio()");
+    link4.innerText = "Go to the bookshelf";
+    link4.setAttribute("onclick", "loadBookshelf()");
+
+    link3.innerText = "Go outside.";
+    link3.setAttribute("onclick", "loadStreetCorner()");
+    container.append(title1, text1, image1, link2, link4, link3);
+
 }
 
 function loadPhotoAlbum() {
