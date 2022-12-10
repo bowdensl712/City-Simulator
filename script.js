@@ -249,6 +249,7 @@ function loadApartment() {
         bgm.src = "/audio/music/radio/radio" + randomInclusive(1, 5) + ".mp3";
         container.append(bgm);
         link2.innerText = "Turn off the radio";
+        bgm.play();
     } else {
         link2.innerText = "Turn on the radio";
     };
@@ -263,6 +264,7 @@ function toggleRadio() {
         link2.innerText = "Turn off the radio";
         bgm.src = "/audio/music/radio/radio" + randomInclusive(1, 5) + ".mp3";
         container.append(bgm);
+        bgm.play();
 
         radioState = true;
     } else {
