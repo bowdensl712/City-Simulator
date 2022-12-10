@@ -1,3 +1,5 @@
+const { forEachMatchingSheetRuleOfElement } = require("jsdom/lib/jsdom/living/helpers/style-rules");
+
 //General Variables
 const container = document.getElementById("container");
 const title1 = document.createElement("h1");
@@ -153,6 +155,7 @@ const itemList = [
     [50, "BLT", "", "food", 1, 15],
     
     //Clothes
+    //TODO: Add clothes
     
 ];
 
@@ -452,3 +455,41 @@ function exploreLibrary() {
 function exploreLibraryDepths() {
     //TODO: Create rare book searching event.
 }
+
+
+//Strangers framework
+function strangersFramework(locationType) {
+    let rolledDice = randomInclusive(1, 100);
+    if (rolledDice > 50 && rolledDice <= 80) {
+        //TODO: Spawn one person
+    } else if (rolledDice > 80 && rolledDice <= 95) {
+        //TODO: Spawn two people
+    } else if (rolledDice > 95) {
+        //TODO: Spawn three people
+    } else {console.error("strangersFramework is broken!")};
+    console.log(rolledDice);
+
+}
+
+function spawnStranger(locationType) {
+    let coinflip = randomInclusive(1,2);
+    if (coinflip === 1) {
+        let strangerGender = "Female";
+        let strangerName = whiteGirlNames[Math.floor(Math.random()*whiteGirlNames.length)];
+        let strangerPicture = "images/strangers/whiteGirls/whiteGirl" + randomInclusive(1, 1) + ".jpg";
+    } else if (coinflip === 2) {
+        let strangerGender = "Male";
+        let strangerName = whiteGuyNames[Math.floor(Math.random()*whiteGuyNames.length)];
+        let strangerPicture = "images/strangers/whiteGuys/whiteGuy" + randomInclusive(1, 1) + ".jpg";
+
+    };
+    
+
+};
+
+let strangersList = [
+
+];
+
+let whiteGirlNames = ["Jessica", "Veronica", "Claire", "Ashley", "Olivia", "Emma", "Charlotte", "Amelia", "Ava", "Sophia", "Isabella", "Mia", "Luna", "Elizabeth", "Abigail", "Emily", "Penelope", "Madison", "Lily", "Grace", "Aurora", "Violet", "Zoey", "Willow", "Hannah", "Leah", "Lucy", "Ivy", "Audrey", "Autumn", "Bella", "Hailey", "Ariana", "Jade", "Eva", "Maria", "Julia", "Rose", "Margaret", "Mary", "Lucia", "Magnolia", "Alexandra", "Juliette", "Chloe", "Anastasia", "Brianna", "Molly", "Amy", "Belle", "Sara", "Morgan", "Vera", "Octavia", "Brooke", "Dakota", "Reagan", "Daphne", "Evie", "Paige", "Rebecca", "Lia", "Dahlia", "Brooklynn", "Ophelia", "Catherine", "Briella", "Adriana", "Nicole"];
+let whiteGuyNames = ["Noah", "Oliver", "Elijah", "James", "William", "Benjamin", "Lucas", "Henry", "Ted", "Jack", "Alexander", "Danny", "Logan", "John", "David", "Luke", "Anthony", "Thomas", "Dylan", "Charles", "Caleb", "Christopher", "Isaiah", "Andrew", "Joshua", "Oliver", "Nathan", "Eli", "Ryan", "Jonathan", "Connor", "Sawyer", "Myles", "Walker", "George", "Lucas"];
