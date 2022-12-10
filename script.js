@@ -335,6 +335,15 @@ function loadSupermarketEntrance() {
     container.append(title1, text1, image1, link1, link2);
 };
 
+function loadSupermarket() {
+    clear(container);
+    title1.innerText = "Supermarket";
+    text1.innerText = "The aisles of the supermarket stretch out before you.\nPeople pass by with carts and baskets, browsing the aisles."
+    image1.src = "images/backgrounds/supermarket.jpg";
+    link2.setAttribute("onclick", "loadSupermarketEntrance()");
+
+    container.append(title1, text1, image1, link2);
+}
 
 
 //Downtown Street
