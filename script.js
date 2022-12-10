@@ -395,6 +395,7 @@ function loadStreetCorner() {
 
     container.append(title1, text1, image1, link1, link2, link4, link3);
     strangersFramework();
+    findItem();
 };
 
 function loadResidentialStreet() {
@@ -408,6 +409,7 @@ function loadResidentialStreet() {
     link2.setAttribute("onclick", "loadStreetCorner()");
     container.append(title1, text1, image1, link1, link2);
     strangersFramework();
+    findItem();
 };
 
 
@@ -425,6 +427,8 @@ function loadCommercialStreet() {
     link2.setAttribute("onclick", "loadStreetCorner()");
 
     container.append(title1, text1, image1, link1, link2);
+    strangersFramework();
+    findItem();
 };
 
 function loadSupermarketEntrance() {
@@ -438,6 +442,8 @@ function loadSupermarketEntrance() {
     link2.setAttribute("onclick", "loadCommercialStreet()");
 
     container.append(title1, text1, image1, link1, link2);
+    strangersFramework();
+    findItem();
 };
 
 function loadSupermarket() {
@@ -448,6 +454,8 @@ function loadSupermarket() {
     link2.setAttribute("onclick", "loadSupermarketEntrance()");
 
     container.append(title1, text1, image1, link2);
+    strangersFramework();
+    findItem();
 }
 
 
@@ -469,6 +477,7 @@ function loadDowntownStreet() {
     link4.setAttribute("onclick", "loadLibraryOutside()");
     container.append(title1, text1, text2, image1, link1, link3, link4, link2);
     strangersFramework();
+    findItem();
 
 };
 
@@ -484,6 +493,8 @@ function loadNightClubEntrance() {
 
     container.append(title1, text1, image1, link2, bgm);
     bgm.play();
+    strangersFramework();
+    findItem();
     
 };
 
@@ -500,6 +511,8 @@ function loadAlleyway() {
 
     container.append(title1, text1, image1, link1, link2);
     executeEvent(homelessEvent, 15);
+    strangersFramework();
+    findItem();
 };
 
 function loadUndergroundShop() {
@@ -512,6 +525,8 @@ function loadUndergroundShop() {
     
 
     container.append(title1, text1, image1, link2);
+    strangersFramework();
+    findItem();
 };
 
 
@@ -525,6 +540,8 @@ function loadPark () {
     link2.setAttribute("onclick", "loadResidentialStreet()");
     
     container.append(title1, text1, image1, link2);
+    strangersFramework();
+    findItem();
 };
 
 
@@ -540,6 +557,8 @@ function loadLibraryOutside() {
     link2.innerText = "Leave the library";
     link2.setAttribute("onclick", "loadDowntownStreet()");
     container.append(title1, text1, image1, link1, link2);
+    strangersFramework();
+    findItem();
   };
   
   function loadLibraryEntrance() {
@@ -554,6 +573,8 @@ function loadLibraryOutside() {
     link2.innerText = "Go outside.";
     link2.setAttribute("onclick", "loadLibraryOutside()");
     container.append(title1, text1, image1, link1, link3, link2);
+    strangersFramework();
+    findItem();
   };
 
   function loadLibraryDepths() {
@@ -566,6 +587,7 @@ function loadLibraryOutside() {
     link2.innerText = "Return to the library entrance.";
     link2.setAttribute("onclick", "loadLibraryEntrance()");
     container.append(title1, text1, image1, link1, link2);
+    
     
   }
 
@@ -622,7 +644,7 @@ function exploreLibraryDepths() {
 
 //Strangers framework
 function strangersFramework(locationType) {
-    let rolledDice = randomInclusive(51, 80); //TODO: Reset to 1-100 after testing
+    let rolledDice = randomInclusive(1, 100); //TODO: Reset to 1-100 after testing
     if (rolledDice > 50 && rolledDice <= 80) {
         //TODO: Spawn one person
         let stranger1 = spawnStranger(locationType);
@@ -635,7 +657,7 @@ function strangersFramework(locationType) {
     } else if (rolledDice > 95) {
         //TODO: Spawn three people
     } else {console.error("strangersFramework is broken!")};
-    console.log(rolledDice);
+    console.log("Strangers Framework roll: " + rolledDice);
 
 
 
@@ -678,6 +700,7 @@ function findItem() {
         container.append(findItemLink); //TODO: Figure out where to place it on the page, other than dead last.
 
     };
+    console.log("find items roll: " + rolledDice)
 };
 
 let foundImagesList = [
@@ -698,7 +721,7 @@ function foundItem() {
 
     let imageDisplay = document.createElement("div");
     container.append(imageDisplay);
-    imageDisplay.append(foundImageName, foundImageText, foundImage)
+    imageDisplay.append(foundImageName, foundImageText, foundImage);
 
 }
 
