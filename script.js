@@ -285,8 +285,10 @@ function loadStreetCorner() {
     link2.setAttribute("onclick", "loadResidentialStreet()");
     link3.innerText = "Enter your apartment.";
     link3.setAttribute("onclick", "loadApartment()");
+    link4.innerText = "Go to the commercial street";
+    link4.setAttribute("onclick", "loadCommercialStreet()");
 
-    container.append(title1, text1, image1, link1, link2, link3);
+    container.append(title1, text1, image1, link1, link2, link4, link3);
     strangersFramework();
 };
 
@@ -302,6 +304,24 @@ function loadResidentialStreet() {
     container.append(title1, text1, image1, link1, link2);
     strangersFramework();
 };
+
+
+//Commercial Street
+
+function loadCommercialStreet() {
+    clear(container);
+    title1.innerText = "Commercial Street";
+    text1.innerText = "You come to a street lined with shops.\nIt's very convenient, being this close to your apartment.\nYou see a supermarket, as well as some other shops.";
+    image1.src = "images/backgrounds/commercialStreet.jpg"; //TODO: Add picture
+    link1.innerText = "Go towards the supermarket.";
+    link1.setAttribute("onclick", "loadSupermarket()");
+
+    link2.innerText = "Go back towards your apartment.";
+    link2.setAttribute("onclick", "loadStreetCorner()");
+
+    container.append(title1, text1, image1, link1, link2);
+};
+
 
 
 function loadDowntownStreet() {
