@@ -253,9 +253,13 @@ function loadApartment() {
     } else {
         link2.innerText = "Turn on the radio";
     };
+
+    link4.innerText = "Go to the bookshelf";
+    link4.setAttribute("onclick", "loadBookshelf()");
+
     link3.innerText = "Go outside.";
     link3.setAttribute("onclick", "loadStreetCorner()");
-    container.append(title1, text1, image1, link2, link3);
+    container.append(title1, text1, image1, link2, link4, link3);
 
 }
 
@@ -271,10 +275,37 @@ function toggleRadio() {
         link2.innerText = "Turn on the radio";
         bgm.remove();
         radioState = false;
-
-    }
-    
+        }
 }
+
+function loadBookshelf() {
+    title1.remove();
+    text1.remove();
+    image1.remove();
+    link1.remove();
+    link2.remove();
+    link3.remove();
+    link4.remove();
+
+    image1.src = "images/backgrounds/bookshelf.jpg";
+    text1.innerText = "You stand in front of your bookshelf.";
+    link1.innerText = "Photo Album";
+    link1.setAttribute("onclick", "loadPhotoAlbum()");
+    link2.innerText = "Step away from the bookshelf.";
+    link2.setAttribute("onclick", "leaveBookshelf()");
+
+    container.append(image1, text1, link1, link2);
+}
+
+function leaveBookshelf() {
+    //TODO: Leave bookshelf without disturbing music
+}
+
+function loadPhotoAlbum() {
+    //TODO: Make photo album
+}
+
+
 
 function loadStreetCorner() {
     clear(container);
