@@ -1,6 +1,6 @@
 const { forEachMatchingSheetRuleOfElement } = require("jsdom/lib/jsdom/living/helpers/style-rules");
 
-//General Variables
+//General Elements
 const container = document.getElementById("container");
 const title1 = document.createElement("h1");
 const text1 = document.createElement("p");
@@ -27,6 +27,20 @@ const image3 = document.createElement("img");
 image3.setAttribute("class", "image");
 const image4 = document.createElement("img");
 image4.setAttribute("class", "image");
+
+//Strangers Framework Elements
+const strangerLink1 = document.createElement("p");
+link4.setAttribute("class", "link");
+const strangerLink2 = document.createElement("p");
+link4.setAttribute("class", "link");
+const strangerLink3 = document.createElement("p");
+link4.setAttribute("class", "link");
+const strangerImage1 = document.createElement("img");
+strangerImage1.setAttribute("class", "image");
+const strangerImage2 = document.createElement("img");
+strangerImage2.setAttribute("class", "image");
+const strangerImage3 = document.createElement("img");
+strangerImage3.setAttribute("class", "image");
 
 //Special Variables
 const bgm = new Audio();
@@ -459,15 +473,24 @@ function exploreLibraryDepths() {
 
 //Strangers framework
 function strangersFramework(locationType) {
-    let rolledDice = randomInclusive(1, 100);
+    let rolledDice = randomInclusive(50, 80); //TODO: Reset to 1-100 after testing
     if (rolledDice > 50 && rolledDice <= 80) {
         //TODO: Spawn one person
+        let stranger1 = spawnStranger(locationType);
+        strangerLink1.innerText = "You see " + stranger1[0] +". They're " + stranger1[1] +".";
+        strangerImage1.src = stranger1[2];
+        strangerLink1.setAttribute("onclick", "container.insertBefore(strangerLink1.nextSibling)");
+        document.insertBefore(strangerLink1, link1);
     } else if (rolledDice > 80 && rolledDice <= 95) {
         //TODO: Spawn two people
     } else if (rolledDice > 95) {
         //TODO: Spawn three people
     } else {console.error("strangersFramework is broken!")};
     console.log(rolledDice);
+
+
+
+
 
 }
 
@@ -481,10 +504,10 @@ function spawnStranger(locationType) {
         let strangerGender = "Male";
         let strangerName = whiteGuyNames[Math.floor(Math.random()*whiteGuyNames.length)];
         let strangerPicture = "images/strangers/whiteGuys/whiteGuy" + randomInclusive(1, 1) + ".jpg";
-
     };
     
-
+    
+    return [strangerName, strangerGender, strangerPicture];
 };
 
 let strangersList = [
