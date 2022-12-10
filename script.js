@@ -70,6 +70,10 @@ function randomInclusive(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 };
 
+function randomArrayItem(array) {
+    return array[Math.floor(Math.random()*array.length)];
+};
+
 let sidebarToggle = false;
 function toggleSidebar() {
     if (sidebarToggle === false) {
@@ -326,7 +330,7 @@ photoAlbum.setAttribute("id", "photoAlbum");
 let photoAlbumContents = [
     ["Test name", "Test Description", "images/backgrounds/apartment.jpg"],
     ["Test name 2", "Test Description 2", "images/backgrounds/streetCorner.jpg"],
-    ["Test name 3", "Test Description 3", "images/backgrounds/streetCorner.jpg"],
+    ["Test name 3", "Test Description 3", "images/backgrounds/streetCorner.jpg"]
 ];
 
 function loadPhotoAlbum() {
@@ -658,9 +662,43 @@ function spawnStranger(locationType) {
     return [strangerName, strangerGender, strangerPicture];
 };
 
-let strangersList = [
-
-];
+let strangersList = [];
 
 let whiteGirlNames = ["Jessica", "Veronica", "Claire", "Ashley", "Olivia", "Emma", "Charlotte", "Amelia", "Ava", "Sophia", "Isabella", "Mia", "Luna", "Elizabeth", "Abigail", "Emily", "Penelope", "Madison", "Lily", "Grace", "Aurora", "Violet", "Zoey", "Willow", "Hannah", "Leah", "Lucy", "Ivy", "Audrey", "Autumn", "Bella", "Hailey", "Ariana", "Jade", "Eva", "Maria", "Julia", "Rose", "Margaret", "Mary", "Lucia", "Magnolia", "Alexandra", "Juliette", "Chloe", "Anastasia", "Brianna", "Molly", "Amy", "Belle", "Sara", "Morgan", "Vera", "Octavia", "Brooke", "Dakota", "Reagan", "Daphne", "Evie", "Paige", "Rebecca", "Lia", "Dahlia", "Brooklynn", "Ophelia", "Catherine", "Briella", "Adriana", "Nicole"];
 let whiteGuyNames = ["Noah", "Oliver", "Elijah", "James", "William", "Benjamin", "Lucas", "Henry", "Ted", "Jack", "Alexander", "Danny", "Logan", "John", "David", "Luke", "Anthony", "Thomas", "Dylan", "Charles", "Caleb", "Christopher", "Isaiah", "Andrew", "Joshua", "Oliver", "Nathan", "Eli", "Ryan", "Jonathan", "Connor", "Sawyer", "Myles", "Walker", "George", "Lucas"];
+
+
+//Mini-Event Generator
+function findItem() {
+    let rolledDice = randomInclusive(1, 100);
+    if (rolledDice >= 81) {
+        let findItemLink = document.createElement("p");
+        findItemLink.innerText = "You see something on the ground.";
+        findItemLink.setAttribute("onclick", "foundItem()");
+        container.append(findItemLink); //TODO: Figure out where to place it on the page, other than dead last.
+
+    };
+};
+
+let foundImagesList = [
+    ["Test name", "Test Description", "images/backgrounds/apartment.jpg"],
+    ["Test name 2", "Test Description 2", "images/backgrounds/streetCorner.jpg"],
+    ["Test name 3", "Test Description 3", "images/backgrounds/streetCorner.jpg"]
+];
+function foundItem() {
+    //TODO: Add a dice roll to find different types of item.
+    findItemLink.remove();
+    let foundPhotograph = randomArrayItem(foundImagesList);
+    let foundImageName = document.createElement("p");
+    foundImageName.innerText = foundPhotograph[0];
+    let foundImageText = document.createElement("p");
+    foundImageText.innerText = foundPhotograph[1];
+    let foundImage = document.createElement("img");
+    foundImage.src = [2];
+
+    let imageDisplay = document.createElement("div");
+    container.append(imageDisplay);
+    imageDisplay.append(foundImageName, foundImageText, foundImage)
+
+}
+
