@@ -263,7 +263,7 @@ function loadApartment() {
 
 }
 
-function toggleRadio() {
+function toggleRadio() { //TODO: Rework so that radio element is outside of "container", and is only turned off when leaving apartment, etc.
     if (radioState === false) {
         link2.innerText = "Turn off the radio";
         bgm.src = "/audio/music/radio/radio" + randomInclusive(1, 5) + ".mp3";
@@ -305,6 +305,10 @@ function leaveBookshelf() {
     title1.innerText = "Your Apartment";
     text1.innerText = "Your new apartment. It still doesn't quite feel like home.";
     image1.src = "images/backgrounds/apartment.jpg";
+    if (radioState === true) {
+        link2.innerText = "Turn off the radio";
+    } else { 
+        link2.innerText = "Turn on the radio"};
     link2.setAttribute("onclick", "toggleRadio()");
     link4.innerText = "Go to the bookshelf";
     link4.setAttribute("onclick", "loadBookshelf()");
@@ -347,10 +351,27 @@ function loadPhotoAlbum() {
         photoAlbumPicture.src = element[2];
         photoAlbumEntry.append(photoAlbumName, photoAlbumDesc, photoAlbumPicture);
     });
-
-
-
+    link2.innerText = "Put back the album";
+    link2.setAttribute("onclick", "returnPhotoAlbum()");
+    container.append(link2);
 };
+
+function returnPhotoAlbum() {
+    title1.remove();
+    while (photoAlbum.firstChild) {
+        photoAlbum.firstChild.remove();
+    };
+    photoAlbum.remove();
+    link2.remove();
+    image1.src = "images/backgrounds/bookshelf.jpg";
+    text1.innerText = "You stand in front of your bookshelf.";
+    link1.innerText = "Photo Album";
+    link1.setAttribute("onclick", "loadPhotoAlbum()");
+    link2.innerText = "Step away from the bookshelf.";
+    link2.setAttribute("onclick", "leaveBookshelf()");
+
+    container.append(image1, text1, link1, link2);
+}
 
 
 

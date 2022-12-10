@@ -109,11 +109,14 @@ html, body, #container {
 
 /* Photo Album */
 #photoAlbum {
+    margin: auto;
+    padding: 15px;
     width: 90%;
     overflow: auto;
     background-color: darkgray;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    justify-content: center;
 }
 
 .photoAlbumEntry {
@@ -122,12 +125,12 @@ html, body, #container {
 }
 
 .photoAlbumPicture {
-aspect-ratio: auto;
-width: 300px;
+    aspect-ratio: auto;
+    width: 300px;
 }
 
 .photoAlbumText {
-
+    text-align: center;
 }
 
 /* Basic Style */
