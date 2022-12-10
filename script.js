@@ -328,9 +328,7 @@ let photoAlbum = document.createElement("div");
 photoAlbum.setAttribute("id", "photoAlbum");
 //Album Contents [[0-Name, 1-Description, 2-File]]
 let photoAlbumContents = [
-    ["Test name", "Test Description", "images/backgrounds/apartment.jpg"],
-    ["Test name 2", "Test Description 2", "images/backgrounds/streetCorner.jpg"],
-    ["Test name 3", "Test Description 3", "images/backgrounds/streetCorner.jpg"]
+
 ];
 
 function loadPhotoAlbum() {
@@ -704,24 +702,26 @@ function findItem() {
 };
 
 let foundImagesList = [
-    ["Test name", "Test Description", "images/backgrounds/apartment.jpg"],
-    ["Test name 2", "Test Description 2", "images/backgrounds/streetCorner.jpg"],
-    ["Test name 3", "Test Description 3", "images/backgrounds/streetCorner.jpg"]
+
 ];
 function foundItem() {
     //TODO: Add a dice roll to find different types of item.
-    findItemLink.remove();
     let foundPhotograph = randomArrayItem(foundImagesList);
+    photoAlbumContents.push(foundPhotograph);
+
     let foundImageName = document.createElement("p");
     foundImageName.innerText = foundPhotograph[0];
+    foundImageName.setAttribute("class", "photoAlbumText");
     let foundImageText = document.createElement("p");
     foundImageText.innerText = foundPhotograph[1];
+    foundImageText.setAttribute("class", "photoAlbumText");
     let foundImage = document.createElement("img");
-    foundImage.src = [2];
+    foundImage.src = foundPhotograph[2];
+    foundImage.setAttribute("class", "photoAlbumPicture");
 
     let imageDisplay = document.createElement("div");
+    imageDisplay.setAttribute("class", "photoAlbumEntry");
     container.append(imageDisplay);
     imageDisplay.append(foundImageName, foundImageText, foundImage);
-
-}
+};
 
