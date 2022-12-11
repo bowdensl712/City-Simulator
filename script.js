@@ -416,15 +416,16 @@ function loadResidentialStreet() {
 function loadCommercialStreet() {
     clear(container);
     title1.innerText = "Commercial Street";
-    text1.innerText = "You come to a street lined with shops.\nIt's very convenient, being this close to your apartment.\nYou see a supermarket, as well as some other shops.";
+    text1.innerText = "You come to a street lined with shops.\nIt's very convenient, being this close to your apartment.\nYou see a supermarket, an antique shop, and some other shops.";
     image1.src = "images/backgrounds/commercialStreet.jpg"; //TODO: Add picture
     link1.innerText = "Go towards the supermarket.";
     link1.setAttribute("onclick", "loadSupermarketEntrance()");
-
+    link3.innerText = "Enter the antique shop.";
+    link3.setAttribute("onclick", "loadAntiqueShop()");
     link2.innerText = "Go back towards your apartment.";
     link2.setAttribute("onclick", "loadStreetCorner()");
 
-    container.append(title1, text1, image1, link1, link2);
+    container.append(title1, text1, image1, link1, link3, link2);
     strangersFramework();
     findItem();
 };
@@ -454,7 +455,19 @@ function loadSupermarket() {
     container.append(title1, text1, image1, link2);
     strangersFramework();
     findItem();
-}
+};
+
+function loadAntiqueShop() {
+    clear(container);
+    title1.innerText = "Antique Shop";
+    text1.innerText = "You stand in an old antique shop.\n The walls are lined with old clocks, vases, and other knick knacks.\nThere's a faint smell of dust permeating the air.";
+    image1.src = "images/backgrounds/antiqueShop.png";
+    link2.innerText = "Go back outside.";
+    link2.setAttribute("onclick", "loadCommercialStreet()");
+    
+    container.append(title1, text1, image1, link2);
+    strangersFramework();
+};
 
 
 //Downtown Street
@@ -649,7 +662,7 @@ function strangersFramework(locationType) {
         strangerLink1.innerText = "You see " + stranger1[0] +". They're " + stranger1[1] +".";
         strangerImage1.src = stranger1[2];
         strangerLink1.setAttribute("onclick", "container.insertBefore(strangerImage1, strangerLink1.nextSibling)");
-        container.insertBefore(strangerLink1, link1);
+        container.insertBefore(strangerLink1, image1.nextSibling);
     } else if (rolledDice > 80 && rolledDice <= 95) {
         //TODO: Spawn two people
     } else if (rolledDice > 95) {
