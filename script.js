@@ -56,6 +56,7 @@ let radioState = false;
 
 //In-Game Variables
 let money = 1000;
+let ingameDate = new Date("2023-04-01T07:00:00Z");
 
 
 
@@ -102,6 +103,9 @@ function executeEvent(functionName, chance) {
 let inventoryButton = document.getElementById("inventoryButton");
 let moneyDisplay = document.getElementById("moneyDisplay");
 moneyDisplay.innerText = money + " dollars";
+let dateDisplay = document.getElementById("dateDisplay");
+dateDisplay.innerText = ingameDate.toDateString();
+
 
 //Inventory
 let inventoryState = false;
