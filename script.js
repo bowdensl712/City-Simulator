@@ -668,7 +668,17 @@ function strangersFramework(locationType) {
         strangerLink1.setAttribute("onclick", "container.insertBefore(strangerImage1, strangerLink1.nextSibling)");
         container.insertBefore(strangerLink1, image1.nextSibling);
     } else if (rolledDice > 80 && rolledDice <= 95) {
-        //TODO: Spawn two people
+        let stranger1 = spawnStranger(locationType);
+        strangerLink1.innerText = "You see " + stranger1[0] +". They're " + stranger1[1] +".";
+        strangerImage1.src = stranger1[2];
+        strangerLink1.setAttribute("onclick", "container.insertBefore(strangerImage1, strangerLink1.nextSibling)");
+        container.insertBefore(strangerLink1, image1.nextSibling);
+        let stranger2 = spawnStranger(locationType);
+        strangerLink2.innerText = "You see " + stranger2[0] +". They're " + stranger2[1] +".";
+        strangerImage2.src = stranger1[2];
+        strangerLink2.setAttribute("onclick", "container.insertBefore(strangerImage2, strangerLink2.nextSibling)");
+        container.insertBefore(strangerLink2, strangerLink1.nextSibling);
+        //TODO: Fix pathing for second image, to avoid the 1st being copied
     } else if (rolledDice > 95) {
         //TODO: Spawn three people
     } else {console.error("strangersFramework is broken!")};

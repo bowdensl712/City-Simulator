@@ -71,6 +71,9 @@ html, body, #container {
     white-space: nowrap;
 }
 
+#dateDisplay {
+    white-space: nowrap;
+}
 
 /* Inventory Contents */
 #inventoryPage {
