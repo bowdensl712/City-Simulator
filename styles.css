@@ -145,6 +145,33 @@ html, body, #container {
     color: black;
 }
 
+
+/* Book */
+#bookPage {
+    width: 50%;
+    min-width: 500px;
+    height: 100%;
+    background: gray;
+}
+
+#bookPage:hover {
+    cursor: pointer;
+}
+
+#bookTitle {
+    color: black;
+    text-align: center;
+}
+
+#bookImage {
+    width: 80%;
+    height: 80%;
+}
+
+
+
+
+
 /* Basic Style */
 
 h1 {

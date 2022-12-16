@@ -286,6 +286,9 @@ function toggleRadio() { //TODO: Rework so that radio element is outside of "con
         }
 }
 
+
+//Bookshelf
+let bookshelfContents = [];
 function loadBookshelf() {
     title1.remove();
     text1.remove();
@@ -377,9 +380,42 @@ function returnPhotoAlbum() {
     link2.setAttribute("onclick", "leaveBookshelf()");
 
     container.append(image1, text1, link1, link2);
-}
+};
 
 
+//Load Book
+function loadBook(book) { //TODO: Test to make sure it works
+    image1.remove();
+    text1.remove();
+    link1.remove();
+    link2.remove();
+    let pageNumber = 0;
+    let bookPage = document.createElement('div');
+    bookPage.setAttribute('id', 'bookPage');
+    bookPage.setAttribute('onclick', 'bookTitle.remove(); pageNumber++; bookImage.src = book[pageNumber];');
+    let bookTitle = document.createElement('h1');
+    bookTitle.innerText = book[0];
+    bookTitle.setAttribute('id', 'bookTitle');
+    let bookImage = document.createElement("img");
+    bookImage.setAttribute('id', 'bookImage');
+    bookPage.append(bookTitle, bookImage);
+};
+
+function returnBook() {
+    let bookTitle = document.getElementById('bookTitle');
+    let bookPage = document.getElementById('bookPage');
+    bookTitle.remove();
+};
+
+
+
+
+
+
+
+
+
+//Locations
 
 function loadStreetCorner() {
     clear(container);
@@ -704,11 +740,10 @@ function strangersFramework(locationType) {
     //TODO: Trim people photos so they fit better
     //TODO: Add multiple lines for describing spawned strangers.
 
-
-
-
-
 }
+
+
+
 
 function spawnStranger(locationType) {
     let coinflip = randomInclusive(1,2);
