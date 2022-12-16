@@ -659,9 +659,8 @@ function exploreLibraryDepths() {
 
 //Strangers framework
 function strangersFramework(locationType) {
-    let rolledDice = randomInclusive(1, 100); //TODO: Reset to 1-100 after testing
+    let rolledDice = randomInclusive(1, 100);
     if (rolledDice > 50 && rolledDice <= 80) {
-        //TODO: Spawn one person
         let stranger1 = spawnStranger(locationType);
         strangerLink1.innerText = "You see " + stranger1[0] +". They're " + stranger1[1] +".";
         strangerImage1.src = stranger1[2];
@@ -675,12 +674,25 @@ function strangersFramework(locationType) {
         container.insertBefore(strangerLink1, image1.nextSibling);
         let stranger2 = spawnStranger(locationType);
         strangerLink2.innerText = "You see " + stranger2[0] +". They're " + stranger2[1] +".";
-        strangerImage2.src = stranger1[2];
+        strangerImage2.src = stranger2[2];
         strangerLink2.setAttribute("onclick", "container.insertBefore(strangerImage2, strangerLink2.nextSibling)");
         container.insertBefore(strangerLink2, strangerLink1.nextSibling);
-        //TODO: Fix pathing for second image, to avoid the 1st being copied
     } else if (rolledDice > 95) {
-        //TODO: Spawn three people
+        let stranger1 = spawnStranger(locationType);
+        strangerLink1.innerText = "You see " + stranger1[0] +". They're " + stranger1[1] +".";
+        strangerImage1.src = stranger1[2];
+        strangerLink1.setAttribute("onclick", "container.insertBefore(strangerImage1, strangerLink1.nextSibling)");
+        container.insertBefore(strangerLink1, image1.nextSibling);
+        let stranger2 = spawnStranger(locationType);
+        strangerLink2.innerText = "You see " + stranger2[0] +". They're " + stranger2[1] +".";
+        strangerImage2.src = stranger2[2];
+        strangerLink2.setAttribute("onclick", "container.insertBefore(strangerImage2, strangerLink2.nextSibling)");
+        container.insertBefore(strangerLink2, strangerLink1.nextSibling);
+        let stranger3 = spawnStranger(locationType);
+        strangerLink3.innerText = "You see " + stranger3[0] +". They're " + stranger3[1] +".";
+        strangerImage3.src = stranger3[2];
+        strangerLink3.setAttribute("onclick", "container.insertBefore(strangerImage3, strangerLink3.nextSibling)");
+        container.insertBefore(strangerLink3, strangerLink2.nextSibling);
     } else {console.error("strangersFramework is broken!")};
     console.log("Strangers Framework roll: " + rolledDice);
 
