@@ -288,7 +288,7 @@ function toggleRadio() { //TODO: Rework so that radio element is outside of "con
 
 
 //Bookshelf
-let bookshelfContents = [];
+let bookshelfContents = [['test book', '', '', '']];
 function loadBookshelf() {
     title1.remove();
     text1.remove();
@@ -304,15 +304,25 @@ function loadBookshelf() {
     link1.setAttribute("onclick", "loadPhotoAlbum()");
     link2.innerText = "Step away from the bookshelf.";
     link2.setAttribute("onclick", "leaveBookshelf()");
-
     container.append(image1, text1, link1, link2);
-}
+
+    bookshelfContents.forEach((element) => {
+        let bookLink = document.createElement('p');
+        bookLink.setAttribute('class', 'link');
+        bookLink.setAttribute('id', 'bookLink');
+        bookLink.innerText = element[0];
+        bookIndex = bookshelfContents.indexOf(element);
+        bookLink.setAttribute('onclick', 'loadBook(bookIndex)');
+        container.insertBefore(bookLink, link1);
+    });
+};
 
 function leaveBookshelf() {
     image1.remove();
     text1.remove();
     link1.remove();
     link2.remove();
+    removeBooksList();
     title1.innerText = "Your Apartment";
     text1.innerText = "Your new apartment. It still doesn't quite feel like home.";
     image1.src = "images/backgrounds/apartment.jpg";
@@ -328,7 +338,14 @@ function leaveBookshelf() {
     link3.setAttribute("onclick", "loadStreetCorner()");
     container.append(title1, text1, image1, link2, link4, link3);
 
-}
+};
+
+function removeBooksList() {
+    while (document.getElementById('bookLink') != null) {
+        let booklink = document.getElementById('booklink');
+        bookLink.remove();
+    };
+};
 
 //Photo Album
 let photoAlbum = document.createElement("div");
@@ -343,6 +360,9 @@ function loadPhotoAlbum() {
     text1.remove();
     link1.remove();
     link2.remove();
+    removeBooksList();
+    let booksList = document.getElementById("booksList");
+    booksList.remove();
     title1.innerText = "Photo album";
     container.append(title1, photoAlbum);
     photoAlbumContents.forEach((element) => {
@@ -389,6 +409,7 @@ function loadBook(book) { //TODO: Test to make sure it works
     text1.remove();
     link1.remove();
     link2.remove();
+    removeBooksList();
     let pageNumber = 0;
     let bookPage = document.createElement('div');
     bookPage.setAttribute('id', 'bookPage');
@@ -406,6 +427,7 @@ function returnBook() {
     let bookPage = document.getElementById('bookPage');
     bookTitle.remove();
 };
+
 
 
 
@@ -735,7 +757,7 @@ function strangersFramework(locationType) {
         strangerLink3.setAttribute("onclick", "container.insertBefore(strangerImage3, strangerLink3.nextSibling)");
         strangerLink3.setAttribute("class", "link");
         container.insertBefore(strangerLink3, strangerLink2.nextSibling);
-    } else {console.error("No strangers spawned")};
+    } else {console.log("No strangers spawned")};
     console.log("Strangers Framework roll: " + rolledDice);
     //TODO: Trim people photos so they fit better
     //TODO: Add multiple lines for describing spawned strangers.
