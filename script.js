@@ -658,43 +658,51 @@ function exploreLibraryDepths() {
 
 
 //Strangers framework
-function strangersFramework(locationType) { //TODO: Trim people photos so they fit better
+function strangersFramework(locationType) { 
     let rolledDice = randomInclusive(1, 100);
     if (rolledDice > 50 && rolledDice <= 80) {
         let stranger1 = spawnStranger(locationType);
         strangerLink1.innerText = "You see " + stranger1[0] +". They're " + stranger1[1] +".";
         strangerImage1.src = stranger1[2];
         strangerLink1.setAttribute("onclick", "container.insertBefore(strangerImage1, strangerLink1.nextSibling)");
+        strangerLink1.setAttribute("class", "link");
         container.insertBefore(strangerLink1, image1.nextSibling);
     } else if (rolledDice > 80 && rolledDice <= 95) {
         let stranger1 = spawnStranger(locationType);
         strangerLink1.innerText = "You see " + stranger1[0] +". They're " + stranger1[1] +".";
         strangerImage1.src = stranger1[2];
         strangerLink1.setAttribute("onclick", "container.insertBefore(strangerImage1, strangerLink1.nextSibling)");
+        strangerLink1.setAttribute("class", "link");
         container.insertBefore(strangerLink1, image1.nextSibling);
         let stranger2 = spawnStranger(locationType);
         strangerLink2.innerText = "You see " + stranger2[0] +". They're " + stranger2[1] +".";
         strangerImage2.src = stranger2[2];
         strangerLink2.setAttribute("onclick", "container.insertBefore(strangerImage2, strangerLink2.nextSibling)");
+        strangerLink2.setAttribute("class", "link");
         container.insertBefore(strangerLink2, strangerLink1.nextSibling);
     } else if (rolledDice > 95) {
         let stranger1 = spawnStranger(locationType);
         strangerLink1.innerText = "You see " + stranger1[0] +". They're " + stranger1[1] +".";
         strangerImage1.src = stranger1[2];
         strangerLink1.setAttribute("onclick", "container.insertBefore(strangerImage1, strangerLink1.nextSibling)");
+        strangerLink1.setAttribute("class", "link");
         container.insertBefore(strangerLink1, image1.nextSibling);
         let stranger2 = spawnStranger(locationType);
         strangerLink2.innerText = "You see " + stranger2[0] +". They're " + stranger2[1] +".";
         strangerImage2.src = stranger2[2];
         strangerLink2.setAttribute("onclick", "container.insertBefore(strangerImage2, strangerLink2.nextSibling)");
+        strangerLink2.setAttribute("class", "link");
         container.insertBefore(strangerLink2, strangerLink1.nextSibling);
         let stranger3 = spawnStranger(locationType);
         strangerLink3.innerText = "You see " + stranger3[0] +". They're " + stranger3[1] +".";
         strangerImage3.src = stranger3[2];
         strangerLink3.setAttribute("onclick", "container.insertBefore(strangerImage3, strangerLink3.nextSibling)");
+        strangerLink3.setAttribute("class", "link");
         container.insertBefore(strangerLink3, strangerLink2.nextSibling);
     } else {console.error("No strangers spawned")};
     console.log("Strangers Framework roll: " + rolledDice);
+    //TODO: Trim people photos so they fit better
+    //TODO: Add multiple lines for describing spawned strangers.
 
 
 
@@ -733,7 +741,8 @@ function findItem() {
     if (rolledDice >= 81) {
         let findItemLink = document.createElement("p");
         findItemLink.innerText = "You see something on the ground.";
-        findItemLink.setAttribute("onclick", "foundItem()");
+        findItemLink.setAttribute("class", "link");
+        findItemLink.setAttribute("onclick", "foundItem(); this.innerText = 'You pick it up...';");
         container.append(findItemLink); //TODO: Figure out where to place it on the page, other than dead last.
 
     };
@@ -747,6 +756,7 @@ function foundItem() {
     //TODO: Add a dice roll to find different types of item.
     let foundPhotograph = randomArrayItem(foundImagesList);
     photoAlbumContents.push(foundPhotograph);
+    
 
     let foundImageName = document.createElement("p");
     foundImageName.innerText = foundPhotograph[0];
@@ -761,6 +771,6 @@ function foundItem() {
     let imageDisplay = document.createElement("div");
     imageDisplay.setAttribute("class", "photoAlbumEntry");
     container.append(imageDisplay);
-    imageDisplay.append(foundImageName, foundImageText, foundImage);
+    imageDisplay.append(foundImage, foundImageName, foundImageText);
 };
 
