@@ -658,7 +658,7 @@ function exploreLibraryDepths() {
 
 
 //Strangers framework
-function strangersFramework(locationType) {
+function strangersFramework(locationType) { //TODO: Trim people photos so they fit better
     let rolledDice = randomInclusive(1, 100);
     if (rolledDice > 50 && rolledDice <= 80) {
         let stranger1 = spawnStranger(locationType);
@@ -693,7 +693,7 @@ function strangersFramework(locationType) {
         strangerImage3.src = stranger3[2];
         strangerLink3.setAttribute("onclick", "container.insertBefore(strangerImage3, strangerLink3.nextSibling)");
         container.insertBefore(strangerLink3, strangerLink2.nextSibling);
-    } else {console.error("strangersFramework is broken!")};
+    } else {console.error("No strangers spawned")};
     console.log("Strangers Framework roll: " + rolledDice);
 
 
@@ -710,11 +710,11 @@ function spawnStranger(locationType) {
     if (coinflip === 1) {
         strangerGender = "Female";
         strangerName = whiteGirlNames[Math.floor(Math.random()*whiteGirlNames.length)];
-        strangerPicture = "images/strangers/whiteGirls/whiteGirl" + randomInclusive(1, 1) + ".jpg";
+        strangerPicture = "images/strangers/whiteGirls/whiteGirl" + randomInclusive(1, 10) + ".jpg";
     } else if (coinflip === 2) {
         strangerGender = "Male";
         strangerName = whiteGuyNames[Math.floor(Math.random()*whiteGuyNames.length)];
-        strangerPicture = "images/strangers/whiteGuys/whiteGuy" + randomInclusive(1, 1) + ".jpg";
+        strangerPicture = "images/strangers/whiteGuys/whiteGuy" + randomInclusive(1, 10) + ".jpg";
     };
     
     
