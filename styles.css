@@ -128,15 +128,21 @@ html, body, #container {
 .photoAlbumEntry {
     width: 300px;
     overflow: auto;
+    padding: 10px;
+    background: white;
+    border: solid black 2px;
+    border-radius: 5px;
 }
 
 .photoAlbumPicture {
     aspect-ratio: auto;
     width: 300px;
+
 }
 
 .photoAlbumText {
     text-align: center;
+    color: black;
 }
 
 /* Basic Style */

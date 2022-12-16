@@ -355,7 +355,7 @@ function loadPhotoAlbum() {
         let photoAlbumPicture = document.createElement("img");
         photoAlbumPicture.setAttribute("class", "photoAlbumPicture");
         photoAlbumPicture.src = element[2];
-        photoAlbumEntry.append(photoAlbumName, photoAlbumDesc, photoAlbumPicture);
+        photoAlbumEntry.append(photoAlbumPicture, photoAlbumName, photoAlbumDesc);
     });
     link2.innerText = "Put back the album";
     link2.setAttribute("onclick", "returnPhotoAlbum()");
@@ -742,7 +742,7 @@ function findItem() {
         let findItemLink = document.createElement("p");
         findItemLink.innerText = "You see something on the ground.";
         findItemLink.setAttribute("class", "link");
-        findItemLink.setAttribute("onclick", "foundItem(); this.innerText = 'You pick it up...';");
+        findItemLink.setAttribute("onclick", "foundItem(); this.innerText = 'You pick it up...'; this.setAttribute('class', ''); this.setAttribute('onclick', '');");
         container.append(findItemLink); //TODO: Figure out where to place it on the page, other than dead last.
 
     };
