@@ -171,6 +171,7 @@ html, body, #container {
 
 #bookImage {
     width: 90%;
+    max-width: 500px;
     height: auto;
     display: block;
     margin: auto;

@@ -432,7 +432,7 @@ function loadBook(book) { //TODO: Test to make sure it works
     returnBookLink.setAttribute('class','link');
     returnBookLink.setAttribute('id','returnBookLink');
     returnBookLink.setAttribute('onclick', 'returnBook()');
-    returnBookLink.innerText = "Put the book back."
+    returnBookLink.innerText = "Put the book back.";
     container.append(bookPage, returnBookLink);
     bookPage.append(bookTitle, bookImage);
 };
