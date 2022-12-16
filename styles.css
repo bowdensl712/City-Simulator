@@ -146,12 +146,18 @@ html, body, #container {
 }
 
 
+
+
 /* Book */
 #bookPage {
-    width: 50%;
+    margin-top: 5%;
+    width: 60%;
     min-width: 500px;
-    height: 100%;
+    min-height: 85%;
+    overflow: auto;
     background: gray;
+    margin: auto;
+    position: relative;
 }
 
 #bookPage:hover {
@@ -164,11 +170,17 @@ html, body, #container {
 }
 
 #bookImage {
-    width: 80%;
-    height: 80%;
+    width: 90%;
+    height: auto;
+    display: block;
+    margin: auto;
+    padding-top: 10px;
 }
 
-
+#returnBookLink {
+    margin-top: 10px;
+    text-align: center;
+}
 
 
 

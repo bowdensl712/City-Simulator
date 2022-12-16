@@ -288,7 +288,7 @@ function toggleRadio() { //TODO: Rework so that radio element is outside of "con
 
 
 //Bookshelf
-let bookshelfContents = [['test book', '', '', '']];
+let bookshelfContents = [['test book', 'images/backgrounds/libraryEntrance.jpg', 'images/backgrounds/residentialStreet.png', 'images/backgrounds/alleyway.jpg']];
 function loadBookshelf() {
     title1.remove();
     text1.remove();
@@ -305,14 +305,17 @@ function loadBookshelf() {
     link2.innerText = "Step away from the bookshelf.";
     link2.setAttribute("onclick", "leaveBookshelf()");
     container.append(image1, text1, link1, link2);
+    loadBookshelfContents();
+};
 
+function loadBookshelfContents() {
     bookshelfContents.forEach((element) => {
         let bookLink = document.createElement('p');
         bookLink.setAttribute('class', 'link');
         bookLink.setAttribute('id', 'bookLink');
         bookLink.innerText = element[0];
-        bookIndex = bookshelfContents.indexOf(element);
-        bookLink.setAttribute('onclick', 'loadBook(bookIndex)');
+        let bookIndex = bookshelfContents.indexOf(element);
+        bookLink.setAttribute('onclick', 'loadBook(bookshelfContents[' + bookIndex + '])');
         container.insertBefore(bookLink, link1);
     });
 };
@@ -361,8 +364,6 @@ function loadPhotoAlbum() {
     link1.remove();
     link2.remove();
     removeBooksList();
-    let booksList = document.getElementById("booksList");
-    booksList.remove();
     title1.innerText = "Photo album";
     container.append(title1, photoAlbum);
     photoAlbumContents.forEach((element) => {
@@ -383,6 +384,7 @@ function loadPhotoAlbum() {
     link2.innerText = "Put back the album";
     link2.setAttribute("onclick", "returnPhotoAlbum()");
     container.append(link2);
+    
 };
 
 function returnPhotoAlbum() {
@@ -400,32 +402,57 @@ function returnPhotoAlbum() {
     link2.setAttribute("onclick", "leaveBookshelf()");
 
     container.append(image1, text1, link1, link2);
+    loadBookshelfContents();
 };
 
 
 //Load Book
+let pageNumber;
+let currentBook;
 function loadBook(book) { //TODO: Test to make sure it works
     image1.remove();
     text1.remove();
     link1.remove();
     link2.remove();
     removeBooksList();
-    let pageNumber = 0;
+    pageNumber = 0;
+    currentBook = book;
+    
     let bookPage = document.createElement('div');
     bookPage.setAttribute('id', 'bookPage');
-    bookPage.setAttribute('onclick', 'bookTitle.remove(); pageNumber++; bookImage.src = book[pageNumber];');
+    bookPage.setAttribute('onclick', 'loadNewPage()');
     let bookTitle = document.createElement('h1');
     bookTitle.innerText = book[0];
     bookTitle.setAttribute('id', 'bookTitle');
     let bookImage = document.createElement("img");
+    bookImage.src = "images/backgrounds/bookshelf.jpg";
     bookImage.setAttribute('id', 'bookImage');
+    bookImage.style.display = "none";
+    let returnBookLink = document.createElement('p');
+    returnBookLink.setAttribute('class','link');
+    returnBookLink.setAttribute('id','returnBookLink');
+    returnBookLink.setAttribute('onclick', 'returnBook()');
+    returnBookLink.innerText = "Put the book back."
+    container.append(bookPage, returnBookLink);
     bookPage.append(bookTitle, bookImage);
 };
 
+function loadNewPage() {
+    if (document.getElementById("bookTitle") != null) {bookTitle.remove()};
+    bookImage.style.display = "block";
+    pageNumber++;
+    if (currentBook[pageNumber] != undefined) {
+        bookImage.src = currentBook[pageNumber];
+    };
+
+}
+
 function returnBook() {
-    let bookTitle = document.getElementById('bookTitle');
     let bookPage = document.getElementById('bookPage');
-    bookTitle.remove();
+    let returnBookLink = document.getElementById('returnBookLink');
+    bookPage.remove();
+    returnBookLink.remove();
+    loadBookshelf();
 };
 
 
