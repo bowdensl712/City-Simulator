@@ -90,11 +90,16 @@ function toggleSidebar() {
         sidebarButton.style.left = "0";
         sidebarToggle = false;
 
-    }
-}
+    };
+};
+
+function changeMoney(amount) {
+    money += amount;
+    moneyDisplay.innerText = money + " dollars";
+};
 
 
-function executeEvent(functionName, chance) {
+function executeEvent(functionName, chance) { //TODO: Replace by including chance in each function.
     const rolledDice = randomInclusive(1, 100);
     if (chance >= rolledDice) {
         functionName();
@@ -949,12 +954,12 @@ function foundItem() {
 //Bus Depot
 function travelThemePark() {
     if (money >= 15) {
-        money -= 15;
-        moneyDisplay.innerText = money + " dollars";
+        changeMoney(-15);
         loadThemeParkEntrance();
     } else {
         link1.innerText = "You don't have enough money!";
-    }
+        link1.setAttribute("onclick", "");
+    };
 };
 
 function loadThemeParkEntrance() {
@@ -972,5 +977,42 @@ function loadThemeParkEntrance() {
 };
 
 function loadThemeParkTicketBooth() {
-    //TODO: Make ticket booth
+    clear(container);
+    title1.innerText = "Ticket Booth";
+    text1.innerText = "You wait in line for a while, and eventually find yourself at the front of the line.\nYou step up to the counter, and look at the ticket prices.";
+    image1.src = "images/backgrounds/themeParkTicketBooth.jpg";
+    link1.innerText = "Ticket - $25";
+    link1.setAttribute("onclick", "buyThemeParkTicket()");
+    link2.innerText = "On second thought, maybe I'll head back to town...";
+    link2.setAttribute("onclick", "loadThemeParkEntrance");
+
+    container.append(title1, text1, image1, link1, link2);
+};
+
+function buyThemeParkTicket() {
+    if (money >= 25) {
+        changeMoney(-25);
+        loadThemePark1();
+    } else {
+        link1.innerText = "You don't have enough money!";
+        link1.setAttribute("onclick", "");
+    };
+};
+
+function loadThemePark1() {
+    clear(container);
+    title1.innerText = "Theme Park";
+    text1.innerText = "You buy your ticket, and enter the park.\nThe large park stretches out in front of you, with many rides, food stands, and other attractions.\nWhere will you go first?";
+    image1.src = "images/backgrounds/themePark1.jpg";
+    link2.innerText = "Leave the park.";
+    link2.setAttribute("onclick", "confirmLeavePark()");
+    container.append(title1, text1, image1, link2);
+};
+
+function confirmLeavePark() {
+    let confirmText = document.createElement("p");
+    confirmText.innerText = "You can't re-enter the park once you've left.\nAre you sure you want to leave the park?";
+    container.insertBefore(confirmText, link2);
+    link2.innerText = "Yes.";
+    link2.setAttribute("onClick", "loadThemeParkEntrance()");
 };
