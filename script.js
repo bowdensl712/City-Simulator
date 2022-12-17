@@ -17,6 +17,10 @@ const link4 = document.createElement("p");
 link4.setAttribute("class", "link");
 const link5 = document.createElement("p");
 link5.setAttribute("class", "link");
+const link6 = document.createElement("p");
+link6.setAttribute("class", "link");
+const link7 = document.createElement("p");
+link7.setAttribute("class", "link");
 const image1 = document.createElement("img");
 image1.setAttribute("class", "image");
 const image2 = document.createElement("img");
@@ -568,7 +572,7 @@ function loadDowntownStreet() {
     clear(container);
     title1.innerText = "Downtown Street";
     text1.innerText = "You arrive at the downtown area. \nThe streets are lined by large office buildings and shops.";
-    text2.innerText = "You see the entrance for a nightclub, a conveniece store, and an alleyway.\nFurther down the street, you see the city library.";
+    text2.innerText = "You see the entrance for a nightclub, a conveniece store, and an alleyway.\nFurther down the street, you see the bus depot, and the city library.";
     image1.src = "images/backgrounds/downtownStreet.jpg";
     link1.innerText = "Enter the nightclub.";
     link1.setAttribute("onclick", "loadNightClubEntrance()");
@@ -580,7 +584,9 @@ function loadDowntownStreet() {
     link4.setAttribute("onclick", "loadLibraryOutside()");
     link5.innerText = "Enter the convenience store.";
     link5.setAttribute("onclick", "loadConvenienceStore()");
-    container.append(title1, text1, text2, image1, link1, link5, link3, link4, link2);
+    link6.innerText = "Enter the bus depot.";
+    link6.setAttribute("onclick", "loadBusDepot()");
+    container.append(title1, text1, text2, image1, link1, link5, link3, link6, link4, link2);
 
     loadEvents(downtownStreetEvents);
 };
@@ -643,6 +649,18 @@ function loadConvenienceStoreRegister() {
     loadEvents(convenienceStoreEvents);
 };
 
+function loadBusDepot() {
+    clear(container);
+    title1.innerText = "Bus Depot";
+    text1.innerText = "You stand in the bus depot.\nOn the walls are maps of the various routes throughout the city, and the nearby region.";
+    image1.src = "images/backgrounds/busDepot.jpg";
+    link2.innerText = "Go outside.";
+    link2.setAttribute("onclick", "loadDowntownStreet()");
+    container.append(title1, text1, image1, link2);
+    loadEvents(busDepotEvents);
+};
+let busDepotEvents = [strangersFramework, findItem];
+
 function loadAlleyway() {
     clear(container);
     title1.innerText = "Alleyway";
@@ -674,8 +692,6 @@ function loadUndergroundShop() {
 };
 let undergroundShopEvents = [strangersFramework, findItem];
 
-
-
 function loadPark () {
     clear(container);
     title1.innerText = "Public Park";
@@ -686,8 +702,6 @@ function loadPark () {
     
     container.append(title1, text1, image1, link2);
     loadEvents(parkEvents);
-    
-
 };
 let parkEvents = [strangersFramework, findItem];
 
