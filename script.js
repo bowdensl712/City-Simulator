@@ -566,6 +566,14 @@ function loadAntiqueShop() {
 let antiqueShopEvents = [strangersFramework];
 
 
+
+
+
+
+
+
+
+
 //Downtown Street
 
 function loadDowntownStreet() {
@@ -652,11 +660,13 @@ function loadConvenienceStoreRegister() {
 function loadBusDepot() {
     clear(container);
     title1.innerText = "Bus Depot";
-    text1.innerText = "You stand in the bus depot.\nOn the walls are maps of the various routes throughout the city, and the nearby region.";
+    text1.innerText = "You stand in the bus depot.\nOn the walls are maps of the various routes throughout the city, and the nearby region.\nYou look at the prices for the various routes...";
     image1.src = "images/backgrounds/busDepot.jpg";
+    link1.innerText = "Theme Park - $15, Round-trip";
+    link1.setAttribute("onclick", "travelThemePark()");
     link2.innerText = "Go outside.";
     link2.setAttribute("onclick", "loadDowntownStreet()");
-    container.append(title1, text1, image1, link2);
+    container.append(title1, text1, image1, link1, link2);
     loadEvents(busDepotEvents);
 };
 let busDepotEvents = [strangersFramework, findItem];
@@ -920,3 +930,47 @@ function foundItem() {
     imageDisplay.append(foundImage, foundImageName, foundImageText);
 };
 
+
+
+
+
+
+
+
+
+
+
+
+
+//////////
+//////////////////// Travel Locations
+//////////
+
+//Bus Depot
+function travelThemePark() {
+    if (money >= 15) {
+        money -= 15;
+        moneyDisplay.innerText = money + " dollars";
+        loadThemeParkEntrance();
+    } else {
+        link1.innerText = "You don't have enough money!";
+    }
+};
+
+function loadThemeParkEntrance() {
+    clear(container);
+    title1.innerText = "Theme Park - Entrance";
+    text1.innerText = "You stand at the gates of the local theme park.\n While it's no Disneyland, it's still a very fun destination for friends, families, and couples.\nIt bustles with people as they go in and out of the large gateway.";
+    image1.src = "images/backgrounds/themeParkEntrance.jpg";
+    link1.innerText = "Line up to buy a ticket.";
+    link1.setAttribute("onclick", "loadThemeParkTicketBooth()");
+    link2.innerText = "Take the bus back to downtown.";
+    link2.setAttribute("onclick", "loadBusDepot()");
+
+
+    container.append(title1, text1, image1, link1, link2);
+};
+
+function loadThemeParkTicketBooth() {
+    //TODO: Make ticket booth
+};
