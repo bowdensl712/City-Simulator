@@ -243,6 +243,9 @@ clear(container);
 loadStreetCorner();
 };
 
+function loadEvents(array) { //Loads the array of events for a specific location.
+    array.forEach((func) => {func()}); 
+} ;
 
 
 //Apartment
@@ -481,9 +484,9 @@ function loadStreetCorner() {
     link4.setAttribute("onclick", "loadCommercialStreet()");
 
     container.append(title1, text1, image1, link1, link2, link4, link3);
-    strangersFramework();
-    findItem();
+    loadEvents(streetCornerEvents);
 };
+let streetCornerEvents = [strangersFramework, findItem];
 
 function loadResidentialStreet() {
     clear(container);
