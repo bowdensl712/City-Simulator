@@ -201,6 +201,12 @@ let chineseSupermarketList = [
     [10, "Tsingtao Beer", "The essential Chinese beer.", "food", 2, 10, "images/items/chineseSupermarketItems/10.jpg"],
     [11, "Odd Beer", "An exotic beer, in a strangely shaped bottle...", "food", 2, 10, "images/items/chineseSupermarketItems/11.jpg"]
 ];
+
+let electronicsStoreList = [
+    [0, "Camera", "A modern digital camera. Not the most expensive, but good enough for your purposes.", "tool", 250, null, "images/items/electronicsStoreItems/0.jpg"],
+    [1, "Laptop", "A mid-range laptop, more than enough for browsing the internet and some light gaming.", "tool", 250, null, "images/items/electronicsStoreItems/1.jpg"]
+];
+
     //Clothes
     //TODO: Add clothes
 
@@ -523,7 +529,7 @@ function loadStreetCorner() {
     link2.setAttribute("onclick", "loadResidentialStreet()");
     link3.innerText = "Enter your apartment.";
     link3.setAttribute("onclick", "loadApartment()");
-    link4.innerText = "Go to the commercial street";
+    link4.innerText = "Go to the commercial street.";
     link4.setAttribute("onclick", "loadCommercialStreet()");
 
     container.append(title1, text1, image1, link1, link2, link4, link3);
@@ -586,10 +592,12 @@ function loadCommercialStreet() {
     link1.setAttribute("onclick", "loadSupermarketEntrance()");
     link3.innerText = "Enter the antique shop.";
     link3.setAttribute("onclick", "loadAntiqueShop()");
+    link4.innerText = "Enter the electronics store.";
+    link4.setAttribute("onclick", "loadElectronicsStore()");
     link2.innerText = "Go back towards your apartment.";
     link2.setAttribute("onclick", "loadStreetCorner()");
 
-    container.append(title1, text1, image1, link1, link3, link2);
+    container.append(title1, text1, image1, link1, link3, link4, link2);
     loadEvents(commercialStreetEvents);
 };
 let commercialStreetEvents = [strangersFramework, findItem];
@@ -637,6 +645,19 @@ function loadAntiqueShop() {
 };
 let antiqueShopEvents = [strangersFramework];
 
+function loadElectronicsStore() {
+    clear(container);
+    title1.innerText = "Electronics Store";
+    text1.innerText = "You enter the electronics store.\nComputers, phones, televisions, and other devices line the shelves.";
+    image1.src = "images/backgrounds/electronicsStore.jpg";
+    link1.innerText = "Browse the aisles.";
+    link1.setAttribute("onclick", "loadElectronicsItems()");
+    link2.innerText = "Go back outside.";
+    link2.setAttribute("onclick", "loadCommercialStreet()");
+    container.append(title1, text1, image1, link1, link2);
+    loadEvents(electronicsShopEvents);
+}
+let electronicsShopEvents = [strangersFramework];
 
 
 
@@ -1152,7 +1173,6 @@ function populateShopMenu(array, minItem, maxItem) {
     shopItems = array.slice(minItem, maxItem + 1);
     
     shopItems.forEach((element) => {
-        console.log("Hello!");
         let shopItem = document.createElement("div");
         shopItem.setAttribute("class", "inventoryItem");
         shopItem.innerText = element[1];
@@ -1167,7 +1187,7 @@ function populateShopMenu(array, minItem, maxItem) {
 
 function purchaseItem(item) {
     if (money >= item[4]) {
-        money -= item[4];
+        changeMoney(-item[4]);
         inventoryContents.push(item);
         console.log(money); //TODO: Display the item purchased message in-game.
     } else {
@@ -1194,4 +1214,14 @@ function loadChineseSupermarketFood() {
     container.append(title1, shopMenu, link2);
     populateShopMenu(chineseSupermarketList, 0, 11); //TODO: Fix the inventory items so the images dont overflow.
     
+};
+
+function loadElectronicsItems() {
+    clear(container);
+    title1.innerText = "Electronics Store - Items";
+    link2.innerText = "Step away from the aisle.";
+    link2.setAttribute("onclick", "loadElectronicsStore()");
+    container.append(title1, shopMenu, link2);
+    populateShopMenu(electronicsStoreList, 0, 1);
+
 };
