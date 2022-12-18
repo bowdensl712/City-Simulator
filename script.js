@@ -1146,6 +1146,9 @@ shopMenu.setAttribute("class", "inventoryGrid");
 let shopItems;
 
 function populateShopMenu(array, minItem, maxItem) {
+    while (shopMenu.firstChild) {       // Removes the previous shopMenu items.
+        shopMenu.firstChild.remove();
+    };
     shopItems = array.slice(minItem, maxItem + 1);
     
     shopItems.forEach((element) => {
