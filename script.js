@@ -126,10 +126,10 @@ inventoryTitle.setAttribute("id", "inventoryTitle");
 const inventoryGrid = document.createElement("div");
 inventoryGrid.setAttribute("class", "inventoryGrid");
 
-let inventoryContents = [];
+let inventoryContents = [[0, "Apple", "A delicious-looking red apple.", "food", 1, 5, "images/items/food/0.jpg"], [0, "Apple", "A delicious-looking red apple.", "food", 1, 5, "images/items/food/0.jpg"], [0, "Apple", "A delicious-looking red apple.", "food", 1, 5, "images/items/food/0.jpg"], [0, "Apple", "A delicious-looking red apple.", "food", 1, 5, "images/items/food/0.jpg"], [0, "Apple", "A delicious-looking red apple.", "food", 1, 5, "images/items/food/0.jpg"], [0, "Apple", "A delicious-looking red apple.", "food", 1, 5, "images/items/food/0.jpg"], [0, "Apple", "A delicious-looking red apple.", "food", 1, 5, "images/items/food/0.jpg"], [0, "Apple", "A delicious-looking red apple.", "food", 1, 5, "images/items/food/0.jpg"], [0, "Apple", "A delicious-looking red apple.", "food", 1, 5, "images/items/food/0.jpg"], [0, "Apple", "A delicious-looking red apple.", "food", 1, 5, "images/items/food/0.jpg"], [0, "Apple", "A delicious-looking red apple.", "food", 1, 5, "images/items/food/0.jpg"], [0, "Apple", "A delicious-looking red apple.", "food", 1, 5, "images/items/food/0.jpg"], [0, "Apple", "A delicious-looking red apple.", "food", 1, 5, "images/items/food/0.jpg"], [0, "Apple", "A delicious-looking red apple.", "food", 1, 5, "images/items/food/0.jpg"], [0, "Apple", "A delicious-looking red apple.", "food", 1, 5, "images/items/food/0.jpg"], [0, "Apple", "A delicious-looking red apple.", "food", 1, 5, "images/items/food/0.jpg"]];
 
 //Item List [0-Code, 1-Name, 2-Description, 3-Type, 4-Value, 5-Trait, 6-Image]
-const foodItemList = [ //Foods
+const foodItemList = [//Foods
     [0, "Apple", "A delicious-looking red apple.", "food", 1, 5, "images/items/food/0.jpg"],
     [1, "Banana", "A nice, ripe banana, free of any bruises.", "food", 1, 5, "images/items/food/1.jpg"],
     [2, "Orange", "A fresh orange.", "food", 1, 5, "images/items/food/2.jpg"],
@@ -208,6 +208,7 @@ function toggleInventory() {
 function populateInventory() {
     inventoryContents.forEach((element) => {
             let inventoryItem = document.createElement("div");
+            inventoryItem.setAttribute("onclick", "inventoryPopup(this, " + JSON.stringify(element) + ");");
             let inventoryPicture = document.createElement("img");
             inventoryPicture.setAttribute("class", "inventoryPicture");
             inventoryPicture.src = element[6];
@@ -216,6 +217,30 @@ function populateInventory() {
             inventoryItem.append(inventoryPicture);
             inventoryGrid.append(inventoryItem);
     })};
+
+    let popup = document.createElement("div");
+function inventoryPopup(element, array) {
+    popup.remove();
+    popup.innerText = array[1];
+    popup.setAttribute("class", "inventoryPopup");
+    let popupPicture = document.createElement("img");
+    popupPicture.setAttribute("class", "inventoryItem");
+    popupPicture.src = array[6];
+    let popupDescription = document.createElement("p");
+    popupDescription.innerText = array[2];
+    let popupType = document.createElement("p");
+    popupType.innerText = array[3];
+    let popupValue = document.createElement("p");
+    popupValue.innerText = "Value: " + array[4] + " dollars";
+    popup.addEventListener("click", function(e) {
+        e.stopPropagation();
+        popup.remove();
+    });
+
+    element.append(popup);
+    popup.append(popupPicture, popupDescription, popupType, popupValue);
+
+};
 
 
 //Main Page

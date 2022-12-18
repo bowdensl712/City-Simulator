@@ -93,7 +93,6 @@ html, body, #container {
     margin: auto;
     padding: 10px;
     width: 90%;
-    overflow: auto;
     background-color: rgba(225,225,225,50%);
     display: grid;
     gap: 10px;
@@ -109,14 +108,34 @@ html, body, #container {
     font-family: sans-serif;
     background-color: white;
     border-radius: 10px;
-    overflow: hidden;
+    display: relative;
 }
 
 .inventoryPicture {
     width: 80px;
-    height: 80px;
+    height: 80px;   
+}
 
+.inventoryPopup {
+    background-color: white;
+    border-radius: 10px;
+    z-index: 1;
+    position: relative;
+    top: -150px;
+    left: -50px;
+    width: 200px;
+    border: 2px solid gray;
     
+}
+
+.inventoryPopup img {
+    display: block;
+    margin: auto;
+}
+
+.inventoryPopup p {
+    color: black;
+    text-align: center;
 }
 
 
