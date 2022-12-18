@@ -124,24 +124,23 @@ const inventoryTitle = document.createElement("h1");
 inventoryTitle.innerText = "Inventory";
 inventoryTitle.setAttribute("id", "inventoryTitle");
 const inventoryGrid = document.createElement("div");
-inventoryGrid.setAttribute("id", "inventoryGrid");
+inventoryGrid.setAttribute("class", "inventoryGrid");
 
 let inventoryContents = [["Test"], ["Can you see this?"]];
 
 //Item List [0-Code, 1-Name, 2-Description, 3-Type, 4-Value, 5-Trait, 6-Image]
-const itemList = [
-    //Foods
-    [0, "Apple", "A delicious-looking red apple.", "food", 1, 5],
-    [1, "Banana", "A nice, ripe banana, free of any bruises.", "food", 1, 5],
-    [2, "Orange", "A fresh orange.", "food", 1, 5],
-    [3, "Lemon", "A bright yellow lemon.", "food", 1, 5],
-    [4, "Green apple", "A bit more sour than its red cousin.", "food", 1, 5],
-    [5, "Grapefruit", "Quite sour, but very refreshing.", "food", 1, 5],
-    [6, "Avocado", "If only I had some toast...", "food", 1, 5],
-    [7, "Tomato", "A ripe and tasty looking tomato. Not much fun to eat as-is, though.", "food", 1, 5],
-    [8, "French bread", "A whole loaf of freshly baked french bread.", "food", 2, 20],
-    [9, "Donut", "", "food", 1, 10],
-    [10, "Hotdog", "", "food", 1, 15],
+const foodItemList = [ //Foods
+    [0, "Apple", "A delicious-looking red apple.", "food", 1, 5, "images/items/food/0.jpg"],
+    [1, "Banana", "A nice, ripe banana, free of any bruises.", "food", 1, 5, "images/items/food/1.jpg"],
+    [2, "Orange", "A fresh orange.", "food", 1, 5, "images/items/food/2.jpg"],
+    [3, "Lemon", "A bright yellow lemon.", "food", 1, 5, "images/items/food/3.jpg"],
+    [4, "Green apple", "A bit more sour than its red cousin.", "food", 1, 5, "images/items/food/4.jpg"],
+    [5, "Grapefruit", "Quite sour, but very refreshing.", "food", 1, 5, "images/items/food/5.jpg"],
+    [6, "Avocado", "If only I had some toast...", "food", 1, 5, "images/items/food/6.jpg"],
+    [7, "Tomato", "A ripe and tasty looking tomato. Not much fun to eat as-is, though.", "food", 1, 5, "images/items/food/7.jpg"],
+    [8, "French bread", "A whole loaf of freshly baked french bread.", "food", 2, 20, "images/items/food/8.jpg"],
+    [9, "Donut", "", "food", 1, 10, "images/items/food/9.jpg"],
+    [10, "Hotdog", "", "food", 1, 15, "images/items/food/10.jpg"],
     [11, "Hamburger", "", "food", 1, 15],
     [12, "Sandwich", "", "food", 1, 15],
     [13, "Pizza", "", "food", 1, 15],
@@ -182,11 +181,9 @@ const itemList = [
     [48, "Sweet potato", "", "food", 1, 10],
     [49, "Baked potato", "", "food", 1, 10],
     [50, "BLT", "", "food", 1, 15],
-    
+];
     //Clothes
     //TODO: Add clothes
-    
-];
 
 function toggleInventory() {
     if (inventoryState === false) {
@@ -212,8 +209,11 @@ function populateInventory() {
     for (let i = 0; i < 64; i++) {
         if (inventoryContents[i] != undefined) {
             let inventoryItem = document.createElement("div");
+            let inventoryPicture = document.createElement("img");
+            inventoryPicture.setAttribute("class", "inventoryPicture");
             inventoryItem.setAttribute("class", "inventoryItem");
             inventoryItem.innerText = inventoryContents[i];
+            inventoryItem.append(inventoryPicture);
             inventoryGrid.append(inventoryItem);
         } else {
             let inventoryItem = document.createElement("div");
@@ -550,9 +550,12 @@ function loadSupermarket() {
     title1.innerText = "Supermarket";
     text1.innerText = "The aisles of the supermarket stretch out before you.\nPeople pass by with carts and baskets, browsing the aisles."
     image1.src = "images/backgrounds/supermarket.jpg";
+    link1.innerText = "Browse the food.";
+    link1.setAttribute("onclick", "loadSupermarketFood()");
+    link2.innerText = "Go back outside.";
     link2.setAttribute("onclick", "loadSupermarketEntrance()");
 
-    container.append(title1, text1, image1, link2);
+    container.append(title1, text1, image1, link1, link2);
     loadEvents(supermarketEvents);
 };
 let supermarketEvents = [strangersFramework, findItem];
@@ -1016,3 +1019,49 @@ function confirmLeavePark() {
     link2.innerText = "Yes.";
     link2.setAttribute("onClick", "loadThemeParkEntrance()");
 };
+
+
+
+
+
+
+
+
+
+//////////
+//////////////////// Shop Functions
+//////////
+
+let shopMenu = document.createElement('div');
+shopMenu.setAttribute("class", "inventoryGrid");
+let shopItems;
+
+function populateShopMenu(array, minItem, maxItem) {
+    shopItems = array.slice(minItem, maxItem + 1);
+    
+    shopItems.forEach((element) => {
+        let shopItem = document.createElement("div");
+        shopItem.setAttribute("class", "inventoryItem");
+        shopItem.innerText = element[1];
+        let shopItemImage = document.createElement("img");
+        shopItemImage.src = element[6];
+        shopItem.setAttribute("onclick", "purchaseItem(shopItems[" + element[0] + "])");
+        shopItem.append(shopItemImage);
+        shopItemImage.setAttribute("class", "inventoryPicture");
+    });
+};
+
+function purchaseItem(item) {
+    //TODO: Subtract money, push item to inventory.
+};
+
+
+function loadSupermarketFood() {
+    clear(container);
+    title1.innerText = "Supermarket - Food";
+    link2.innerText = "Step away from the aisle.";
+    link2.setAttribute("onclick", "loadSupermarket");
+    container.append(title1, shopMenu, link2);
+    populateShopMenu(foodItemList, 0, 50);
+    
+}

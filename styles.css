@@ -89,7 +89,7 @@ html, body, #container {
     text-align: center;
 }
 
-#inventoryGrid {
+.inventoryGrid {
     margin: auto;
     padding: 10px;
     width: 90%;
@@ -109,7 +109,18 @@ html, body, #container {
     font-family: sans-serif;
     background-color: white;
     border-radius: 10px;
+    overflow: hidden;
 }
+
+.inventoryPicture {
+    width: 80px;
+    height: 80px;
+
+    
+}
+
+
+
 
 
 
