@@ -1040,6 +1040,7 @@ function populateShopMenu(array, minItem, maxItem) {
     shopItems = array.slice(minItem, maxItem + 1);
     
     shopItems.forEach((element) => {
+        console.log("Hello!");
         let shopItem = document.createElement("div");
         shopItem.setAttribute("class", "inventoryItem");
         shopItem.innerText = element[1];
@@ -1048,11 +1049,18 @@ function populateShopMenu(array, minItem, maxItem) {
         shopItem.setAttribute("onclick", "purchaseItem(shopItems[" + element[0] + "])");
         shopItem.append(shopItemImage);
         shopItemImage.setAttribute("class", "inventoryPicture");
+        shopMenu.append(shopItem);
     });
 };
 
 function purchaseItem(item) {
-    //TODO: Subtract money, push item to inventory.
+    if (money >= item[4]) {
+        money -= item[4];
+        inventoryContents.push(item);
+        console.log(inventoryContents); //TODO: Display the item purchased message in-game.
+    } else {
+        console.log("You don't have enough money!");
+    };
 };
 
 
@@ -1060,8 +1068,8 @@ function loadSupermarketFood() {
     clear(container);
     title1.innerText = "Supermarket - Food";
     link2.innerText = "Step away from the aisle.";
-    link2.setAttribute("onclick", "loadSupermarket");
+    link2.setAttribute("onclick", "loadSupermarket()");
     container.append(title1, shopMenu, link2);
     populateShopMenu(foodItemList, 0, 50);
     
-}
+};
