@@ -498,9 +498,9 @@ function loadStreetCorner() {
     title1.innerText = "Street Corner";
     text1.innerText = "You are standing on a street corner. \n You've just moved to the city, and you're not quite sure where to go from here. ";
     image1.src = "images/backgrounds/streetCorner.jpg";
-    link1.innerText = "Go up the street";
+    link1.innerText = "Head towards downtown.";
     link1.setAttribute("onclick", "loadDowntownStreet()");
-    link2.innerText = "Go down the street";
+    link2.innerText = "Go towards the residential area.";
     link2.setAttribute("onclick", "loadResidentialStreet()");
     link3.innerText = "Enter your apartment.";
     link3.setAttribute("onclick", "loadApartment()");
@@ -512,6 +512,13 @@ function loadStreetCorner() {
 };
 let streetCornerEvents = [strangersFramework, findItem];
 
+
+
+
+
+////////
+//////////////// Residential Area
+////////
 function loadResidentialStreet() {
     clear(container);
     title1.innerText = "Residential Street";
@@ -526,8 +533,31 @@ function loadResidentialStreet() {
 };
 let residentialStreetEvents = [strangersFramework, findItem];
 
-//Commercial Street
+function loadPark () {
+    clear(container);
+    title1.innerText = "Public Park";
+    text1.innerText = "You come to the neighborhood park. \nThere are kids playing, and families relaxing together.";
+    image1.src = "images/backgrounds/park.jpg";
+    link2.innerText = "Go to the street.";
+    link2.setAttribute("onclick", "loadResidentialStreet()");
+    
+    container.append(title1, text1, image1, link2);
+    loadEvents(parkEvents);
+};
+let parkEvents = [strangersFramework, findItem];
 
+
+
+
+
+
+
+
+
+
+////////
+//////////////// Commercial Street
+////////
 function loadCommercialStreet() {
     clear(container);
     title1.innerText = "Commercial Street";
@@ -596,9 +626,9 @@ let antiqueShopEvents = [strangersFramework];
 
 
 
-
-//Downtown Street
-
+////////
+////////////////Downtown Street
+////////
 function loadDowntownStreet() {
     clear(container);
     title1.innerText = "Downtown Street";
@@ -623,6 +653,8 @@ function loadDowntownStreet() {
 };
 let downtownStreetEvents = [strangersFramework, findItem];
 
+
+// Nightclub
 function loadNightClubEntrance() {
     clear(container);
     bgm.src = "/audio/music/nightclub/nightclub" + randomInclusive(1, 7) + ".mp3";
@@ -640,6 +672,8 @@ function loadNightClubEntrance() {
 };
 let nightclubEntranceEvents = [strangersFramework, findItem];
 
+
+// Convenience Store
 function loadConvenienceStoreEntrance() {
     clear(container);
     title1.innerText = "Convenience Store Entrance";
@@ -680,6 +714,8 @@ function loadConvenienceStoreRegister() {
     loadEvents(convenienceStoreEvents);
 };
 
+
+// Bus Depot
 function loadBusDepot() {
     clear(container);
     title1.innerText = "Bus Depot";
@@ -694,6 +730,8 @@ function loadBusDepot() {
 };
 let busDepotEvents = [strangersFramework, findItem];
 
+
+// Alleyway
 function loadAlleyway() {
     clear(container);
     title1.innerText = "Alleyway";
@@ -703,14 +741,17 @@ function loadAlleyway() {
     link1.setAttribute("onclick", "loadUndergroundShop()");
     link2.innerText = "Return to the street.";
     link2.setAttribute("onclick", "loadDowntownStreet()");
-    
+    link3.innerText = "Enter Chinatown.";
+    link3.setAttribute("onclick", "loadChinatown()");
 
-    container.append(title1, text1, image1, link1, link2);
+    container.append(title1, text1, image1, link1, link3, link2);
     executeEvent(homelessEvent, 15); //TODO: Rework to fit with new event system
     loadEvents(alleywayEvents);
 };
 let alleywayEvents = [strangersFramework, findItem];
 
+
+//Underground Shop
 function loadUndergroundShop() {
     clear(container);
     title1.innerText = "Streetwear Shop";
@@ -725,22 +766,42 @@ function loadUndergroundShop() {
 };
 let undergroundShopEvents = [strangersFramework, findItem];
 
-function loadPark () {
+
+
+
+////////
+//////////////// Chinatown
+////////
+function loadChinatown() {
     clear(container);
-    title1.innerText = "Public Park";
-    text1.innerText = "You come to the neighborhood park. \nThere are kids playing, and families relaxing together.";
-    image1.src = "images/backgrounds/park.jpg";
-    link2.innerText = "Go to the street.";
-    link2.setAttribute("onclick", "loadResidentialStreet()");
-    
-    container.append(title1, text1, image1, link2);
-    loadEvents(parkEvents);
+    title1.innerText = "Chinatown";
+    text1.innerText = "You arrive in Chinatown.\nIt's a small neighborhood, comprised of only a few blocks.\nThe shop signs are written in Chinese, and you hear people speaking Mandarin as you walk along the street.";
+    image1.src = "images/backgrounds/chinatown.jpg";
+    link1.innerText = "Enter the Chinese supermarket.";
+    link1.setAttribute("onclick", "loadChineseSupermarket()");
+    link2.innerText = "Go back through the alley.";
+    link2.setAttribute("onclick", "loadAlleyway()");
+    container.append(title1, text1, image1, link1, link2);
 };
-let parkEvents = [strangersFramework, findItem];
+let chinatownEvents = [];
+
+function loadChineseSupermarket() {
+    clear(container);
+    title1.innerText = "Chinese Supermarket";
+    text1.innerText = "You enter the store, and are greeted by shelves of exotic groceries.\nThe air is chilly from the refrigeration, and you smell a strange mix of incense, vegetables, and fish.";
+    image1.src = "images/backgrounds/chineseSupermarket.jpg";
+    link2.innerText = "Go back outside.";
+    link2.setAttribute("onclick", "loadChinatown()");
+    container.append(title1, text1, image1, link2);
+};
+let chineseSupermarketEvents = [];
 
 
-//Library
 
+
+////////
+//////////////// Library
+////////
 function loadLibraryOutside() {
     clear(container);
     title1.innerText = "Public Library";
@@ -789,8 +850,9 @@ function loadLibraryOutside() {
 
 
 
-
-//Event functions
+////////
+//////////////// Event functions
+////////
 function homelessEvent() {
     text2.innerText = "You see a homeless man sitting in the alleyway, resting with his back to the wall.\nThe years have clearly been rough on him. You wonder what to do.";
     image2.src = "images/events/homelessMan.jpg";
@@ -810,7 +872,7 @@ function homelessGive() {
     };
     const moneyGiven = randomInclusive(1, 10);
     money -= moneyGiven;
-    text2.innerText = "You give the man " + moneyGiven + "dollars. \n He thanks you briefly, before zoning out again.";
+    text2.innerText = "You give the man " + moneyGiven + " dollars. \n He thanks you briefly, before zoning out again.";
     link3.remove();
     link4.remove();
     console.log(money); //TODO: Remove after testing
@@ -826,7 +888,6 @@ function homelessIgnore() {
 
 };
 
-
 function exploreLibrary() {
     //TODO: Create book searching event.
     //TODO: Add a result that "unlocks" the library depths, instead of being available by default.
@@ -837,7 +898,13 @@ function exploreLibraryDepths() {
 }
 
 
-//Strangers framework
+
+
+
+
+////////
+//////////////// Strangers framework
+////////
 function strangersFramework(locationType) { 
     let rolledDice = randomInclusive(1, 100);
     if (rolledDice > 50 && rolledDice <= 80) {
@@ -886,9 +953,6 @@ function strangersFramework(locationType) {
 
 }
 
-
-
-
 function spawnStranger(locationType) {
     let coinflip = randomInclusive(1,2);
     let strangerName;
@@ -914,7 +978,13 @@ let whiteGirlNames = ["Jessica", "Veronica", "Claire", "Ashley", "Olivia", "Emma
 let whiteGuyNames = ["Noah", "Oliver", "Elijah", "James", "William", "Benjamin", "Lucas", "Henry", "Ted", "Jack", "Alexander", "Danny", "Logan", "John", "David", "Luke", "Anthony", "Thomas", "Dylan", "Charles", "Caleb", "Christopher", "Isaiah", "Andrew", "Joshua", "Oliver", "Nathan", "Eli", "Ryan", "Jonathan", "Connor", "Sawyer", "Myles", "Walker", "George", "Lucas"];
 
 
-//Mini-Event Generator
+
+
+
+
+////////
+////////////////Mini-Event Generator
+////////
 function findItem() {
     let rolledDice = randomInclusive(1, 100);
     if (rolledDice >= 81) {
