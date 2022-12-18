@@ -56,6 +56,8 @@ const sidebarButton = document.getElementById("sidebarButton");
 let homelessGiveToken = 0;
 let homelessIgnoreToken = 0;
 let radioState = false;
+let hasCamera = false;
+let hasLaptop = false;
 
 
 //In-Game Variables
@@ -1220,8 +1222,21 @@ function loadElectronicsItems() {
     clear(container);
     title1.innerText = "Electronics Store - Items";
     link2.innerText = "Step away from the aisle.";
-    link2.setAttribute("onclick", "loadElectronicsStore()");
+    link2.setAttribute("onclick", "loadElectronicsStore(); checkElectronics()");
     container.append(title1, shopMenu, link2);
     populateShopMenu(electronicsStoreList, 0, 1);
 
+};
+
+function checkElectronics() { //TODO: Create more elegant method to remove purchased items, ideally immediately after purchase.
+    inventoryContents.forEach((element) => {
+        if (element[1] === "Camera") {
+            hasCamera = true;
+            electronicsStoreList.splice(0, 1);
+
+        } else if (element[1] === "Laptop") {
+            hasLaptop = true;
+            electronicsStoreList.splice(electronicsStoreList.indexOf([1, "Laptop", "A mid-range laptop, more than enough for browsing the internet and some light gaming.", "tool", 250, null, "images/items/electronicsStoreItems/1.jpg"]), 1);
+        };
+    });
 };
