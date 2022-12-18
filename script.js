@@ -125,6 +125,10 @@ inventoryTitle.innerText = "Inventory";
 inventoryTitle.setAttribute("id", "inventoryTitle");
 const inventoryGrid = document.createElement("div");
 inventoryGrid.setAttribute("class", "inventoryGrid");
+const inventoryClose = document.createElement("p");
+inventoryClose.innerText = "Close Inventory.";
+inventoryClose.setAttribute("class", "link");
+inventoryClose.setAttribute("onclick", "toggleInventory()");
 
 let inventoryContents = [[0, "Apple", "A delicious-looking red apple.", "food", 1, 5, "images/items/food/0.jpg"], [0, "Apple", "A delicious-looking red apple.", "food", 1, 5, "images/items/food/0.jpg"], [0, "Apple", "A delicious-looking red apple.", "food", 1, 5, "images/items/food/0.jpg"], [0, "Apple", "A delicious-looking red apple.", "food", 1, 5, "images/items/food/0.jpg"], [0, "Apple", "A delicious-looking red apple.", "food", 1, 5, "images/items/food/0.jpg"], [0, "Apple", "A delicious-looking red apple.", "food", 1, 5, "images/items/food/0.jpg"], [0, "Apple", "A delicious-looking red apple.", "food", 1, 5, "images/items/food/0.jpg"], [0, "Apple", "A delicious-looking red apple.", "food", 1, 5, "images/items/food/0.jpg"], [0, "Apple", "A delicious-looking red apple.", "food", 1, 5, "images/items/food/0.jpg"], [0, "Apple", "A delicious-looking red apple.", "food", 1, 5, "images/items/food/0.jpg"], [0, "Apple", "A delicious-looking red apple.", "food", 1, 5, "images/items/food/0.jpg"], [0, "Apple", "A delicious-looking red apple.", "food", 1, 5, "images/items/food/0.jpg"], [0, "Apple", "A delicious-looking red apple.", "food", 1, 5, "images/items/food/0.jpg"], [0, "Apple", "A delicious-looking red apple.", "food", 1, 5, "images/items/food/0.jpg"], [0, "Apple", "A delicious-looking red apple.", "food", 1, 5, "images/items/food/0.jpg"], [0, "Apple", "A delicious-looking red apple.", "food", 1, 5, "images/items/food/0.jpg"]];
 
@@ -189,7 +193,7 @@ function toggleInventory() {
     if (inventoryState === false) {
         container.parentNode.insertBefore(inventoryPage, container);
         container.remove();
-        inventoryPage.append(inventoryTitle, inventoryGrid);
+        inventoryPage.append(inventoryTitle, inventoryGrid, inventoryClose);
         toggleSidebar();
         populateInventory();
         inventoryState = true;
@@ -201,7 +205,7 @@ function toggleInventory() {
         inventoryPage.remove();
         inventoryState = false;
     } else {
-        console.error("Your inventory state isn't boolean!")
+        console.error("Your inventory state isn't boolean!");
     }
 }
 
