@@ -126,7 +126,7 @@ inventoryTitle.setAttribute("id", "inventoryTitle");
 const inventoryGrid = document.createElement("div");
 inventoryGrid.setAttribute("class", "inventoryGrid");
 
-let inventoryContents = [["Test"], ["Can you see this?"]];
+let inventoryContents = [];
 
 //Item List [0-Code, 1-Name, 2-Description, 3-Type, 4-Value, 5-Trait, 6-Image]
 const foodItemList = [ //Foods
@@ -206,26 +206,16 @@ function toggleInventory() {
 }
 
 function populateInventory() {
-    for (let i = 0; i < 64; i++) {
-        if (inventoryContents[i] != undefined) {
+    inventoryContents.forEach((element) => {
             let inventoryItem = document.createElement("div");
             let inventoryPicture = document.createElement("img");
             inventoryPicture.setAttribute("class", "inventoryPicture");
+            inventoryPicture.src = element[6];
             inventoryItem.setAttribute("class", "inventoryItem");
-            inventoryItem.innerText = inventoryContents[i];
+            inventoryItem.innerText = element[1];
             inventoryItem.append(inventoryPicture);
             inventoryGrid.append(inventoryItem);
-        } else {
-            let inventoryItem = document.createElement("div");
-            inventoryItem.innerText = "Empty inventory slot";
-            inventoryItem.setAttribute("class", "emptyInventoryItem");
-            inventoryGrid.append(inventoryItem);
-        }
-
-
-
-    }
-}
+    })};
 
 
 //Main Page
