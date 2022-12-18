@@ -130,7 +130,7 @@ inventoryClose.innerText = "Close Inventory.";
 inventoryClose.setAttribute("class", "link");
 inventoryClose.setAttribute("onclick", "toggleInventory()");
 
-let inventoryContents = [[0, "Apple", "A delicious-looking red apple.", "food", 1, 5, "images/items/food/0.jpg"], [0, "Apple", "A delicious-looking red apple.", "food", 1, 5, "images/items/food/0.jpg"], [0, "Apple", "A delicious-looking red apple.", "food", 1, 5, "images/items/food/0.jpg"], [0, "Apple", "A delicious-looking red apple.", "food", 1, 5, "images/items/food/0.jpg"], [0, "Apple", "A delicious-looking red apple.", "food", 1, 5, "images/items/food/0.jpg"], [0, "Apple", "A delicious-looking red apple.", "food", 1, 5, "images/items/food/0.jpg"], [0, "Apple", "A delicious-looking red apple.", "food", 1, 5, "images/items/food/0.jpg"], [0, "Apple", "A delicious-looking red apple.", "food", 1, 5, "images/items/food/0.jpg"], [0, "Apple", "A delicious-looking red apple.", "food", 1, 5, "images/items/food/0.jpg"], [0, "Apple", "A delicious-looking red apple.", "food", 1, 5, "images/items/food/0.jpg"], [0, "Apple", "A delicious-looking red apple.", "food", 1, 5, "images/items/food/0.jpg"], [0, "Apple", "A delicious-looking red apple.", "food", 1, 5, "images/items/food/0.jpg"], [0, "Apple", "A delicious-looking red apple.", "food", 1, 5, "images/items/food/0.jpg"], [0, "Apple", "A delicious-looking red apple.", "food", 1, 5, "images/items/food/0.jpg"], [0, "Apple", "A delicious-looking red apple.", "food", 1, 5, "images/items/food/0.jpg"], [0, "Apple", "A delicious-looking red apple.", "food", 1, 5, "images/items/food/0.jpg"]];
+let inventoryContents = [];
 
 //Item List [0-Code, 1-Name, 2-Description, 3-Type, 4-Value, 5-Trait, 6-Image]
 const foodItemList = [//Foods
@@ -185,6 +185,21 @@ const foodItemList = [//Foods
     [48, "Sweet potato", "", "food", 1, 10],
     [49, "Baked potato", "", "food", 1, 10],
     [50, "BLT", "", "food", 1, 15],
+];
+
+let chineseSupermarketList = [
+    [0, "Latiao", "Spicy tofu strips, dripping with chili oil.", "food", 1, 10, "images/items/chineseSupermarketItems/0.jpg"],
+    [1, "Xiaoyu", "Small dried fish, soaked in spicy oil.", "food", 1, 10, "images/items/chineseSupermarketItems/1.jpg"],
+    [2, "Exotic Chips", "Spicy Crayfish Flavor", "food", 1, 10, "images/items/chineseSupermarketItems/2.jpg"],
+    [3, "Exotic Chips", "Fried Crab Flavor", "food", 1, 10, "images/items/chineseSupermarketItems/3.jpg"],
+    [4, "Exotic Chips", "Lime Flavor", "food", 1, 10, "images/items/chineseSupermarketItems/4.jpg"],
+    [5, "Exotic Chips", "Cucumber Flavor", "food", 1, 10, "images/items/chineseSupermarketItems/5.jpg"],
+    [6, "Hawthorn Flakes", "Snack made from dried hawthorn fruit, pressed into disks. Tastes like cranberry.", "food", 1, 5, "images/items/chineseSupermarketItems/6.jpg"],
+    [7, "Mango Cakes", "Snack cakes, with a mango filling.", "food", 2, 10, "images/items/chineseSupermarketItems/7.jpg"],
+    [8, "Pineapple Cakes", "Snack cakes, with a pineapple filling.", "food", 2, 10, "images/items/chineseSupermarketItems/8.jpg"],
+    [9, "Harbin Beer", "A beer from northern China.", "food", 2, 10, "images/items/chineseSupermarketItems/9.jpg"],
+    [10, "Tsingtao Beer", "The essential Chinese beer.", "food", 2, 10, "images/items/chineseSupermarketItems/10.jpg"],
+    [11, "Odd Beer", "An exotic beer, in a strangely shaped bottle...", "food", 2, 10, "images/items/chineseSupermarketItems/11.jpg"]
 ];
     //Clothes
     //TODO: Add clothes
@@ -794,11 +809,16 @@ function loadChineseSupermarket() {
     title1.innerText = "Chinese Supermarket";
     text1.innerText = "You enter the store, and are greeted by shelves of exotic groceries.\nThe air is chilly from the refrigeration, and you smell a strange mix of incense, vegetables, and fish.";
     image1.src = "images/backgrounds/chineseSupermarket.jpg";
+    link1.innerText = "Browse the shelves.";
+    link1.setAttribute("onclick", "loadChineseSupermarketFood()");
     link2.innerText = "Go back outside.";
     link2.setAttribute("onclick", "loadChinatown()");
-    container.append(title1, text1, image1, link2);
+    container.append(title1, text1, image1, link1, link2);
 };
 let chineseSupermarketEvents = [];
+
+
+
 
 
 
@@ -1146,7 +1166,7 @@ function purchaseItem(item) {
     if (money >= item[4]) {
         money -= item[4];
         inventoryContents.push(item);
-        console.log(inventoryContents); //TODO: Display the item purchased message in-game.
+        console.log(money); //TODO: Display the item purchased message in-game.
     } else {
         console.log("You don't have enough money!");
     };
@@ -1160,5 +1180,15 @@ function loadSupermarketFood() {
     link2.setAttribute("onclick", "loadSupermarket()");
     container.append(title1, shopMenu, link2);
     populateShopMenu(foodItemList, 0, 50);
+    
+};
+
+function loadChineseSupermarketFood() {
+    clear(container);
+    title1.innerText = "Chinese Supermarket - Food and Drinks";
+    link2.innerText = "Step away from the aisle.";
+    link2.setAttribute("onclick", "loadChineseSupermarket()");
+    container.append(title1, shopMenu, link2);
+    populateShopMenu(chineseSupermarketList, 0, 11); //TODO: Fix the inventory items so the images dont overflow.
     
 };
