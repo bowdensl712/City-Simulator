@@ -29,6 +29,14 @@ const image3 = document.createElement("img");
 image3.setAttribute("class", "image");
 const image4 = document.createElement("img");
 image4.setAttribute("class", "image");
+const video1 = document.createElement("video");
+video1.setAttribute("class", "video");
+const video2 = document.createElement("video");
+video1.setAttribute("class", "video");
+const video3 = document.createElement("video");
+video1.setAttribute("class", "video");
+const video4 = document.createElement("video");
+video1.setAttribute("class", "video");
 
 //Strangers Framework Elements
 const strangerLink1 = document.createElement("p");
