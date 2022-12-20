@@ -323,6 +323,12 @@ function loadApartment() {
     link3.setAttribute("onclick", "loadStreetCorner()");
     container.append(title1, text1, image1, link2, link4, link3);
 
+    if (hasLaptop === true) {
+        link5.innerText = "Use your laptop.";
+        link5.setAttribute("onclick", "loadLaptop()");
+        container.insertBefore(link5, link4);
+    };
+
 }
 
 function toggleRadio() { //TODO: Rework so that radio element is outside of "container", and is only turned off when leaving apartment, etc.
@@ -1240,3 +1246,26 @@ function checkElectronics() { //TODO: Create more elegant method to remove purch
         };
     });
 };
+
+
+
+
+
+
+
+
+////////
+////////////////Laptop
+////////
+function loadLaptop() { //TODO: Rework so that it doesn't stop the radio playing.
+    clear(container);
+    image1.src = "images/backgrounds/laptop.jpg";
+    link1.setAttribute
+
+    link2.innerText = "Close the laptop.";
+    link2.setAttribute("onclick", "loadApartment()");
+
+    container.append(image1, link2); 
+    loadEvents(laptopEvents);
+};
+let laptopEvents = [];
