@@ -318,13 +318,13 @@ function loadApartment() {
     if (radioState === true) {
         bgm.src = "/audio/music/radio/radio" + randomInclusive(1, 5) + ".mp3";
         container.append(bgm);
-        link2.innerText = "Turn off the radio";
+        link2.innerText = "Turn off the radio.";
         bgm.play();
     } else {
-        link2.innerText = "Turn on the radio";
+        link2.innerText = "Turn on the radio.";
     };
 
-    link4.innerText = "Go to the bookshelf";
+    link4.innerText = "Go to the bookshelf.";
     link4.setAttribute("onclick", "loadBookshelf()");
 
     link3.innerText = "Go outside.";
@@ -341,7 +341,7 @@ function loadApartment() {
 
 function toggleRadio() { //TODO: Rework so that radio element is outside of "container", and is only turned off when leaving apartment, etc.
     if (radioState === false) {
-        link2.innerText = "Turn off the radio";
+        link2.innerText = "Turn off the radio.";
         bgm.src = "/audio/music/radio/radio" + randomInclusive(1, 5) + ".mp3";
         container.append(bgm);
         bgm.play();
@@ -1331,7 +1331,7 @@ function loadLaptopPhotos() {
     });
 
     link2.innerText = "Go back.";
-    link2.onclick = function() {
+    link2.onclick = function() {        //TODO: Fix bug that breaks the return button.
         while (photoAlbum.firstChild) {
             photoAlbum.firstChild.remove()};
         loadLaptop();
