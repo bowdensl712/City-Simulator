@@ -408,6 +408,11 @@ function leaveBookshelf() {
     link3.innerText = "Go outside.";
     link3.setAttribute("onclick", "loadStreetCorner()");
     container.append(title1, text1, image1, link2, link4, link3);
+    if (hasLaptop === true) {
+        link5.innerText = "Use your laptop.";
+        link5.setAttribute("onclick", "loadLaptop()");
+        container.insertBefore(link5, link4);
+    };
 
 };
 
@@ -1260,20 +1265,77 @@ function checkElectronics() { //TODO: Create more elegant method to remove purch
 
 
 
+////////
+//////////////// Camera
+////////
+function takePhoto(link) {
+    if (hasCamera === true) {
+        let photoLink = document.createElement("p");
+        photoLink.innerText = "Take a picture.";
+        photoLink.setAttribute("class", "link");
+        photoLink.onclick = function() {  
+            let imageTaken = link.getAttribute("src");
+            myPhotos.push(imageTaken);
+            photoLink.innerText = "That's going in my collection.";
+            photoLink.onclick = "";
+            photoLink.class = "";
+        };
+        container.insertBefore(photoLink, link2);
+    };
+};
+
+let myPhotos = []; //Photos taken with digital camera.
+
+
+
 
 
 ////////
-////////////////Laptop
+//////////////// Laptop
 ////////
 function loadLaptop() { //TODO: Rework so that it doesn't stop the radio playing.
     clear(container);
     image1.src = "images/backgrounds/laptop.jpg";
-    link1.setAttribute
+
+
+    
 
     link2.innerText = "Close the laptop.";
     link2.setAttribute("onclick", "loadApartment()");
 
     container.append(image1, link2); 
     loadEvents(laptopEvents);
+
+    if (hasCamera === true) { //Show images taken with camera
+        link1.innerText = "View your photos.";
+        link1.setAttribute("onclick", "loadLaptopPhotos()");
+        container.insertBefore(link1, image1.nextSibling);
+    };
 };
 let laptopEvents = [];
+
+
+
+function loadLaptopPhotos() {
+    clear(container);
+    title1.innerText = "My Photos";
+
+    myPhotos.forEach((element) => {
+        let photoAlbumEntry = document.createElement("div");
+        photoAlbumEntry.setAttribute("class", "photoAlbumEntry");
+        photoAlbum.append(photoAlbumEntry);
+        let photoAlbumPicture = document.createElement("img");
+        photoAlbumPicture.setAttribute("class", "photoAlbumPicture");
+        photoAlbumPicture.src = element;
+        photoAlbumEntry.append(photoAlbumPicture);
+    });
+
+    link2.innerText = "Go back.";
+    link2.onclick = function() {
+        while (photoAlbum.firstChild) {
+            photoAlbum.firstChild.remove()};
+        loadLaptop();
+        };
+    container.append(title1, photoAlbum, link2);
+};
+
