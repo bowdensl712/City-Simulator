@@ -142,6 +142,7 @@ inventoryClose.setAttribute("onclick", "toggleInventory()");
 
 let inventoryContents = [];
 
+
 //Item List [0-Code, 1-Name, 2-Description, 3-Type, 4-Value, 5-Trait, 6-Image]
 const foodItemList = [//Foods
     [0, "Apple", "A delicious-looking red apple.", "food", 1, 5, "images/items/food/0.jpg"],
@@ -1091,9 +1092,45 @@ function foundItem() {
 
 
 
+//TODO: Add alleys with garbage cans to residential area, street corner, commercial street.
 
+///////// Search Trash
+let normalTrash = [ //TODO: Give each item a unique code, regardless of item list.
+[0, "Half-eaten sandwich", "The partially eaten leftovers of a sandwich...", "food", 1, 7, "0.jpg"],
+[1, "Empty bottle", "An empty glass bottle. Pretty much useless.", "trash", 1, null, "1.jpg"],
+[2, "Open can of beans", "A mostly empty can of baked beans. Only a few spoonfuls remain.", "food", 1, 3, "2.jpg"],
+[3, "Crumpled newspaper", "A crumpled copy of last week's newspaper.", "trash", 1, null, "3.jpg"],
+[4, "Stick", "A small tree branch.", "trash", 1, null, "4.jpg"],
+[5, "Dirty sock", "A discarded sock. Who knows where the other one is.", "trash", 1, null, "5.jpg"],
+[6, "Hamburger wrapper", "Much better when it still contains a hamburger.", "trash", 1, null, "6.jpg"],
+[7, "Candy wrapper", "The wrapper from a chocolate bar.", "trash", 1, null, "7.jpg"],
+[8, "Old baseball cap", "I suppose you could still wear it...", "apparel", 2, null, "8.jpg"],
+[9, "Underwear", "Somebody's old underwear. Gross.", "trash", 1, null, "9.jpg"],
+[10, "Cardboard box", "Nothing inside.", "trash", 1, null, "10.jpg"],
+[11, "Used razor", "A dirty, old disposable razor.", "trash", 1, null, "11.jpg"],
+[12, "Empty beer can", "An empty can of beer.", "trash", 1, null, "12.jpg"]
+];
 
+let specialTrash = [];
 
+function loadTrash() {
+    let trashLink = document.createElement("p");
+    trashLink.innerText = "Search through the trash.";
+    trashLink.onclick = searchTrash();
+};
+
+function searchTrash() {
+    let rolledDice = randomInclusive(1, 100);
+    if (rolledDice <= 85) {
+        generateTrash(normalTrash);
+    } else if (rolledDice >= 86 && rolledDice < 99) {
+        generateTrash(specialTrash);
+    } else if (rolledDice >= 99) {
+        uniqueTrash(); //TODO: Create uniqueTrash function!
+    } else {
+        console.error("SearchTrash() function is broken!")
+    };
+};
 
 
 
