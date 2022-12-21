@@ -591,7 +591,7 @@ function loadPark () {
     container.append(title1, text1, image1, link2);
     loadEvents(parkEvents);
 };
-let parkEvents = [strangersFramework, findItem];
+let parkEvents = [strangersFramework, findItem, loadTrash];
 
 
 
@@ -810,7 +810,7 @@ function loadAlleyway() {
     executeEvent(homelessEvent, 15); //TODO: Rework to fit with new event system
     loadEvents(alleywayEvents);
 };
-let alleywayEvents = [strangersFramework, findItem];
+let alleywayEvents = [strangersFramework, findItem, loadTrash];
 
 
 //Underground Shop
@@ -1065,9 +1065,7 @@ function findItem() {
     console.log("find items roll: " + rolledDice)
 };
 
-let foundImagesList = [
-
-];
+let foundImagesList = [];
 function foundItem() {
     //TODO: Add a dice roll to find different types of item.
     let foundPhotograph = randomArrayItem(foundImagesList);
@@ -1092,31 +1090,37 @@ function foundItem() {
 
 
 
+
+
+
+
 //TODO: Add alleys with garbage cans to residential area, street corner, commercial street.
 
 ///////// Search Trash
 let normalTrash = [ //TODO: Give each item a unique code, regardless of item list.
-[0, "Half-eaten sandwich", "The partially eaten leftovers of a sandwich...", "food", 1, 7, "0.jpg"],
-[1, "Empty bottle", "An empty glass bottle. Pretty much useless.", "trash", 1, null, "1.jpg"],
-[2, "Open can of beans", "A mostly empty can of baked beans. Only a few spoonfuls remain.", "food", 1, 3, "2.jpg"],
-[3, "Crumpled newspaper", "A crumpled copy of last week's newspaper.", "trash", 1, null, "3.jpg"],
-[4, "Stick", "A small tree branch.", "trash", 1, null, "4.jpg"],
-[5, "Dirty sock", "A discarded sock. Who knows where the other one is.", "trash", 1, null, "5.jpg"],
-[6, "Hamburger wrapper", "Much better when it still contains a hamburger.", "trash", 1, null, "6.jpg"],
-[7, "Candy wrapper", "The wrapper from a chocolate bar.", "trash", 1, null, "7.jpg"],
-[8, "Old baseball cap", "I suppose you could still wear it...", "apparel", 2, null, "8.jpg"],
-[9, "Underwear", "Somebody's old underwear. Gross.", "trash", 1, null, "9.jpg"],
-[10, "Cardboard box", "Nothing inside.", "trash", 1, null, "10.jpg"],
-[11, "Used razor", "A dirty, old disposable razor.", "trash", 1, null, "11.jpg"],
-[12, "Empty beer can", "An empty can of beer.", "trash", 1, null, "12.jpg"]
+[0, "Half-eaten sandwich", "The partially eaten leftovers of a sandwich...", "food", 1, 7, "images/items/normalTrash/0.jpg"],
+[1, "Empty bottle", "An empty glass bottle. Pretty much useless.", "trash", 1, null, "images/items/normalTrash/1.jpg"],
+[2, "Open can of beans", "A mostly empty can of baked beans. Only a few spoonfuls remain.", "food", 1, 3, "images/items/normalTrash/2.jpg"],
+[3, "Crumpled newspaper", "A crumpled copy of last week's newspaper.", "trash", 1, null, "images/items/normalTrash/3.jpg"],
+[4, "Stick", "A small tree branch.", "trash", 1, null, "images/items/normalTrash/4.jpg"],
+[5, "Dirty sock", "A discarded sock. Who knows where the other one is.", "trash", 1, null, "images/items/normalTrash/5.jpg"],
+[6, "Hamburger wrapper", "Much better when it still contains a hamburger.", "trash", 1, null, "images/items/normalTrash/6.jpg"],
+[7, "Candy wrapper", "The wrapper from a chocolate bar.", "trash", 1, null, "images/items/normalTrash/7.jpg"],
+[8, "Old baseball cap", "I suppose you could still wear it...", "apparel", 2, null, "images/items/normalTrash/8.jpg"],
+[9, "Underwear", "Somebody's old underwear. Gross.", "trash", 1, null, "images/items/normalTrash/9.jpg"],
+[10, "Cardboard box", "Nothing inside.", "trash", 1, null, "images/items/normalTrash/10.jpg"],
+[11, "Used razor", "A dirty, old disposable razor.", "trash", 1, null, "images/items/normalTrash/11.jpg"],
+[12, "Empty beer can", "An empty can of beer.", "trash", 1, null, "images/items/normalTrash/12.jpg"]
 ];
 
 let specialTrash = [];
 
 function loadTrash() {
     let trashLink = document.createElement("p");
+    trashLink.setAttribute("class", "link");
     trashLink.innerText = "Search through the trash.";
-    trashLink.onclick = searchTrash();
+    trashLink.setAttribute("onclick", "searchTrash(); this.remove()");
+    container.insertBefore(trashLink, link2);
 };
 
 function searchTrash() {
@@ -1132,6 +1136,17 @@ function searchTrash() {
     };
 };
 
+function generateTrash(array) {
+    let selectedTrash = randomArrayItem(array);
+    let trashImage = document.createElement("img");
+    trashImage.setAttribute("class", "image");
+    trashImage.src = selectedTrash[6];
+    let trashText = document.createElement("p");
+    trashText.innerText = "You found a " + selectedTrash[1].toLowerCase() + ".\n" + selectedTrash[2];
+    container.insertBefore(trashText, link2);
+    container.insertBefore(trashImage, trashText);
+    inventoryContents.push(selectedTrash);
+};
 
 
 
