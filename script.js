@@ -1553,17 +1553,36 @@ function nightDowntownStreet() {
     title1.innerText = "Downtown Street";
     text1.innerText = "The streets are dark, and most of the shops are closed. \nThe convenience store seems to still be open.";
     image1.src = "images/backgrounds/nightDowntownStreet.jpg";
+    link1.innerText = "Enter the nightclub.";
+    link1.setAttribute("onclick", "checkTime(loadNightclubEntrance, nightNightclubEntrance)");
     link2.innerText = "Go back towards the residential area.";
     link2.setAttribute("onclick", "checkTime(loadStreetCorner, nightStreetCorner)");
     link3.innerText = "Enter the alleyway.";
     link3.setAttribute("onclick", "checkTime(loadAlleyway, nightAlleyway)");
     link5.innerText = "Enter the convenience store.";
     link5.setAttribute("onclick", "loadConvenienceStoreEntrance()");
-    container.append(title1, text1, image1, link5, link3, link2);
+    container.append(title1, text1, image1, link1, link5, link3, link2);
 
     loadEvents(nightDowntownStreetEvents);
 };
 let nightDowntownStreetEvents = [findItem];
+
+function nightNightClubEntrance() {
+    clear(container);
+    bgm.src = "/audio/music/nightclub/nightclub" + randomInclusive(1, 7) + ".mp3";
+    title1.innerText = "Nightclub";
+    text1.innerText = "You enter the nightclub. \nThe music is thumping, and the club is crowded with people.";
+    image1.src = "images/backgrounds/nightNightclubEntrance.jpg";
+    link2.innerText = "Go outside.";
+    link2.setAttribute("onclick", "checkTime(loadDowntownStreet, nightDowntownStreet)");
+    
+
+    container.append(title1, text1, image1, link2, bgm);
+    bgm.play();
+    loadEvents(nightNightclubEntranceEvents);
+    
+};
+let nightNightclubEntranceEvents = [strangersFramework, findItem];
 
 function nightAlleyway() {
     clear(container);
