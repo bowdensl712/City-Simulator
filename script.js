@@ -326,7 +326,7 @@ function loadApartment() {
     title1.innerText = "Your Apartment";
     text1.innerText = "Your new apartment. It still doesn't quite feel like home.";
     image1.src = "images/backgrounds/apartment.jpg";
-    link2.setAttribute("onclick", "toggleRadio()");
+    link2.setAttribute("onclick", "toggleRadio(); addMinutes(2)");
     if (radioState === true) {
         bgm.src = "/audio/music/radio/radio" + randomInclusive(1, 5) + ".mp3";
         container.append(bgm);
@@ -337,15 +337,15 @@ function loadApartment() {
     };
 
     link4.innerText = "Go to the bookshelf.";
-    link4.setAttribute("onclick", "loadBookshelf()");
+    link4.setAttribute("onclick", "loadBookshelf(); addMinutes(2)");
 
     link3.innerText = "Go outside.";
-    link3.setAttribute("onclick", "checkTime(loadStreetCorner, nightStreetCorner)");
+    link3.setAttribute("onclick", "checkTime(loadStreetCorner, nightStreetCorner); addMinutes(2)");
     container.append(title1, text1, image1, link2, link4, link3);
 
     if (hasLaptop === true) {
         link5.innerText = "Use your laptop.";
-        link5.setAttribute("onclick", "loadLaptop()");
+        link5.setAttribute("onclick", "loadLaptop(); addMinutes(5)");
         container.insertBefore(link5, link4);
     };
     loadEvents(apartmentEvents);
@@ -383,9 +383,9 @@ function loadBookshelf() {
     image1.src = "images/backgrounds/bookshelf.jpg";
     text1.innerText = "You stand in front of your bookshelf.";
     link1.innerText = "Photo Album";
-    link1.setAttribute("onclick", "loadPhotoAlbum()");
+    link1.setAttribute("onclick", "loadPhotoAlbum(); addMinutes(10)");
     link2.innerText = "Step away from the bookshelf.";
-    link2.setAttribute("onclick", "leaveBookshelf()");
+    link2.setAttribute("onclick", "leaveBookshelf(); addMinutes(2)");
     container.append(image1, text1, link1, link2);
     loadBookshelfContents();
 };
@@ -397,7 +397,7 @@ function loadBookshelfContents() {
         bookLink.setAttribute('id', 'bookLink');
         bookLink.innerText = element[0];
         let bookIndex = bookshelfContents.indexOf(element);
-        bookLink.setAttribute('onclick', 'loadBook(bookshelfContents[' + bookIndex + '])');
+        bookLink.setAttribute('onclick', 'loadBook(bookshelfContents[' + bookIndex + ']); addMinutes(15)');
         container.insertBefore(bookLink, link1);
     });
 };
@@ -415,16 +415,16 @@ function leaveBookshelf() {
         link2.innerText = "Turn off the radio";
     } else { 
         link2.innerText = "Turn on the radio"};
-    link2.setAttribute("onclick", "toggleRadio()");
+    link2.setAttribute("onclick", "toggleRadio(); addMinutes(2)");
     link4.innerText = "Go to the bookshelf";
-    link4.setAttribute("onclick", "loadBookshelf()");
+    link4.setAttribute("onclick", "loadBookshelf(); addMinutes(2)");
 
     link3.innerText = "Go outside.";
-    link3.setAttribute("onclick", "checkTime(loadStreetCorner, nightStreetCorner)");
+    link3.setAttribute("onclick", "checkTime(loadStreetCorner, nightStreetCorner); addMinutes(2)");
     container.append(title1, text1, image1, link2, link4, link3);
     if (hasLaptop === true) {
         link5.innerText = "Use your laptop.";
-        link5.setAttribute("onclick", "loadLaptop()");
+        link5.setAttribute("onclick", "loadLaptop(); addMinutes(5)");
         container.insertBefore(link5, link4);
     };
 
@@ -470,7 +470,7 @@ function loadPhotoAlbum() {
         photoAlbumEntry.append(photoAlbumPicture, photoAlbumName, photoAlbumDesc);
     });
     link2.innerText = "Put back the album";
-    link2.setAttribute("onclick", "returnPhotoAlbum()");
+    link2.setAttribute("onclick", "returnPhotoAlbum(); addMinutes(2)");
     container.append(link2);
     
 };
@@ -485,9 +485,9 @@ function returnPhotoAlbum() {
     image1.src = "images/backgrounds/bookshelf.jpg";
     text1.innerText = "You stand in front of your bookshelf.";
     link1.innerText = "Photo Album";
-    link1.setAttribute("onclick", "loadPhotoAlbum()");
+    link1.setAttribute("onclick", "loadPhotoAlbum(); addMinutes(10)");
     link2.innerText = "Step away from the bookshelf.";
-    link2.setAttribute("onclick", "leaveBookshelf()");
+    link2.setAttribute("onclick", "leaveBookshelf(); addMinutes(2)");
 
     container.append(image1, text1, link1, link2);
     loadBookshelfContents();
@@ -594,7 +594,7 @@ function loadResidentialStreet() {
 };
 let residentialStreetEvents = [strangersFramework, findItem];
 
-function loadPark () {
+function loadPark() {
     clear(container);
     title1.innerText = "Public Park";
     text1.innerText = "You come to the neighborhood park. \nThere are kids playing, and families relaxing together.";
@@ -605,7 +605,7 @@ function loadPark () {
     container.append(title1, text1, image1, link2);
     loadEvents(parkEvents);
 };
-let parkEvents = [strangersFramework, findItem, loadTrash];
+let parkEvents = [strangersFramework, findItem, loadTrash, checkParkRunner];
 
 
 
@@ -947,43 +947,7 @@ function loadLibraryOutside() {
 
 
 
-////////
-//////////////// Event functions
-////////
-function homelessEvent() {
-    text2.innerText = "You see a homeless man sitting in the alleyway, resting with his back to the wall.\nThe years have clearly been rough on him. You wonder what to do.";
-    image2.src = "images/events/homelessMan.jpg";
-    link3.innerText = "Give the poor old man some change.";
-    link3.setAttribute("onclick", "homelessGive(); addMinutes(2)");
-    link4.innerText = "Ignore him and keep walking.";
-    link4.setAttribute("onclick", "homelessIgnore(); addMinutes(2)");
-    image1.after(text2, image2, link3, link4);
-    
-};
 
-function homelessGive() {
-    if (homelessIgnoreToken > 0) {
-        homelessIgnoreToken --;
-    } else {
-        homelessGiveToken ++;
-    };
-    const moneyGiven = randomInclusive(1, 10);
-    money -= moneyGiven;
-    text2.innerText = "You give the man " + moneyGiven + " dollars. \n He thanks you briefly, before zoning out again.";
-    link3.remove();
-    link4.remove();
-    console.log(money); //TODO: Remove after testing
-};
-
-function homelessIgnore() {
-    homelessIgnoreToken ++;
-    if (homelessGiveToken < 0) {homelessGiveToken --};
-    text2.innerText = "You ignore the dirty old man and continue walking.";
-    image2.remove();
-    link3.remove();
-    link4.remove();
-
-};
 
 function exploreLibrary() {
     //TODO: Create book searching event.
@@ -1002,7 +966,7 @@ function exploreLibraryDepths() {
 ////////
 //////////////// Strangers framework
 ////////
-function strangersFramework(locationType) { 
+function strangersFramework(locationType) { /* TODO: Rework the Strangers Framework before reactivating
     let rolledDice = randomInclusive(1, 100);
     if (rolledDice > 50 && rolledDice <= 80) {
         let stranger1 = spawnStranger(locationType);
@@ -1048,8 +1012,9 @@ function strangersFramework(locationType) {
     //TODO: Trim people photos so they fit better
     //TODO: Add multiple lines for describing spawned strangers.
 
+    */
 }
-
+/*
 function spawnStranger(locationType) {
     let coinflip = randomInclusive(1,2);
     let strangerName;
@@ -1067,9 +1032,9 @@ function spawnStranger(locationType) {
     
     
     return [strangerName, strangerGender, strangerPicture];
-};
+}; 
 
-let strangersList = [];
+let strangersList = [];   */
 
 let whiteGirlNames = ["Jessica", "Veronica", "Claire", "Ashley", "Olivia", "Emma", "Charlotte", "Amelia", "Ava", "Sophia", "Isabella", "Mia", "Luna", "Elizabeth", "Abigail", "Emily", "Penelope", "Madison", "Lily", "Grace", "Aurora", "Violet", "Zoey", "Willow", "Hannah", "Leah", "Lucy", "Ivy", "Audrey", "Autumn", "Bella", "Hailey", "Ariana", "Jade", "Eva", "Maria", "Julia", "Rose", "Margaret", "Mary", "Lucia", "Magnolia", "Alexandra", "Juliette", "Chloe", "Anastasia", "Brianna", "Molly", "Amy", "Belle", "Sara", "Morgan", "Vera", "Octavia", "Brooke", "Dakota", "Reagan", "Daphne", "Evie", "Paige", "Rebecca", "Lia", "Dahlia", "Brooklynn", "Ophelia", "Catherine", "Briella", "Adriana", "Nicole"];
 let whiteGuyNames = ["Noah", "Oliver", "Elijah", "James", "William", "Benjamin", "Lucas", "Henry", "Ted", "Jack", "Alexander", "Danny", "Logan", "John", "David", "Luke", "Anthony", "Thomas", "Dylan", "Charles", "Caleb", "Christopher", "Isaiah", "Andrew", "Joshua", "Oliver", "Nathan", "Eli", "Ryan", "Jonathan", "Connor", "Sawyer", "Myles", "Walker", "George", "Lucas"];
@@ -1618,3 +1583,224 @@ function nightChinatown() {
     loadEvents(nightChinatownEvents);
 };
 let nightChinatownEvents = [];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+////////
+//////////////// Events
+////////
+
+// Homeless Man
+function homelessEvent() {
+    text2.innerText = "You see a homeless man sitting in the alleyway, resting with his back to the wall.\nThe years have clearly been rough on him. You wonder what to do.";
+    image2.src = "images/events/homelessMan.jpg";
+    link3.innerText = "Give the poor old man some change.";
+    link3.setAttribute("onclick", "homelessGive(); addMinutes(2)");
+    link4.innerText = "Ignore him and keep walking.";
+    link4.setAttribute("onclick", "homelessIgnore(); addMinutes(2)");
+    image1.after(text2, image2, link3, link4);
+    
+};
+
+function homelessGive() {
+    if (homelessIgnoreToken > 0) {
+        homelessIgnoreToken --;
+    } else {
+        homelessGiveToken ++;
+    };
+    const moneyGiven = randomInclusive(1, 10);
+    money -= moneyGiven;
+    text2.innerText = "You give the man " + moneyGiven + " dollars. \n He thanks you briefly, before zoning out again.";
+    link3.remove();
+    link4.remove();
+};
+
+function homelessIgnore() {
+    homelessIgnoreToken ++;
+    if (homelessGiveToken < 0) {homelessGiveToken --};
+    text2.innerText = "You ignore the dirty old man and continue walking.";
+    image2.remove();
+    link3.remove();
+    link4.remove();
+
+};
+
+///// Park Runner
+function checkParkRunner() {
+    let rolledDice = randomInclusive(1, 100);
+    if (rolledDice >= 85) {
+        let parkRunnerLink = document.createElement("p");
+        parkRunnerLink.innerText = "A jogger runs by.";
+        parkRunnerLink.setAttribute("class", "link");
+        parkRunnerLink.setAttribute("onclick", "loadParkRunner(); this.remove(); addMinutes(5)");
+        container.insertBefore(parkRunnerLink, link2);
+    } 
+};
+
+function loadParkRunner() { 
+    if (randomInclusive(1, 100) > 80) { //TODO: Increase variety of items that can be dropped.
+        let parkRunnerImage = document.createElement("img");
+        parkRunnerImage.setAttribute("class", "image");
+        parkRunnerImage.src = "images/events/jogger/" + randomInclusive(1, 4) + ".gif";
+        let parkRunnerText = document.createElement("p");
+        let foundCash = randomInclusive(2, 40);
+        parkRunnerText.innerText = "As the jogger passes, they drop something...\nYou pick it up, and find that it's " + foundCash + " dollars!\nYou quietly pocket it before someone else sees...";
+        container.insertBefore(parkRunnerImage, link2);
+        container.insertBefore(parkRunnerText, link2);
+        changeMoney(foundCash);
+
+    } else {
+        let parkRunnerImage = document.createElement("img");
+        parkRunnerImage.setAttribute("class", "image");
+        parkRunnerImage.src = "images/events/jogger/" + randomInclusive(1, 4) + ".gif";
+        let parkRunnerText = document.createElement("p");
+        parkRunnerText.innerText = "The jogger runs past you, and continues along the sidewalk.";
+        container.insertBefore(parkRunnerImage, link2);
+        container.insertBefore(parkRunnerText, link2);
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
