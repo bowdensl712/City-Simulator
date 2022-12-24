@@ -70,8 +70,7 @@ let hasLaptop = false;
 
 //In-Game Variables
 let money = 1000;
-let ingameDate = new Date("2023-04-01T07:00:00Z");
-
+let date = new Date("2023-04-01T07:00:00");
 
 
 //Functions
@@ -123,7 +122,7 @@ let inventoryButton = document.getElementById("inventoryButton");
 let moneyDisplay = document.getElementById("moneyDisplay");
 moneyDisplay.innerText = money + " dollars";
 let dateDisplay = document.getElementById("dateDisplay");
-dateDisplay.innerText = ingameDate.toDateString();
+dateDisplay.innerText = date.toLocaleString("en-US", {weekday: "short", month: "short", day: "numeric", hour: '2-digit', minute:'2-digit'});
 
 
 //Inventory
@@ -308,6 +307,15 @@ function loadEvents(array) { //Loads the array of events for a specific location
 } ;
 
 
+
+
+
+
+
+
+
+
+
 //Apartment
 
 function loadApartment() {
@@ -337,8 +345,10 @@ function loadApartment() {
         link5.setAttribute("onclick", "loadLaptop()");
         container.insertBefore(link5, link4);
     };
+    loadEvents(apartmentEvents);
+};
+let apartmentEvents = [];
 
-}
 
 function toggleRadio() { //TODO: Rework so that radio element is outside of "container", and is only turned off when leaving apartment, etc.
     if (radioState === false) {
@@ -416,6 +426,7 @@ function leaveBookshelf() {
     };
 
 };
+
 
 function removeBooksList() {
     while (document.getElementById('bookLink') != null) {
@@ -1406,4 +1417,37 @@ function loadLaptopPhotos() {
         };
     container.append(title1, photoAlbum, link2);
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+////////
+//////////////// Night Mode
+////////
+
+
+
+
+
+
+
+
+
+
+
+
 
