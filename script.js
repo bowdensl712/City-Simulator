@@ -692,7 +692,7 @@ function loadCommercialAlleys() {
     link2.setAttribute("onclick", "loadCommercialStreet()");
 
 
-    container.append(title1, text1, link1, link2);
+    container.append(title1, text1, image1, link2);
     loadTrash();
 
 
