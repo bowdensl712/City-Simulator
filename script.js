@@ -93,10 +93,13 @@ function toggleSidebar() {
     if (sidebarToggle === false) {
         sidebar.style.width = "250px";
         sidebarButton.style.left = "250px";
+        container.style.marginLeft = "250px";
         sidebarToggle = true;
     } else  if (sidebarToggle === true) {
         sidebar.style.width = "0";
         sidebarButton.style.left = "0";
+        container.style.marginLeft = "0";
+        container.style.marginRight = "0";
         sidebarToggle = false;
 
     };
@@ -557,13 +560,13 @@ function loadStreetCorner() {
     text1.innerText = "You are standing on a street corner. \n You've just moved to the city, and you're not quite sure where to go from here. ";
     image1.src = "images/backgrounds/streetCorner.jpg";
     link1.innerText = "Head towards downtown.";
-    link1.setAttribute("onclick", "checkTime(loadDowntownStreet, nightDowntownStreet)");
+    link1.setAttribute("onclick", "checkTime(loadDowntownStreet, nightDowntownStreet); addMinutes(10)");
     link2.innerText = "Go towards the residential area.";
-    link2.setAttribute("onclick", "checkTime(loadResidentialStreet, nightResidentialStreet)");
+    link2.setAttribute("onclick", "checkTime(loadResidentialStreet, nightResidentialStreet); addMinutes(10)");
     link3.innerText = "Enter your apartment.";
-    link3.setAttribute("onclick", "loadApartment()");
+    link3.setAttribute("onclick", "loadApartment(); addMinutes(2)");
     link4.innerText = "Go to the commercial street.";
-    link4.setAttribute("onclick", "checkTime(loadCommercialStreet, nightCommercialStreet)");
+    link4.setAttribute("onclick", "checkTime(loadCommercialStreet, nightCommercialStreet); addMinutes(10)");
 
     container.append(title1, text1, image1, link1, link2, link4, link3);
     loadEvents(streetCornerEvents);
@@ -583,9 +586,9 @@ function loadResidentialStreet() {
     text1.innerText = "You've come to a quiet street, lined with houses. \nYou wonder what life is like for all the people here.";
     image1.src = "images/backgrounds/residentialStreet.png";
     link1.innerText = "Visit the nearby park.";
-    link1.setAttribute("onclick", "checkTime(loadPark, nightPark)");
+    link1.setAttribute("onclick", "checkTime(loadPark, nightPark); addMinutes(5)");
     link2.innerText = "Go back towards town.";
-    link2.setAttribute("onclick", "checkTime(loadStreetCorner, nightStreetCorner)");
+    link2.setAttribute("onclick", "checkTime(loadStreetCorner, nightStreetCorner); addMinutes(10)");
     container.append(title1, text1, image1, link1, link2);
     loadEvents(residentialStreetEvents);
 };
@@ -597,7 +600,7 @@ function loadPark () {
     text1.innerText = "You come to the neighborhood park. \nThere are kids playing, and families relaxing together.";
     image1.src = "images/backgrounds/park.jpg";
     link2.innerText = "Go to the street.";
-    link2.setAttribute("onclick", "checkTime(loadResidentialStreet, nightResidentialStreet)");
+    link2.setAttribute("onclick", "checkTime(loadResidentialStreet, nightResidentialStreet); addMinutes(5)");
     
     container.append(title1, text1, image1, link2);
     loadEvents(parkEvents);
@@ -622,15 +625,15 @@ function loadCommercialStreet() {
     text1.innerText = "You come to a street lined with shops.\nIt's very convenient, being this close to your apartment.\nYou see a supermarket, an antique shop, and some other shops.";
     image1.src = "images/backgrounds/commercialStreet.jpg"; //TODO: Add picture
     link1.innerText = "Go towards the supermarket.";
-    link1.setAttribute("onclick", "loadSupermarketEntrance()");
+    link1.setAttribute("onclick", "loadSupermarketEntrance(); addMinutes(2)");
     link3.innerText = "Enter the antique shop.";
-    link3.setAttribute("onclick", "loadAntiqueShop()");
+    link3.setAttribute("onclick", "loadAntiqueShop(); addMinutes(2)");
     link4.innerText = "Enter the electronics store.";
-    link4.setAttribute("onclick", "loadElectronicsStore()");
+    link4.setAttribute("onclick", "loadElectronicsStore(); addMinutes(2)");
     link5.innerText = "Enter the alleyway.";
-    link5.setAttribute("onclick", "checkTime(loadCommercialAlley, nightCommercialAlley)");
+    link5.setAttribute("onclick", "checkTime(loadCommercialAlley, nightCommercialAlley); addMinutes(2)");
     link2.innerText = "Go back towards your apartment.";
-    link2.setAttribute("onclick", "checkTime(loadStreetCorner, nightStreetCorner)");
+    link2.setAttribute("onclick", "checkTime(loadStreetCorner, nightStreetCorner); addMinutes(10)");
 
     container.append(title1, text1, image1, link1, link3, link4, link5, link2);
     loadEvents(commercialStreetEvents);
@@ -643,9 +646,9 @@ function loadSupermarketEntrance() {
     text1.innerText = "You come to the supermarket."
     image1.src = "images/backgrounds/supermarketEntrance.jpg"; //TODO: Add picture
     link1.innerText = "Enter the supermarket.";
-    link1.setAttribute("onclick", "loadSupermarket()");
+    link1.setAttribute("onclick", "loadSupermarket(); addMinutes(1)");
     link2.innerText = "Go back to the street.";
-    link2.setAttribute("onclick", "checkTime(loadCommercialStreet, nightCommercialStreet)");
+    link2.setAttribute("onclick", "checkTime(loadCommercialStreet, nightCommercialStreet); addMinutes(2)");
 
     container.append(title1, text1, image1, link1, link2);
     loadEvents(supermarketEntranceEvents);
@@ -658,9 +661,9 @@ function loadSupermarket() {
     text1.innerText = "The aisles of the supermarket stretch out before you.\nPeople pass by with carts and baskets, browsing the aisles."
     image1.src = "images/backgrounds/supermarket.jpg";
     link1.innerText = "Browse the food.";
-    link1.setAttribute("onclick", "loadSupermarketFood()");
+    link1.setAttribute("onclick", "loadSupermarketFood(); addMinutes(10)");
     link2.innerText = "Go back outside.";
-    link2.setAttribute("onclick", "loadSupermarketEntrance()");
+    link2.setAttribute("onclick", "loadSupermarketEntrance(); addMinutes(1)");
 
     container.append(title1, text1, image1, link1, link2);
     loadEvents(supermarketEvents);
@@ -673,7 +676,7 @@ function loadAntiqueShop() {
     text1.innerText = "You stand in an old antique shop.\n The walls are lined with old clocks, vases, and other knick knacks.\nThere's a faint smell of dust permeating the air.";
     image1.src = "images/backgrounds/antiqueShop.png";
     link2.innerText = "Go back outside.";
-    link2.setAttribute("onclick", "checkTime(loadCommercialStreet, nightCommercialStreet)");
+    link2.setAttribute("onclick", "checkTime(loadCommercialStreet, nightCommercialStreet); addMinutes(2)");
     
     container.append(title1, text1, image1, link2);
     loadEvents(antiqueShopEvents);
@@ -686,9 +689,9 @@ function loadElectronicsStore() {
     text1.innerText = "You enter the electronics store.\nComputers, phones, televisions, and other devices line the shelves.";
     image1.src = "images/backgrounds/electronicsStore.jpg";
     link1.innerText = "Browse the aisles.";
-    link1.setAttribute("onclick", "loadElectronicsItems()");
+    link1.setAttribute("onclick", "loadElectronicsItems(); addMinutes(10)");
     link2.innerText = "Go back outside.";
-    link2.setAttribute("onclick", "checkTime(loadCommercialStreet, nightCommercialStreet)");
+    link2.setAttribute("onclick", "checkTime(loadCommercialStreet, nightCommercialStreet); addMinutes(2)");
     container.append(title1, text1, image1, link1, link2);
     loadEvents(electronicsShopEvents);
 }
@@ -700,7 +703,7 @@ function loadCommercialAlley() {
     text1.innerText = "You enter the alleyway behind the shops. You see service doors behind each building, and some large garbage cans.";
     image1.src = "images/backgrounds/commercialAlley.jpg";
     link2.innerText = "Go back to the street.";
-    link2.setAttribute("onclick", "checkTime(loadCommercialStreet, nightCommercialStreet)");
+    link2.setAttribute("onclick", "checkTime(loadCommercialStreet, nightCommercialStreet); addMinutes(2)");
 
 
     container.append(title1, text1, image1, link2);
@@ -725,17 +728,17 @@ function loadDowntownStreet() {
     text2.innerText = "You see the entrance for a nightclub, a conveniece store, and an alleyway.\nFurther down the street, you see the bus depot, and the city library.";
     image1.src = "images/backgrounds/downtownStreet.jpg";
     link1.innerText = "Enter the nightclub.";
-    link1.setAttribute("onclick", "checkTime(loadNightclubEntrance, nightNightclubEntrance)");
+    link1.setAttribute("onclick", "checkTime(loadNightclubEntrance, nightNightclubEntrance); addMinutes(5)");
     link2.innerText = "Go back towards the residential area.";
-    link2.setAttribute("onclick", "checkTime(loadStreetCorner, nightStreetCorner)");
+    link2.setAttribute("onclick", "checkTime(loadStreetCorner, nightStreetCorner); addMinutes(10)");
     link3.innerText = "Enter the alleyway.";
-    link3.setAttribute("onclick", "checkTime(loadAlleyway, nightAlleyway)");
+    link3.setAttribute("onclick", "checkTime(loadAlleyway, nightAlleyway); addMinutes(2)");
     link4.innerText = "Go towards the library."
-    link4.setAttribute("onclick", "loadLibraryOutside()");
+    link4.setAttribute("onclick", "loadLibraryOutside(); addMinutes(5)");
     link5.innerText = "Enter the convenience store.";
-    link5.setAttribute("onclick", "loadConvenienceStoreEntrance()");
+    link5.setAttribute("onclick", "loadConvenienceStoreEntrance(); addMinutes(2)");
     link6.innerText = "Enter the bus depot.";
-    link6.setAttribute("onclick", "loadBusDepot()");
+    link6.setAttribute("onclick", "loadBusDepot(); addMinutes(5)");
     container.append(title1, text1, text2, image1, link1, link5, link3, link6, link4, link2);
 
     loadEvents(downtownStreetEvents);
@@ -744,14 +747,14 @@ let downtownStreetEvents = [strangersFramework, findItem];
 
 
 // Nightclub
-function loadNightClubEntrance() {
+function loadNightclubEntrance() {
     clear(container);
     bgm.src = "/audio/music/nightclub/nightclub" + randomInclusive(1, 7) + ".mp3";
     title1.innerText = "Nightclub";
     text1.innerText = "You enter the nightclub. \nThere's not too many people right now, but the music is playing.\nYou feel like you've heard this song before.";
     image1.src = "images/backgrounds/nightclubEntrance.jpg";
     link2.innerText = "Go outside.";
-    link2.setAttribute("onclick", "checkTime(loadDowntownStreet, nightDowntownStreet)");
+    link2.setAttribute("onclick", "checkTime(loadDowntownStreet, nightDowntownStreet); addMinutes(2)");
     
 
     container.append(title1, text1, image1, link2, bgm);
@@ -769,9 +772,9 @@ function loadConvenienceStoreEntrance() {
     text1.innerText = "You stand in the entrance of the convenience store.\nThe shelves are stocked with snacks, toiletries, and other everyday necessities.";
     image1.src = "images/backgrounds/convenienceStoreEntrance.jpg";
     link1.innerText = "Browse the aisles.";
-    link1.setAttribute("onclick", "loadConvenienceStore()");
+    link1.setAttribute("onclick", "loadConvenienceStore(); addMinutes(1)");
     link2.innerText = "Leave the store.";
-    link2.setAttribute('onclick', 'checkTime(loadDowntownStreet, nightDowntownStreet)');
+    link2.setAttribute('onclick', 'checkTime(loadDowntownStreet, nightDowntownStreet); addMinutes(2)');
 
     container.append(title1, text1, image1, link1, link2);
 
@@ -785,9 +788,9 @@ function loadConvenienceStore() {
     text1.innerText = "You walk through the aisles of the convenience store.";
     image1.src = "images/backgrounds/convenienceStore.jpg";
     link1.innerText = "Go to the register.";
-    link1.setAttribute("onclick", "loadConvenienceStoreRegister()");
+    link1.setAttribute("onclick", "loadConvenienceStoreRegister(); addMinutes(1)");
     link2.innerText = "Return to the entrance.";
-    link2.setAttribute('onclick', 'loadConvenienceStoreEntrance()');
+    link2.setAttribute('onclick', 'loadConvenienceStoreEntrance(); addMinutes(1)');
     container.append(title1, text1, image1, link1, link2);
     loadEvents(convenienceStoreEvents);
 };
@@ -798,7 +801,7 @@ function loadConvenienceStoreRegister() {
     text1.innerText = "You stand in front of the register, ready to make a purchase.";
     image1.src = "images/backgrounds/convenienceStoreRegister.jpg";
     link2.innerText = "Go back to the aisles.";
-    link2.setAttribute('onclick', 'loadConvenienceStoreEntrance()');
+    link2.setAttribute('onclick', 'loadConvenienceStoreEntrance(); addMinutes(1)');
     container.append(title1, text1, image1, link2);
     loadEvents(convenienceStoreEvents);
 };
@@ -811,9 +814,9 @@ function loadBusDepot() {
     text1.innerText = "You stand in the bus depot.\nOn the walls are maps of the various routes throughout the city, and the nearby region.\nYou look at the prices for the various routes...";
     image1.src = "images/backgrounds/busDepot.jpg";
     link1.innerText = "Theme Park - $15, Round-trip";
-    link1.setAttribute("onclick", "travelThemePark()");
+    link1.setAttribute("onclick", "travelThemePark(); addMinutes(60)");
     link2.innerText = "Go outside.";
-    link2.setAttribute("onclick", "checkTime(loadDowntownStreet, nightDowntownStreet)");
+    link2.setAttribute("onclick", "checkTime(loadDowntownStreet, nightDowntownStreet); addMinutes(5)");
     container.append(title1, text1, image1, link1, link2);
     loadEvents(busDepotEvents);
 };
@@ -827,11 +830,11 @@ function loadAlleyway() {
     text1.innerText = "It's a dirty alleyway. \nYou see a stairwell, leading down into the basement of one of the buildings. \nIt looks very sketchy.";
     image1.src = "images/backgrounds/alleyway.jpg";
     link1.innerText = "Go down the stairwell."
-    link1.setAttribute("onclick", "loadUndergroundShop()");
+    link1.setAttribute("onclick", "loadUndergroundShop(); addMinutes(2)");
     link2.innerText = "Return to the street.";
-    link2.setAttribute("onclick", "checkTime(loadDowntownStreet, nightDowntownStreet)");
+    link2.setAttribute("onclick", "checkTime(loadDowntownStreet, nightDowntownStreet); addMinutes(2)");
     link3.innerText = "Enter Chinatown.";
-    link3.setAttribute("onclick", "checkTime(loadChinatown, nightChinatown)");
+    link3.setAttribute("onclick", "checkTime(loadChinatown, nightChinatown); addMinutes(10)");
 
     container.append(title1, text1, image1, link1, link3, link2);
     executeEvent(homelessEvent, 15); //TODO: Rework to fit with new event system
@@ -847,7 +850,7 @@ function loadUndergroundShop() {
     text1.innerText = "You stand in a small shop, run out of an apartment block's basement.\nClothes racks are tightly packed with fashionable clothes, many of them used.";
     image1.src = "images/backgrounds/undergroundShop.jpg";
     link2.innerText = "Return to the alleyway.";
-    link2.setAttribute("onclick", "checkTime(loadAlleyway, nightAlleyway)");
+    link2.setAttribute("onclick", "checkTime(loadAlleyway, nightAlleyway); addMinutes(2)");
     
 
     container.append(title1, text1, image1, link2);
@@ -867,9 +870,9 @@ function loadChinatown() {
     text1.innerText = "You arrive in Chinatown.\nIt's a small neighborhood, comprised of only a few blocks.\nThe shop signs are written in Chinese, and you hear people speaking Mandarin as you walk along the street.";
     image1.src = "images/backgrounds/chinatown.jpg";
     link1.innerText = "Enter the Chinese supermarket.";
-    link1.setAttribute("onclick", "loadChineseSupermarket()");
+    link1.setAttribute("onclick", "loadChineseSupermarket(); addMinutes(2)");
     link2.innerText = "Go back through the alley.";
-    link2.setAttribute("onclick", "checkTime(loadAlleyway, nightAlleyway)");
+    link2.setAttribute("onclick", "checkTime(loadAlleyway, nightAlleyway); addMinutes(10)");
     container.append(title1, text1, image1, link1, link2);
 };
 let chinatownEvents = [];
@@ -880,9 +883,9 @@ function loadChineseSupermarket() {
     text1.innerText = "You enter the store, and are greeted by shelves of exotic groceries.\nThe air is chilly from the refrigeration, and you smell a strange mix of incense, vegetables, and fish.";
     image1.src = "images/backgrounds/chineseSupermarket.jpg";
     link1.innerText = "Browse the shelves.";
-    link1.setAttribute("onclick", "loadChineseSupermarketFood()");
+    link1.setAttribute("onclick", "loadChineseSupermarketFood(); addMinutes(10)");
     link2.innerText = "Go back outside.";
-    link2.setAttribute("onclick", "checkTime(loadChinatown, nightChinatown)");
+    link2.setAttribute("onclick", "checkTime(loadChinatown, nightChinatown); addMinutes(2)");
     container.append(title1, text1, image1, link1, link2);
 };
 let chineseSupermarketEvents = [];
@@ -902,9 +905,9 @@ function loadLibraryOutside() {
     text1.innerText = "You come to the public library.\nYou watch as people pass by along the street.";
     image1.src = "images/backgrounds/libraryOutside.jpg";
     link1.innerText = "Enter the library.";
-    link1.setAttribute("onclick", "loadLibraryEntrance()");
+    link1.setAttribute("onclick", "loadLibraryEntrance(); addMinutes(1)");
     link2.innerText = "Leave the library";
-    link2.setAttribute("onclick", "checkTime(loadDowntownStreet, nightDowntownStreet)");
+    link2.setAttribute("onclick", "checkTime(loadDowntownStreet, nightDowntownStreet); addMinutes(5)");
     container.append(title1, text1, image1, link1, link2);
     loadEvents(libraryOutsideEvents);
   };
@@ -916,11 +919,11 @@ function loadLibraryOutside() {
     text1.innerText = "You stand in the lobby of the large library.\nYou see many long aisles of bookshelves.";
     image1.src = "images/backgrounds/libraryEntrance.jpg";
     link1.innerText = "Roam the bookshelves.";
-    link1.setAttribute("onclick", "exploreLibrary()");
+    link1.setAttribute("onclick", "exploreLibrary(); addMinutes(30)");
     link3.innerText = "Go deeper into the library";
-    link3.setAttribute("onclick", "loadLibraryDepths()");
+    link3.setAttribute("onclick", "loadLibraryDepths(); addMinutes(5)");
     link2.innerText = "Go outside.";
-    link2.setAttribute("onclick", "loadLibraryOutside()");
+    link2.setAttribute("onclick", "loadLibraryOutside(); addMinutes(2)");
     container.append(title1, text1, image1, link1, link3, link2);
     loadEvents(libraryEntranceEvents);
 
@@ -933,9 +936,9 @@ function loadLibraryOutside() {
     text1.innerText = "After wandering the maze of bookshelves, you find yourself in a back corner of the library.\nThere's nobody else here, and it seems like there hasn't been in a while.";
     image1.src = "images/backgrounds/libraryDepths.jpg";
     link1.innerText = "Explore the depths of the library.";
-    link1.setAttribute("onclick", "exploreLibraryDepths()");
+    link1.setAttribute("onclick", "exploreLibraryDepths(); addMinutes(30)");
     link2.innerText = "Return to the library entrance.";
-    link2.setAttribute("onclick", "loadLibraryEntrance()");
+    link2.setAttribute("onclick", "loadLibraryEntrance(); addMinutes(5)");
     container.append(title1, text1, image1, link1, link2);
     
     
@@ -951,9 +954,9 @@ function homelessEvent() {
     text2.innerText = "You see a homeless man sitting in the alleyway, resting with his back to the wall.\nThe years have clearly been rough on him. You wonder what to do.";
     image2.src = "images/events/homelessMan.jpg";
     link3.innerText = "Give the poor old man some change.";
-    link3.setAttribute("onclick", "homelessGive()");
+    link3.setAttribute("onclick", "homelessGive(); addMinutes(2)");
     link4.innerText = "Ignore him and keep walking.";
-    link4.setAttribute("onclick", "homelessIgnore()");
+    link4.setAttribute("onclick", "homelessIgnore(); addMinutes(2)");
     image1.after(text2, image2, link3, link4);
     
 };
@@ -1085,7 +1088,7 @@ function findItem() {
         let findItemLink = document.createElement("p");
         findItemLink.innerText = "You see something on the ground.";
         findItemLink.setAttribute("class", "link");
-        findItemLink.setAttribute("onclick", "foundItem(); this.innerText = 'You pick it up...'; this.setAttribute('class', ''); this.setAttribute('onclick', '');");
+        findItemLink.setAttribute("onclick", "foundItem(); this.innerText = 'You pick it up...'; this.setAttribute('class', ''); this.setAttribute('onclick', ''); addMinutes(2);");
         container.append(findItemLink); //TODO: Figure out where to place it on the page, other than dead last.
 
     };
@@ -1151,6 +1154,7 @@ function loadTrash() {
 };
 
 function searchTrash() {
+    addMinutes(15);             //Time spent searching
     let rolledDice = randomInclusive(1, 100);
     if (rolledDice <= 85) {
         generateTrash(normalTrash);
@@ -1201,9 +1205,9 @@ function loadThemeParkEntrance() {
     text1.innerText = "You stand at the gates of the local theme park.\n While it's no Disneyland, it's still a very fun destination for friends, families, and couples.\nIt bustles with people as they go in and out of the large gateway.";
     image1.src = "images/backgrounds/themeParkEntrance.jpg";
     link1.innerText = "Line up to buy a ticket.";
-    link1.setAttribute("onclick", "loadThemeParkTicketBooth()");
+    link1.setAttribute("onclick", "loadThemeParkTicketBooth(); addMinutes(15)");
     link2.innerText = "Take the bus back to downtown.";
-    link2.setAttribute("onclick", "loadBusDepot()");
+    link2.setAttribute("onclick", "loadBusDepot(); addMinutes(60)");
 
 
     container.append(title1, text1, image1, link1, link2);
@@ -1215,7 +1219,7 @@ function loadThemeParkTicketBooth() {
     text1.innerText = "You wait in line for a while, and eventually find yourself at the front of the line.\nYou step up to the counter, and look at the ticket prices.";
     image1.src = "images/backgrounds/themeParkTicketBooth.jpg";
     link1.innerText = "Ticket - $25";
-    link1.setAttribute("onclick", "buyThemeParkTicket()");
+    link1.setAttribute("onclick", "buyThemeParkTicket(); addMinutes(5)");
     link2.innerText = "On second thought, maybe I'll head back to town...";
     link2.setAttribute("onclick", "loadThemeParkEntrance");
 
@@ -1247,7 +1251,7 @@ function confirmLeavePark() {
     confirmText.innerText = "You can't re-enter the park once you've left.\nAre you sure you want to leave the park?";
     container.insertBefore(confirmText, link2);
     link2.innerText = "Yes.";
-    link2.setAttribute("onClick", "loadThemeParkEntrance()");
+    link2.setAttribute("onClick", "loadThemeParkEntrance(); addMinutes(5)");
 };
 
 
@@ -1300,7 +1304,7 @@ function loadSupermarketFood() {
     clear(container);
     title1.innerText = "Supermarket - Food";
     link2.innerText = "Step away from the aisle.";
-    link2.setAttribute("onclick", "loadSupermarket()");
+    link2.setAttribute("onclick", "loadSupermarket(); addMinutes(2)");
     container.append(title1, shopMenu, link2);
     populateShopMenu(foodItemList, 0, 50);
     
@@ -1310,7 +1314,7 @@ function loadChineseSupermarketFood() {
     clear(container);
     title1.innerText = "Chinese Supermarket - Food and Drinks";
     link2.innerText = "Step away from the aisle.";
-    link2.setAttribute("onclick", "loadChineseSupermarket()");
+    link2.setAttribute("onclick", "loadChineseSupermarket(); addMinutes(2)");
     container.append(title1, shopMenu, link2);
     populateShopMenu(chineseSupermarketList, 0, 11); //TODO: Fix the inventory items so the images dont overflow.
     
@@ -1320,7 +1324,7 @@ function loadElectronicsItems() {
     clear(container);
     title1.innerText = "Electronics Store - Items";
     link2.innerText = "Step away from the aisle.";
-    link2.setAttribute("onclick", "loadElectronicsStore(); checkElectronics()");
+    link2.setAttribute("onclick", "loadElectronicsStore(); checkElectronics(); addMinutes(2)");
     container.append(title1, shopMenu, link2);
     populateShopMenu(electronicsStoreList, 0, 1);
 
@@ -1380,14 +1384,14 @@ function loadLaptop() { //TODO: Rework so that it doesn't stop the radio playing
     
 
     link2.innerText = "Close the laptop.";
-    link2.setAttribute("onclick", "loadApartment()");
+    link2.setAttribute("onclick", "loadApartment(); addMinutes(2)");
 
     container.append(image1, link2); 
     loadEvents(laptopEvents);
 
     if (hasCamera === true) { //Show images taken with camera
         link1.innerText = "View your photos.";
-        link1.setAttribute("onclick", "loadLaptopPhotos()");
+        link1.setAttribute("onclick", "loadLaptopPhotos(); addMinutes(10)");
         container.insertBefore(link1, image1.nextSibling);
     };
 };
@@ -1431,7 +1435,8 @@ function loadLaptopPhotos() {
 /////////////// Date Manipulation
 ////////
 function addMinutes(minutes) {
-    date = (date.getTime() + minutes*60000);
+    date.setMinutes((date.getMinutes() + minutes));
+    dateDisplay.innerText = date.toLocaleString("en-US", {weekday: "short", month: "short", day: "numeric", hour: '2-digit', minute:'2-digit'});    
 };
 
 let sunrise = 6;
@@ -1461,13 +1466,13 @@ function nightStreetCorner() {
     text1.innerText = "You are standing on the street corner. \n It's dark, and the street is empty. ";
     image1.src = "images/backgrounds/nightStreetCorner.jpg";
     link1.innerText = "Head towards downtown.";
-    link1.setAttribute("onclick", "nightDowntownStreet()");
+    link1.setAttribute("onclick", "nightDowntownStreet(); addMinutes(10)");
     link2.innerText = "Go towards the residential area.";
-    link2.setAttribute("onclick", "nightResidentialStreet()");
+    link2.setAttribute("onclick", "nightResidentialStreet(); addMinutes(10)");
     link3.innerText = "Enter your apartment.";
-    link3.setAttribute("onclick", "loadApartment()");
+    link3.setAttribute("onclick", "loadApartment(); addMinutes(2)");
     link4.innerText = "Go to the commercial street.";
-    link4.setAttribute("onclick", "nightCommercialStreet()");
+    link4.setAttribute("onclick", "nightCommercialStreet(); addMinutes(10)");
 
     container.append(title1, text1, image1, link1, link2, link4, link3);
     loadEvents(nightStreetCornerEvents);
@@ -1487,9 +1492,9 @@ function nightResidentialStreet() {
     text1.innerText = "The residential street is dark and quiet. \nEveryone seems to be at home, sleeping.";
     image1.src = "images/backgrounds/nightResidentialStreet.png";
     link1.innerText = "Visit the nearby park.";
-    link1.setAttribute("onclick", "checkTime(loadPark, nightPark)");
+    link1.setAttribute("onclick", "checkTime(loadPark, nightPark); addMinutes(5)");
     link2.innerText = "Go back towards town.";
-    link2.setAttribute("onclick", "checkTime(loadStreetCorner, nightStreetCorner)");
+    link2.setAttribute("onclick", "checkTime(loadStreetCorner, nightStreetCorner); addMinutes(10)");
     container.append(title1, text1, image1, link1, link2);
     loadEvents(nightResidentialStreetEvents);
 };
@@ -1501,7 +1506,7 @@ function nightPark () {
     text1.innerText = "The park is quiet, and dimly lit by sparse street lamps.";
     image1.src = "images/backgrounds/nightPark.jpg";
     link2.innerText = "Go to the street.";
-    link2.setAttribute("onclick", "checkTime(loadResidentialStreet, nightResidentialStreet)");
+    link2.setAttribute("onclick", "checkTime(loadResidentialStreet, nightResidentialStreet); addMinutes(5)");
     
     container.append(title1, text1, image1, link2);
     loadEvents(nightParkEvents);
@@ -1518,9 +1523,9 @@ function nightCommercialStreet() {
     text1.innerText = "The shops are all closed for the night.";
     image1.src = "images/backgrounds/nightCommercialStreet.jpg";
     link5.innerText = "Enter the alleyway.";
-    link5.setAttribute("onclick", "checkTime(loadCommercialAlley, nightCommercialAlley)");
+    link5.setAttribute("onclick", "checkTime(loadCommercialAlley, nightCommercialAlley); addMinutes(2)");
     link2.innerText = "Go back towards your apartment.";
-    link2.setAttribute("onclick", "checkTime(loadStreetCorner, nightStreetCorner)");
+    link2.setAttribute("onclick", "checkTime(loadStreetCorner, nightStreetCorner); addMinutes(10)");
 
     container.append(title1, text1, image1, link5, link2);
     loadEvents(nightCommercialStreetEvents);
@@ -1534,7 +1539,7 @@ function nightCommercialAlley() {
     text1.innerText = "The alleyway is dark and intimidating.";
     image1.src = "images/backgrounds/nightCommercialAlley.jpg";
     link2.innerText = "Go back to the street.";
-    link2.setAttribute("onclick", "checkTime(loadCommercialStreet, nightCommercialStreet)");
+    link2.setAttribute("onclick", "checkTime(loadCommercialStreet, nightCommercialStreet); addMinutes(2)");
 
 
     container.append(title1, text1, image1, link2);
@@ -1554,27 +1559,27 @@ function nightDowntownStreet() {
     text1.innerText = "The streets are dark, and most of the shops are closed. \nThe convenience store seems to still be open.";
     image1.src = "images/backgrounds/nightDowntownStreet.jpg";
     link1.innerText = "Enter the nightclub.";
-    link1.setAttribute("onclick", "checkTime(loadNightclubEntrance, nightNightclubEntrance)");
+    link1.setAttribute("onclick", "checkTime(loadNightclubEntrance, nightNightclubEntrance); addMinutes(5)");
     link2.innerText = "Go back towards the residential area.";
-    link2.setAttribute("onclick", "checkTime(loadStreetCorner, nightStreetCorner)");
+    link2.setAttribute("onclick", "checkTime(loadStreetCorner, nightStreetCorner); addMinutes(10)");
     link3.innerText = "Enter the alleyway.";
-    link3.setAttribute("onclick", "checkTime(loadAlleyway, nightAlleyway)");
+    link3.setAttribute("onclick", "checkTime(loadAlleyway, nightAlleyway); addMinutes(2)");
     link5.innerText = "Enter the convenience store.";
-    link5.setAttribute("onclick", "loadConvenienceStoreEntrance()");
+    link5.setAttribute("onclick", "loadConvenienceStoreEntrance(); addMinutes(2)");
     container.append(title1, text1, image1, link1, link5, link3, link2);
 
     loadEvents(nightDowntownStreetEvents);
 };
 let nightDowntownStreetEvents = [findItem];
 
-function nightNightClubEntrance() {
+function nightNightclubEntrance() {
     clear(container);
     bgm.src = "/audio/music/nightclub/nightclub" + randomInclusive(1, 7) + ".mp3";
     title1.innerText = "Nightclub";
     text1.innerText = "You enter the nightclub. \nThe music is thumping, and the club is crowded with people.";
     image1.src = "images/backgrounds/nightNightclubEntrance.jpg";
     link2.innerText = "Go outside.";
-    link2.setAttribute("onclick", "checkTime(loadDowntownStreet, nightDowntownStreet)");
+    link2.setAttribute("onclick", "checkTime(loadDowntownStreet, nightDowntownStreet); addMinutes(2)");
     
 
     container.append(title1, text1, image1, link2, bgm);
@@ -1590,9 +1595,9 @@ function nightAlleyway() {
     text1.innerText = "It's a dark, dirty alleyway.";
     image1.src = "images/backgrounds/nightAlleyway.jpg";
     link2.innerText = "Return to the street.";
-    link2.setAttribute("onclick", "checkTime(loadDowntownStreet, nightDowntownStreet)");
+    link2.setAttribute("onclick", "checkTime(loadDowntownStreet, nightDowntownStreet); addMinutes(10)");
     link3.innerText = "Enter Chinatown.";
-    link3.setAttribute("onclick", "checkTime(loadChinatown, nightChinatown)");
+    link3.setAttribute("onclick", "checkTime(loadChinatown, nightChinatown); addMinutes(10)");
 
     container.append(title1, text1, image1, link3, link2);
     loadEvents(nightAlleywayEvents);
@@ -1608,7 +1613,7 @@ function nightChinatown() {
     text1.innerText = "You arrive in Chinatown.\nIt's night, so all the shops are closed.";
     image1.src = "images/backgrounds/nightChinatown.jpg";
     link2.innerText = "Go back through the alley.";
-    link2.setAttribute("onclick", "checkTime(loadAlleyway, nightAlleyway)");
+    link2.setAttribute("onclick", "checkTime(loadAlleyway, nightAlleyway); addMinutes(10)");
     container.append(title1, text1, image1, link2);
     loadEvents(nightChinatownEvents);
 };
