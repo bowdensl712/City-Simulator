@@ -433,7 +433,7 @@ function leaveBookshelf() {
 
 function removeBooksList() {
     while (document.getElementById('bookLink') != null) {
-        let booklink = document.getElementById('booklink');
+        let bookLink = document.getElementById('booklink');
         bookLink.remove();
     };
 };
@@ -887,6 +887,7 @@ function loadChineseSupermarket() {
     link2.innerText = "Go back outside.";
     link2.setAttribute("onclick", "checkTime(loadChinatown, nightChinatown); addMinutes(2)");
     container.append(title1, text1, image1, link1, link2);
+    loadEvents(chineseSupermarketEvents);
 };
 let chineseSupermarketEvents = [];
 
