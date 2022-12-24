@@ -616,10 +616,12 @@ function loadCommercialStreet() {
     link3.setAttribute("onclick", "loadAntiqueShop()");
     link4.innerText = "Enter the electronics store.";
     link4.setAttribute("onclick", "loadElectronicsStore()");
+    link5.innerText = "Enter the alleyway.";
+    link5.setAttribute("onclick", "loadCommercialAlleys()");
     link2.innerText = "Go back towards your apartment.";
     link2.setAttribute("onclick", "loadStreetCorner()");
 
-    container.append(title1, text1, image1, link1, link3, link4, link2);
+    container.append(title1, text1, image1, link1, link3, link4, link5, link2);
     loadEvents(commercialStreetEvents);
 };
 let commercialStreetEvents = [strangersFramework, findItem];
@@ -681,7 +683,21 @@ function loadElectronicsStore() {
 }
 let electronicsShopEvents = [strangersFramework];
 
+function loadCommercialAlleys() {
+    clear(container);
+    title1.innerText = "Commercial Street - Alleyway";
+    text1.innerText = "You enter the alleyway behind the shops. You see service doors behind each building, and some large garbage cans.";
+    image1.src = "images/backgrounds/commercialAlleys.jpg";
+    link2.innerText = "Go back to the street.";
+    link2.setAttribute("onclick", "loadCommercialStreet()");
 
+
+    container.append(title1, text1, link1, link2);
+    loadTrash();
+
+
+};
+let commercialAlleysEvent = [findItem];
 
 
 
