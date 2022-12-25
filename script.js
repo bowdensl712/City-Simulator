@@ -66,7 +66,7 @@ let homelessIgnoreToken = 0;
 let radioState = false;
 let hasCamera = false;
 let hasLaptop = false;
-
+let hasJapaneseDiary = true; //TODO: Make false once exploreLibraryDepths() is complete.
 
 //In-Game Variables
 let money = 1000;
@@ -388,6 +388,13 @@ function loadBookshelf() {
     link2.setAttribute("onclick", "leaveBookshelf(); addMinutes(2)");
     container.append(image1, text1, link1, link2);
     loadBookshelfContents();
+    if (hasJapaneseDiary === true) {
+        let diaryLink = document.createElement("p");
+        diaryLink.innerText = "Old diary";
+        diaryLink.className = "link";
+        diaryLink.setAttribute("onclick", "loadDiary()");
+        container.insertBefore(diaryLink, link2);
+    };
 };
 
 function loadBookshelfContents() {
@@ -948,7 +955,7 @@ function loadLibraryOutside() {
 
 
 
-
+let rareBookList = [];
 
 function exploreLibrary() {
     //TODO: Create book searching event.
@@ -957,7 +964,10 @@ function exploreLibrary() {
 
 function exploreLibraryDepths() {
     //TODO: Create rare book searching event.
-}
+    //TODO: Add a 10% chance of finding the Japanese diary, which toggles 
+};
+
+
 
 
 
@@ -1058,7 +1068,6 @@ function findItem() {
         container.append(findItemLink); //TODO: Figure out where to place it on the page, other than dead last.
 
     };
-    console.log("find items roll: " + rolledDice)
 };
 
 let foundImagesList = [];
@@ -1411,12 +1420,9 @@ let sunset = 19;
 
 function checkTime(day, night) {
     currentTime = date.getHours();
-    console.log(currentTime);
     if (sunrise <= currentTime && currentTime < sunset) {
-        console.log("It's daytime.");
         day();
     } else if (currentTime < sunrise || currentTime >= sunset){
-        console.log("It's nighttime.");
         night();
     } else {console.log("This shit's broken.")};
 };
@@ -1625,11 +1631,6 @@ function nightChinatown() {
     loadEvents(nightChinatownEvents);
 };
 let nightChinatownEvents = [];
-
-
-
-
-
 
 
 
