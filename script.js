@@ -1421,6 +1421,47 @@ function checkTime(day, night) {
     } else {console.log("This shit's broken.")};
 };
 
+function checkMonth() { //TODO: Execute when sleeping at night.
+    let month = date.getMonth();
+    if (month === 0) {
+        sunrise = 7;
+        sunset = 17;
+    } else if (month === 1){
+        sunrise = 7;
+        sunset = 17;
+    } else if (month === 2){
+        sunrise = 7;
+        sunset = 18;
+    } else if (month === 3){
+        sunrise = 6;
+        sunset = 19;    
+    } else if (month === 4){
+        sunrise = 6;
+        sunset = 20;  
+    } else if (month === 5){
+        sunrise = 5;
+        sunset = 20;
+    } else if (month === 6){
+        sunrise = 5;
+        sunset = 20;
+    } else if (month === 7){
+        sunrise = 6;
+        sunset = 20;
+    } else if (month === 8){
+        sunrise = 6;
+        sunset = 19;
+    } else if (month === 9){
+        sunrise = 7;
+        sunset = 18;
+    } else if (month === 10){
+        sunrise = 7;
+        sunset = 17;
+    } else if (month === 11){
+        sunrise = 7;
+        sunset = 16;
+    } else {console.error("checkMonth() is broken!")};
+};
+
 
 ////////
 //////////////// Night Mode
