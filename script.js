@@ -1456,7 +1456,7 @@ function nightResidentialStreet() {
     clear(container);
     title1.innerText = "Residential Street";
     text1.innerText = "The residential street is dark and quiet. \nEveryone seems to be at home, sleeping.";
-    image1.src = "images/backgrounds/nightResidentialStreet.png";
+    image1.src = "images/backgrounds/nightResidentialStreet.jpg";
     link1.innerText = "Visit the nearby park.";
     link1.setAttribute("onclick", "checkTime(loadPark, nightPark); addMinutes(5)");
     link2.innerText = "Go back towards town.";

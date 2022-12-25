@@ -101,7 +101,7 @@ html, body, #container {
 
 }
 
-.inventoryItem, .emptyInventoryItem {
+.inventoryItem {
     width: 100px;
     height: 100px;
     margin: 0;
@@ -110,6 +110,11 @@ html, body, #container {
     background-color: white;
     border-radius: 10px;
     display: relative;
+}
+
+.inventoryItem:hover {
+    border: solid black 2px;
+    margin: -2px;
 }
 
 .inventoryPicture {
