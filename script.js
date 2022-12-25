@@ -1581,7 +1581,7 @@ let nightDowntownStreetEvents = [findItem];
 
 function nightNightclubEntrance() {
     clear(container);
-    bgm.src = "/audio/music/nightclub/nightclub" + randomInclusive(1, 7) + ".mp3";
+    bgm.src = "/audio/music/nightclub/nightclub" + randomInclusive(1, 11) + ".mp3";
     title1.innerText = "Nightclub";
     text1.innerText = "You enter the nightclub. \nThe music is thumping, and the club is crowded with people.";
     image1.src = "images/backgrounds/nightNightclubEntrance.jpg";
