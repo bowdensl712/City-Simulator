@@ -267,3 +267,17 @@ p {
     cursor: pointer;
     color: burlywood;
 }
+
+
+
+/* NPC Framework */
+
+#npcBox {
+    width: 50%;
+    overflow: auto;
+    border: solid gray 2px;
+}
+
+#npcBox p {
+    color: gray;
+}

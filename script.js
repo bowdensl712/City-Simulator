@@ -350,7 +350,7 @@ function loadApartment() {
     };
     loadEvents(apartmentEvents);
 };
-let apartmentEvents = [];
+let apartmentEvents = [npcFramework];
 
 
 function toggleRadio() { //TODO: Rework so that radio element is outside of "container", and is only turned off when leaving apartment, etc.
@@ -434,6 +434,7 @@ function leaveBookshelf() {
         link5.setAttribute("onclick", "loadLaptop(); addMinutes(5)");
         container.insertBefore(link5, link4);
     };
+    loadEvents(apartmentEvents);
 
 };
 
@@ -578,7 +579,7 @@ function loadStreetCorner() {
     container.append(title1, text1, image1, link1, link2, link4, link3);
     loadEvents(streetCornerEvents);
 };
-let streetCornerEvents = [strangersFramework, findItem];
+let streetCornerEvents = [npcFramework, strangersFramework, findItem];
 
 
 
@@ -599,7 +600,7 @@ function loadResidentialStreet() {
     container.append(title1, text1, image1, link1, link2);
     loadEvents(residentialStreetEvents);
 };
-let residentialStreetEvents = [strangersFramework, findItem];
+let residentialStreetEvents = [npcFramework, strangersFramework, findItem];
 
 function loadPark() {
     clear(container);
@@ -612,7 +613,7 @@ function loadPark() {
     container.append(title1, text1, image1, link2);
     loadEvents(parkEvents);
 };
-let parkEvents = [strangersFramework, findItem, loadTrash, checkParkRunner];
+let parkEvents = [npcFramework, strangersFramework, findItem, loadTrash, checkParkRunner];
 
 
 
@@ -645,7 +646,7 @@ function loadCommercialStreet() {
     container.append(title1, text1, image1, link1, link3, link4, link5, link2);
     loadEvents(commercialStreetEvents);
 };
-let commercialStreetEvents = [strangersFramework, findItem];
+let commercialStreetEvents = [npcFramework, strangersFramework, findItem];
 
 function loadSupermarketEntrance() {
     clear(container);
@@ -660,7 +661,7 @@ function loadSupermarketEntrance() {
     container.append(title1, text1, image1, link1, link2);
     loadEvents(supermarketEntranceEvents);
 };
-let supermarketEntranceEvents = [strangersFramework, findItem];
+let supermarketEntranceEvents = [npcFramework, strangersFramework, findItem];
 
 function loadSupermarket() {
     clear(container);
@@ -675,7 +676,7 @@ function loadSupermarket() {
     container.append(title1, text1, image1, link1, link2);
     loadEvents(supermarketEvents);
 };
-let supermarketEvents = [strangersFramework, findItem];
+let supermarketEvents = [npcFramework, strangersFramework, findItem];
 
 function loadAntiqueShop() {
     clear(container);
@@ -688,7 +689,7 @@ function loadAntiqueShop() {
     container.append(title1, text1, image1, link2);
     loadEvents(antiqueShopEvents);
 };
-let antiqueShopEvents = [strangersFramework];
+let antiqueShopEvents = [npcFramework, strangersFramework];
 
 function loadElectronicsStore() {
     clear(container);
@@ -702,7 +703,7 @@ function loadElectronicsStore() {
     container.append(title1, text1, image1, link1, link2);
     loadEvents(electronicsShopEvents);
 }
-let electronicsShopEvents = [strangersFramework];
+let electronicsShopEvents = [npcFramework, strangersFramework];
 
 function loadCommercialAlley() {
     clear(container);
@@ -718,7 +719,7 @@ function loadCommercialAlley() {
 
 
 };
-let commercialAlleysEvent = [findItem];
+let commercialAlleysEvent = [npcFramework, findItem];
 
 
 
@@ -750,7 +751,7 @@ function loadDowntownStreet() {
 
     loadEvents(downtownStreetEvents);
 };
-let downtownStreetEvents = [strangersFramework, findItem];
+let downtownStreetEvents = [npcFramework, strangersFramework, findItem];
 
 
 // Nightclub
@@ -769,7 +770,7 @@ function loadNightclubEntrance() {
     loadEvents(nightclubEntranceEvents);
     
 };
-let nightclubEntranceEvents = [strangersFramework, findItem];
+let nightclubEntranceEvents = [npcFramework, strangersFramework, findItem];
 
 
 // Convenience Store
@@ -787,7 +788,7 @@ function loadConvenienceStoreEntrance() {
 
     loadEvents(convenienceStoreEvents);
 };
-let convenienceStoreEvents = [strangersFramework, findItem];
+let convenienceStoreEvents = [npcFramework, strangersFramework, findItem];
 
 function loadConvenienceStore() {
     clear(container);
@@ -827,7 +828,7 @@ function loadBusDepot() {
     container.append(title1, text1, image1, link1, link2);
     loadEvents(busDepotEvents);
 };
-let busDepotEvents = [strangersFramework, findItem];
+let busDepotEvents = [npcFramework, strangersFramework, findItem];
 
 
 // Alleyway
@@ -847,7 +848,7 @@ function loadAlleyway() {
     executeEvent(homelessEvent, 15); //TODO: Rework to fit with new event system
     loadEvents(alleywayEvents);
 };
-let alleywayEvents = [strangersFramework, findItem, loadTrash];
+let alleywayEvents = [npcFramework, strangersFramework, findItem, loadTrash];
 
 
 //Underground Shop
@@ -863,7 +864,7 @@ function loadUndergroundShop() {
     container.append(title1, text1, image1, link2);
     loadEvents(undergroundShopEvents);
 };
-let undergroundShopEvents = [strangersFramework, findItem];
+let undergroundShopEvents = [npcFramework, strangersFramework, findItem];
 
 
 
@@ -882,7 +883,7 @@ function loadChinatown() {
     link2.setAttribute("onclick", "checkTime(loadAlleyway, nightAlleyway); addMinutes(10)");
     container.append(title1, text1, image1, link1, link2);
 };
-let chinatownEvents = [];
+let chinatownEvents = [npcFramework];
 
 function loadChineseSupermarket() {
     clear(container);
@@ -896,7 +897,7 @@ function loadChineseSupermarket() {
     container.append(title1, text1, image1, link1, link2);
     loadEvents(chineseSupermarketEvents);
 };
-let chineseSupermarketEvents = [];
+let chineseSupermarketEvents = [npcFramework];
 
 
 
@@ -919,7 +920,7 @@ function loadLibraryOutside() {
     container.append(title1, text1, image1, link1, link2);
     loadEvents(libraryOutsideEvents);
   };
-  let libraryOutsideEvents = [strangersFramework, findItem];
+  let libraryOutsideEvents = [npcFramework, strangersFramework, findItem];
   
   function loadLibraryEntrance() {
     clear(container);
@@ -936,7 +937,7 @@ function loadLibraryOutside() {
     loadEvents(libraryEntranceEvents);
 
   };
-  let libraryEntranceEvents = [strangersFramework, findItem];
+  let libraryEntranceEvents = [npcFramework, strangersFramework, findItem];
 
   function loadLibraryDepths() {
     clear(container);
@@ -966,6 +967,26 @@ function exploreLibraryDepths() {
     //TODO: Create rare book searching event.
     //TODO: Add a 10% chance of finding the Japanese diary, which toggles 
 };
+
+
+
+
+
+
+
+
+//////////
+//////////////////// NPCs Framework
+//////////
+let npcBox = document.createElement("div");
+npcBox.id = "npcBox";
+
+function npcFramework() {
+
+container.insertBefore(npcBox, image1.nextSibling);
+
+};
+
 
 
 
@@ -1491,7 +1512,7 @@ function nightStreetCorner() {
     loadEvents(nightStreetCornerEvents);
 
 };
-let nightStreetCornerEvents = [findItem];
+let nightStreetCornerEvents = [npcFramework, findItem];
 
 
 
@@ -1511,7 +1532,7 @@ function nightResidentialStreet() {
     container.append(title1, text1, image1, link1, link2);
     loadEvents(nightResidentialStreetEvents);
 };
-let nightResidentialStreetEvents = [findItem];
+let nightResidentialStreetEvents = [npcFramework, findItem];
 
 function nightPark () {
     clear(container);
@@ -1524,7 +1545,7 @@ function nightPark () {
     container.append(title1, text1, image1, link2);
     loadEvents(nightParkEvents);
 };
-let nightParkEvents = [findItem, loadTrash];
+let nightParkEvents = [npcFramework, findItem, loadTrash];
 
 
 ////////
@@ -1543,7 +1564,7 @@ function nightCommercialStreet() {
     container.append(title1, text1, image1, link5, link2);
     loadEvents(nightCommercialStreetEvents);
 };
-let nightCommercialStreetEvents = [findItem];
+let nightCommercialStreetEvents = [npcFramework, findItem];
 
 
 function nightCommercialAlley() {
@@ -1560,7 +1581,7 @@ function nightCommercialAlley() {
     loadEvents(nightCommercialAlleyEvents);
 
 };
-let nightCommercialAlleyEvents = [findItem];
+let nightCommercialAlleyEvents = [npcFramework, findItem];
 
 
 ////////
@@ -1583,7 +1604,7 @@ function nightDowntownStreet() {
 
     loadEvents(nightDowntownStreetEvents);
 };
-let nightDowntownStreetEvents = [findItem];
+let nightDowntownStreetEvents = [npcFramework, findItem];
 
 function nightNightclubEntrance() {
     clear(container);
@@ -1600,7 +1621,7 @@ function nightNightclubEntrance() {
     loadEvents(nightNightclubEntranceEvents);
     
 };
-let nightNightclubEntranceEvents = [strangersFramework, findItem];
+let nightNightclubEntranceEvents = [npcFramework, strangersFramework, findItem];
 
 function nightAlleyway() {
     clear(container);
@@ -1615,7 +1636,7 @@ function nightAlleyway() {
     container.append(title1, text1, image1, link3, link2);
     loadEvents(nightAlleywayEvents);
 };
-let nightAlleywayEvents = [findItem, loadTrash];
+let nightAlleywayEvents = [npcFramework, findItem, loadTrash];
 
 ////////
 //////////////// Chinatown
@@ -1630,7 +1651,7 @@ function nightChinatown() {
     container.append(title1, text1, image1, link2);
     loadEvents(nightChinatownEvents);
 };
-let nightChinatownEvents = [];
+let nightChinatownEvents = [npcFramework];
 
 
 
